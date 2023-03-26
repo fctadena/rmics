@@ -1,0 +1,22 @@
+<h1>This is the ASSET LIST</h1>
+
+
+{% block body %}
+  {% for asset in asset_list %}
+  <div class="row">
+    <div class="col-md-4">
+        <h3> {{ asset.asset_manufacturer }} </h3>
+        <h3> {{ asset.asset_model }} </h3>
+        <h5> {{ asset.asset_sub_model_01 }} </h5>
+        <h6> {{ asset.asset_sub_model_02 }} </h6>
+        <h6> {{ asset.asset_sub_model_03 }} </h6>
+    </div>
+  </div>
+
+  {% endfor %}
+  {% endblock %}
+
+</body>
+
+</html>
+

@@ -1,0 +1,14 @@
+Django Tutorial #13 - Extending Templates
+https://www.youtube.com/watch?v=tyFmF_v3z8c
+
+MySql Details:
+https://www.youtube.com/watch?v=Pg3lj2o_P4o
+
+db: rmics_db_v2
+user: root
+password: Gat#105strike
+
+SUPERUSER:
+username: francis
+password: Gat#105strike
+email: franciscarlotadena@gmail.com

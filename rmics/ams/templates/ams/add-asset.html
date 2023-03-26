@@ -1,0 +1,25 @@
+<h1>This is add-asset form</h1>
+
+{% block body %}
+
+<div class="card-body">
+    <form method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="form-group">
+            {{ field.name }}
+            <br>
+            {{ field }}
+        </div>
+
+        {% endfor %}
+        <button class="btn btn-info" type="Submit">Save</button>
+    
+    </form>
+
+</div>
+
+
+
+
+{% endblock %}
