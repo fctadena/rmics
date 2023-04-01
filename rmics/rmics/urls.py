@@ -19,7 +19,7 @@ from . import views
 from .views import Index
 
 urlpatterns = [
-    path('', views.Index, name='index'),
+    path('', views.Index, name='base'),
     path('admin/', admin.site.urls),
     path('ams/', include('ams.urls')),
     

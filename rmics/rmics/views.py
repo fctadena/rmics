@@ -6,4 +6,4 @@ from django.shortcuts import render, redirect
 
 def Index(request):
  
-    return render(request, 'rmics/index.html')
+    return render(request, 'rmics/base.html')

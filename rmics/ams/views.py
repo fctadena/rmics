@@ -12,7 +12,7 @@ def Ams(request):
     context = {
         'asset_list':asset_list,
     }
-    return render(request, 'ams/ams.html', context)
+    return render(request, 'rmics/base.html', context)
 
 def AssetList(request):
     asset_list = Asset.objects.all()
