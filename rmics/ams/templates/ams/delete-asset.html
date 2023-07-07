@@ -1,0 +1,13 @@
+{% extends 'rmics/ams-base.html' %}
+
+{% block deleteasset %}
+
+<form method="POST">
+    {% csrf_token %}
+    <h2>Confirm Asset Deletion: {{ asset.asset_manufacturer }} {{ asset.asset_model }}</h2>
+    <button type="submit">Confirm</button>
+
+
+</form>
+
+{% endblock %}

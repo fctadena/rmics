@@ -1,22 +1,96 @@
-<h1>This is the ASSET LIST</h1>
+{% extends 'rmics/ams-base.html' %}
+<!DOCTYPE html>
 
 
-{% block body %}
-  {% for asset in asset_list %}
-  <div class="row">
-    <div class="col-md-4">
-        <h3> {{ asset.asset_manufacturer }} </h3>
-        <h3> {{ asset.asset_model }} </h3>
-        <h5> {{ asset.asset_sub_model_01 }} </h5>
-        <h6> {{ asset.asset_sub_model_02 }} </h6>
-        <h6> {{ asset.asset_sub_model_03 }} </h6>
+
+{% block assetlist %}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+
+{% if messages %}
+    {% for message in messages %}
+
+            {% if message.extra_tags == 'success' %}
+            <div class="alert alert-success" role="alert">
+              {{ message }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+                
+      
+            {% elif message.extra_tags == 'warning' %}
+            <div class="alert alert-danger" role="alert">
+              {{ message }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            
+
+
+            {% elif message.extra_tags == 'info' %}
+            <div class="alert alert-warning" role="alert">
+              {{ message }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+              
+          
+            {% endif %}
+            
+    {% endfor %}
+{% endif %}
+
+
+
+
+
+
+    <div class="table-responsive">
+      <table class="table table-striped jambo_table bulk_action">
+        <thead>
+          <tr class="headings">
+            <th class="column-title">Manufacturer </th>
+            <th class="column-title">Model </th>
+            <th class="column-title">Sub-model 1 </th>
+            <th class="column-title">Sub-model 2 </th>
+            <th class="column-title">Sub-model 3 </th>
+            <th class="column-title no-link last"><span class="nobr">Action</span>
+            </th>
+            <th class="bulk-actions" colspan="7">
+              <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+            </th>
+          </tr>
+        </thead>
+
+        {% for asset in asset_list %}
+        <tbody>
+          <tr class="even pointer" >
+            <td class=" ">{{ asset.asset_manufacturer }}</td>
+            <td class=" ">{{ asset.asset_model }}</td>
+            <td class=" ">{{ asset.asset_sub_model_01 }} </td>
+            <td class=" ">{{ asset.asset_sub_model_02 }} </td>
+            <td class=" ">{{ asset.asset_sub_model_03 }} </td>
+            <td class=" last"><a href="{% url 'ams:asset_detail' asset.id %}">View</a>
+            </td>
+          </tr>
+        </tbody>
+        {% endfor %}
+      </table>
     </div>
-  </div>
 
-  {% endfor %}
-  {% endblock %}
 
-</body>
+    {% comment %} <script>
+      $(".alert-dismissible").fadeTo(7000, 500).slideUp(500, function(){
+          $(".alert-dismissible").alert('close');
+      });
+  </script> {% endcomment %}
+      
+{% endblock %}
 
-</html>
+
 

@@ -1,0 +1,35 @@
+APPS LIST:
+RMI ColSys
+> (messages)
+
+
+Asset MS
+> Asset(models.Model)
+> Plant(models.Model)
+
+Deliverable MS
+> RCFA(models.Model)
+> Submittal(models.Model)
+
+
+Daily Report MS
+> MaintenanceLog(models.Model)
+
+
+user
+> User
+> UserProfile
+
+
+
+
+MODELS Summary
+
+> (messages)
+> Asset(models.Model)
+> Plant(models.Model)
+> RCFA(models.Model)
+> Submittal(models.Model)
+> MaintenanceLog(models.Model)
+> User
+> UserProfile

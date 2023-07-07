@@ -12,8 +12,8 @@ app_name = 'ams'
 urlpatterns = [
     path('', views.Ams, name='ams_index'),
     path('asset-list/', views.AssetList, name='asset_list'),
-    path('add-asset/', views.AddAsset, name='add_asset'),
-    path('asset-detail/', views.AssetDetail, name='asset_detail'),
-    path('update-asset/', views.UpdateAsset, name='update_asset'),
-    path('delete-asset/', views.DeleteAsset, name='delete_asset'),
+    path('add-asset/', views.AddAsset.as_view(), name='add_asset'),
+    path('<int:pk>/', views.AssetDetail.as_view(), name='asset_detail'),
+    path('update-asset/<int:id>/', views.UpdateAsset, name='update_asset'),
+    path('delete-asset/<int:id>/', views.DeleteAsset, name='delete_asset'),
 ]

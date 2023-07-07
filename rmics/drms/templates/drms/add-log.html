@@ -1,0 +1,15 @@
+{% extends 'rmics/drms-base.html' %}
+<!DOCTYPE html>
+
+
+{% block MaintenanceLogForm %}
+
+<div class="form-group">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-info" type="Submit">Save</button>
+    </form>
+</div>
+
+{% endblock %}

@@ -1,25 +1,15 @@
-<h1>This is add-asset form</h1>
+{% extends 'rmics/ams-base.html' %}
+<!DOCTYPE html>
 
-{% block body %}
 
-<div class="card-body">
-    <form method="POST">
+{% block addassetform %}
+
+<div class="form-group">
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        {% for field in form %}
-        <div class="form-group">
-            {{ field.label }}
-            <br>
-            {{ field }}
-        </div>
-
-        {% endfor %}
+        {{ form.as_p }}
         <button class="btn btn-info" type="Submit">Save</button>
-    
     </form>
-
 </div>
-
-
-
 
 {% endblock %}

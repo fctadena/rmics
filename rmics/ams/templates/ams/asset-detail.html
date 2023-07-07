@@ -1,1 +1,115 @@
-<h1>This is asset detail</h1>
+{% extends 'rmics/ams-base.html' %}
+<!DOCTYPE html>
+
+{% block assetdetail %}
+<div class="row">
+    <div class="col-md-12 col-sm-12 ">
+      <div class="x_panel">
+        <div class="x_title">
+          <h2>Asset Detail Page</h2>
+          
+          <ul class="nav navbar-right panel_toolbox">
+            <li><a href="{% url 'ams:asset_list' %}"><i class="fa fa-long-arrow-left"> Asset List</i></a>
+            </li>
+            <li><a href="{% url 'ams:update_asset' asset.id %}"><i class="fa fa-pencil-square-o"> Edit Asset</i></a>
+            </li>
+            <li><a href="{% url 'ams:delete_asset' asset.id %}"><i class="fa fa-pencil-square-o"> Delete Asset</i></a>
+            </li>
+          </ul>
+
+          
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+
+          <div class="col-md-7 col-sm-7 ">
+            <div class="product-image">
+              {% comment %} Troubleshoot here! {% endcomment %}
+              <img src="{{ object.asset_image_primary.url }}" alt="..." />
+            </div>
+          </div>
+
+          <div class="col-md-5 col-sm-5 " style="border:0px solid #e5e5e5;">
+
+            <h3 class="prod_title">{{ object.asset_manufacturer }}</h3>
+
+            <div class="">
+                <div class="product_price">
+                  <h1 class="price">{{ object.asset_model }} {{ object.asset_year }}</h1>
+                  <span class="price-tax">{{ object.asset_sub_model_01 }} {{ object.asset_sub_model_02 }} {{ object.asset_sub_model_03 }}</span>
+                  <br>
+                </div>
+              </div>
+
+            <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terr.</p>
+            <br />
+
+            <div class="">
+              <h2>Plant Installations</h2>
+              <p>BMP MisOr 1, BMP MisOr 2, BMP DavSur1</p>
+            </div>
+            <br />
+
+            <div class="">
+              <h2>Model Sub-models</h2>
+              <ul class="list-inline prod_size display-layout">
+                <li>
+                  <button type="button" class="btn btn-default btn-xs">Sub-model 1: {{ object.asset_sub_model_01 }}</button>
+                </li>
+                <li>
+                  <button type="button" class="btn btn-default btn-xs">Sub-model 2: {{ object.asset_sub_model_02 }}</button>
+                </li>
+                <li>
+                  <button type="button" class="btn btn-default btn-xs">Sub-model 3: {{ object.asset_sub_model_03 }}</button>
+                </li>
+              </ul>
+            </div>
+            <br />
+
+            
+
+            <div class="">
+              <button type="button" class="btn btn-default btn-lg">Add to Cart</button>
+              <button type="button" class="btn btn-default btn-lg">Add to Wishlist</button>
+            </div>
+          </div>
+
+
+          <div class="col-md-12">
+
+            <ul class="nav nav-tabs bar_tabs" id="myTab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Service Records</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Related RCFAs</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Lifetime Return</a>
+              </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher
+                    synth. Cosby sweater eu banh mi, qui irure terr.
+              </div>
+              <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo
+                    booth letterpress, commodo enim craft beer mlkshk aliquip
+              </div>
+              <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                xxFood truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo
+                    booth letterpress, commodo enim craft beer mlkshk 
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+      
+{% endblock %}
+
+
+
