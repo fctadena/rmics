@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 from django.shortcuts import redirect, render
 from django.http import request
+from django.db.models import Q
 
 
 

@@ -272,15 +272,13 @@
           <div class="row">
             <div class="col-md-12">
               <div class="x_panel">
-                <div class="x_title">
-                  <h2>RMI - Asset Management System</h2>
-                  <div class="clearfix"></div>
-                </div>
+                
 
                 <div class="x_content">
 
                   <div class="col-md-9 col-sm-9  ">
 
+                    <!-- AMS BLOCK -->
                     {% block assetlist %}
                     {% endblock %}
 
@@ -293,10 +291,12 @@
                     {% block deleteasset %}
                     {% endblock %}
 
-
-
-
+                    {% block updateassetform %}
+                    {% endblock %}
                   
+                    <!-- DRMS BLOCK -->
+                    {% block MaintenanceLogForm %}
+                    {% endblock %}
                   </div>
 
                   <!-- start project-detail sidebar -->

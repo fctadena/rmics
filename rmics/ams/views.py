@@ -8,7 +8,7 @@ from django.http import HttpResponse
 from django.views.generic.detail import DetailView
 from django.core.files.storage import FileSystemStorage
 from django.contrib import messages
-
+from django.db.models import Q
 
 
 
@@ -18,10 +18,22 @@ def Ams(request):
     context = {
         'asset_list':asset_list,
     }
-    return render(request, 'ams/asset-list.html', context)
+    return render(request, 'ams/ams.html', context)
 
 def AssetList(request):
     asset_list = Asset.objects.all()
+    
+    search_asset = request.GET.get('search_asset')
+    
+    if search_asset != '' and search_asset is not None:
+        asset_list = asset_list.filter(
+            Q(asset_model__icontains=search_asset) |  # Search asset_model field
+            Q(asset_manufacturer__icontains=search_asset) |  # Search asset_manufacturer field
+            Q(asset_sub_model_01__icontains=search_asset) |  # Search asset_sub_model_01 field
+            Q(asset_sub_model_02__icontains=search_asset) |  # Search asset_sub_model_02 field
+            Q(asset_sub_model_03__icontains=search_asset)    # Search asset_sub_model_03 field
+        )
+    
     context = {
         'asset_list':asset_list,
     }
@@ -31,6 +43,22 @@ def AssetList(request):
 class AssetDetail(DetailView):
     model = Asset
     template_name = 'ams/asset-detail.html'
+
+
+#THIS IS THE ORIGINAL ASSETLIST VIEW WITHOUT THE FILTER (Or Search) Feature
+# def AssetList(request):
+#     asset_list = Asset.objects.all()
+#     context = {
+#         'asset_list':asset_list,
+#     }
+#     return render(request, 'ams/asset-list.html', context)
+
+
+# class AssetDetail(DetailView):
+#     model = Asset
+#     template_name = 'ams/asset-detail.html'
+    
+    
 
 
 
@@ -72,4 +100,4 @@ def UpdateAsset(request,id):
             return redirect('ams:asset_list')
     else:
         form = AssetForm(instance=asset)
-    return render(request, 'ams/add-asset.html', {'form': form, 'asset': asset})
+    return render(request, 'ams/update-asset.html', {'form': form, 'asset': asset})
