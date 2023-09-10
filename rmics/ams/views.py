@@ -44,23 +44,7 @@ class AssetDetail(DetailView):
     model = Asset
     template_name = 'ams/asset-detail.html'
 
-
-#THIS IS THE ORIGINAL ASSETLIST VIEW WITHOUT THE FILTER (Or Search) Feature
-# def AssetList(request):
-#     asset_list = Asset.objects.all()
-#     context = {
-#         'asset_list':asset_list,
-#     }
-#     return render(request, 'ams/asset-list.html', context)
-
-
-# class AssetDetail(DetailView):
-#     model = Asset
-#     template_name = 'ams/asset-detail.html'
     
-    
-
-
 
 #CRUD STARTS HERE
 class AddAsset(CreateView):
