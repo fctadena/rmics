@@ -35,18 +35,41 @@
 
           <div class="col-md-5 col-sm-5 " style="border:0px solid #e5e5e5;">
 
-            <h3 class="prod_title">{{ object.asset_manufacturer }}</h3>
+            <h3 class="prod_title">{{ object.asset_rated_capacity }} {{ object.asset_type }} {{ object.asset_sub_type }}</h3>
 
             <div class="">
                 <div class="product_price">
-                  <h1 class="price">{{ object.asset_model }} {{ object.asset_year }}</h1>
-                  <span class="price-tax">{{ object.asset_sub_model_01 }} {{ object.asset_sub_model_02 }} {{ object.asset_sub_model_03 }}</span>
+                  <h1 class="price">{{ object.asset_model }}</h1>
+                  <span class="price-tax">{{ object.asset_manufacturer }} {{ object.asset_year }}</span>
                   <br>
                 </div>
               </div>
-
-            <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terr.</p>
             <br />
+
+            <div class="">
+              <h2>Drive Details</h2>
+              <ul class="list-inline prod_size display-layout">
+                <li>
+                  <button type="button" class="btn btn-default btn-xs">Drive Type {{ object.asset_drive_details }}</button>
+                </li>
+                <li>
+                  <button type="button" class="btn btn-default btn-xs">Supply: 440v</button>
+                </li>
+                <li>
+                  <button type="button" class="btn btn-default btn-xs">Type: AC</button>
+                </li>
+              </ul>
+            </div>
+
+            <h5>Asset Files</h5>
+                        <ul class="list-unstyled project_files">
+                          <li><a href=""><i class="fa fa-file-word-o"></i> Functional-requirements.docx</a>
+                          </li>
+                          <li><a href=""><i class="fa fa-file-pdf-o"></i> UAT.pdf</a>
+                          </li>
+                          <li><a href=""><i class="fa fa-mail-forward"></i> Email-from-flatbal.mln</a>
+                        </ul>
+                        <br />
 
             <div class="">
               <h2>Plant Installations</h2>
@@ -54,28 +77,10 @@
             </div>
             <br />
 
-            <div class="">
-              <h2>Model Sub-models</h2>
-              <ul class="list-inline prod_size display-layout">
-                <li>
-                  <button type="button" class="btn btn-default btn-xs">Sub-model 1: {{ object.asset_sub_model_01 }}</button>
-                </li>
-                <li>
-                  <button type="button" class="btn btn-default btn-xs">Sub-model 2: {{ object.asset_sub_model_02 }}</button>
-                </li>
-                <li>
-                  <button type="button" class="btn btn-default btn-xs">Sub-model 3: {{ object.asset_sub_model_03 }}</button>
-                </li>
-              </ul>
-            </div>
+
+
             <br />
 
-            
-
-            <div class="">
-              <button type="button" class="btn btn-default btn-lg">Add to Cart</button>
-              <button type="button" class="btn btn-default btn-lg">Add to Wishlist</button>
-            </div>
           </div>
 
 
@@ -84,6 +89,9 @@
             <ul class="nav nav-tabs bar_tabs" id="myTab" role="tablist">
               <li class="nav-item">
                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Maintenance Record</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Critical Parts Availability</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Related RCFAs</a>

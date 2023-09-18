@@ -67,10 +67,11 @@
           <tr class="headings text-center">
             <th class="column-title align-middle">Image</th>
             <th class="column-title align-middle">Manufacturer</th>
+            <th class="column-title align-middle">Rated Capacity</th>
             <th class="column-title align-middle">Model</th>
-            <th class="column-title align-middle">Sub-model 1</th>
-            <th class="column-title align-middle">Sub-model 2</th>
-            <th class="column-title align-middle">Sub-model 3</th>
+            <th class="column-title align-middle">Asset Type</th>
+            <th class="column-title align-middle">Sub Type</th>
+            <th class="column-title align-middle">Drive Details</th>
             <th class="column-title align-middle no-link last"><span class="nobr">Action</span>
             </th>
             <th class="bulk-actions" colspan="7">
@@ -84,10 +85,11 @@
           <tr class="even pointer" >
             <td class=" "><img src="{{ asset.asset_image_primary.url }}" alt="..." class="img-thumbnail" style="width: 200px; height: auto;"/></td>
             <td class="text-center" style="vertical-align: middle;">{{ asset.asset_manufacturer }}</td>
+            <td class="text-center" style="vertical-align: middle;">{{ asset.asset_rated_capacity }}</td>
             <td class="text-center" style="vertical-align: middle;">{{ asset.asset_model }}</td>
-            <td class="text-center" style="vertical-align: middle;">{{ asset.asset_sub_model_01 }} </td>
-            <td class="text-center" style="vertical-align: middle;">{{ asset.asset_sub_model_02 }} </td>
-            <td class="text-center" style="vertical-align: middle;">{{ asset.asset_sub_model_03 }} </td>
+            <td class="text-center" style="vertical-align: middle;">{{ asset.asset_type }} </td>
+            <td class="text-center" style="vertical-align: middle;">{{ asset.asset_sub_type }} </td>
+            <td class="text-center" style="vertical-align: middle;">{{ asset.asset_drive_details }} </td>
             <td class="text-center last" style="vertical-align: middle;" ><a href="{% url 'ams:asset_detail' asset.id %}">View</a>
             </td>
           </tr>

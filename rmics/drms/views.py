@@ -2,6 +2,9 @@ from django.shortcuts import render
 from .models import MaintenanceLog
 from django.views.generic.edit import CreateView
 from .forms import MaintenanceLogForm
+from django.contrib import messages
+from django.urls import reverse_lazy
+
 
 
 # Create your views here.
@@ -19,7 +22,6 @@ def log_detail(request):
 
 
 #CRUD STARTS HERE
-
 class add_log(CreateView):
     model = MaintenanceLog
     form_class = MaintenanceLogForm

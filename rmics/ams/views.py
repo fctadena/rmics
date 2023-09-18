@@ -29,9 +29,10 @@ def AssetList(request):
         asset_list = asset_list.filter(
             Q(asset_model__icontains=search_asset) |  # Search asset_model field
             Q(asset_manufacturer__icontains=search_asset) |  # Search asset_manufacturer field
-            Q(asset_sub_model_01__icontains=search_asset) |  # Search asset_sub_model_01 field
-            Q(asset_sub_model_02__icontains=search_asset) |  # Search asset_sub_model_02 field
-            Q(asset_sub_model_03__icontains=search_asset)    # Search asset_sub_model_03 field
+            Q(asset_type__icontains=search_asset) |  # Search asset_type field
+            Q(asset_sub_type__icontains=search_asset) |  # Search asset_sub_type field
+            Q(asset_drive_details__icontains=search_asset) |   # Search asset_drive_details field
+            Q(asset_rated_capacity__icontains=search_asset)    # Search asset_rated_capacity field
         )
     
     context = {

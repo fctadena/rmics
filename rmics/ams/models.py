@@ -19,15 +19,13 @@ class Asset(models.Model):
     
     asset_manufacturer = models.CharField(max_length = 100)
     asset_model = models.CharField(max_length = 100)
-    asset_sub_model_01 = models.CharField(max_length=50, blank=True)
-    asset_sub_model_02 = models.CharField(max_length=50, blank=True)
-    asset_sub_model_03 = models.CharField(max_length=50, blank=True)
-    asset_year = models.IntegerField(blank=True)
+    asset_rated_capacity = models.CharField(default=0, max_length = 100)
+    asset_type = models.CharField(max_length=50, blank=True)
+    asset_sub_type = models.CharField(max_length=50, blank=True)
+    asset_drive_details = models.CharField(max_length=50, blank=True)
+    asset_year = models.CharField(max_length = 50, blank=True)
     asset_month = models.CharField(max_length = 50, blank=True)
     asset_image_primary = models.ImageField(upload_to='pics', default='D:\Legacy Projects\rmics\rmics\media\dphd_1.jpg')
     
     def get_absolute_url(self):
         return render(request, template_name='ams/asset-list.html')
-    
-
-    
