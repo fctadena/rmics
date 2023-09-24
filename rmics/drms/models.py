@@ -25,11 +25,11 @@ class MaintenanceLog(models.Model):
     work_center = models.CharField(max_length=100, choices=[('Mechanical', 'Mechanical'), ('Electrical', 'Electrical'), ('Instrumentation & Controls', 'Instrumentation & Controls'), ('Fabrication', 'Fabrication'), ('Lubrication', 'Lubrication')])
     personnel_assigned = models.CharField(max_length=255)
     parts_replaced = models.CharField(max_length=255)
-    quantity_of_parts = models.IntegerField()
+    quantity_of_parts = models.IntegerField(blank=True, null=True)
     status = models.CharField(max_length=20, choices=[('Waiting for Parts', 'Waiting for Parts'), ('On-going', 'On-going'), ('Completed', 'Completed'), ('Pending', 'Pending')])
-    remarks = models.TextField()
-    spare_details = models.TextField()
-    notification_num = models.CharField(max_length=255)
+    remarks = models.TextField(blank=True, null=True)
+    spare_details = models.TextField(blank=True, null=True)
+    notification_num = models.CharField(max_length=255, blank=True, null=True)
     include_log = models.BooleanField(default=True)
 
 # class MaintenanceLog(models.Model):

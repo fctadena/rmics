@@ -24,15 +24,16 @@ def log_detail(request):
 #CRUD STARTS HERE
 class add_log(CreateView):
     model = MaintenanceLog
+    maintenance_log = model.objects.all()
+    context = {
+        'maintenance_log':maintenance_log,
+    }
     form_class = MaintenanceLogForm
     template_name = 'drms/add-log.html'
     
     def get_success_url(self):
         messages.success(self.request, 'Log Maintenance Task Successfully', extra_tags='success')
-        return reverse_lazy('drms:daily_report')
-
-
-
+        return reverse_lazy('drms:daily_report', context)
 
 
 def delete_log(request):

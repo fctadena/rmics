@@ -6,7 +6,7 @@ from django.db import models
 
 class daily_report_om(models.Model):
     date = models.CharField(max_length = 100)
-    plant = models.CharField(max_length = 100)
+    plant = models.CharField(max_length = 100) #with pre-determined values (BMP MisOr1, BMP Bukidnon, etc.)
     planned_production_time = models.CharField(max_length = 100)
     manpower_1st_shift = models.CharField(max_length = 100)
     manpower_2nd_shift = models.CharField(max_length = 100)
