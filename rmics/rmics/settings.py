@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'ams',
     'drms',
+    'drom',
     'user',
     'django.contrib.admin',
     'django.contrib.auth',

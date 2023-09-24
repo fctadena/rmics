@@ -22,57 +22,56 @@
         <div class="form-group row ">
           <label class="control-label col-md-3 col-sm-3 ">Asset manufacturer:</label>
           <div class="col-md-9 col-sm-9 ">
-            {% comment %} <input type="text" class="form-control" placeholder=""> {% endcomment %}
-            {{ form.asset_manufacturer }}
+            <input type="text" name="asset_manufacturer" class="form-control" placeholder="">
           </div>
         </div>
 
         <div class="form-group row ">
           <label class="control-label col-md-3 col-sm-3 ">Asset model:</label>
           <div class="col-md-9 col-sm-9 ">
-            {{ form.asset_model }}
+            <input type="text" name="asset_model" class="form-control" placeholder="">
           </div>
         </div>
 
         <div class="form-group row ">
           <label class="control-label col-md-3 col-sm-3 ">Asset rated capacity:</label>
           <div class="col-md-9 col-sm-9 ">
-            {{ form.asset_rated_capacity }}
+            <input type="text" name="asset_rated_capacity" class="form-control" placeholder="">
           </div>
         </div>
 
         <div class="form-group row ">
           <label class="control-label col-md-3 col-sm-3 ">Asset type:</label>
           <div class="col-md-9 col-sm-9 ">
-            {{ form.asset_type }}
+            <input type="text" name="asset_type" class="form-control" placeholder="">
           </div>
         </div>
 
         <div class="form-group row ">
           <label class="control-label col-md-3 col-sm-3 ">Asset sub type:</label>
           <div class="col-md-9 col-sm-9 ">
-            {{ form.asset_sub_type }}
+            <input type="text" name="asset_sub_type" class="form-control" placeholder="">
           </div>
         </div>
 
         <div class="form-group row ">
           <label class="control-label col-md-3 col-sm-3 ">Asset drive details:</label>
           <div class="col-md-9 col-sm-9 ">
-            {{ form.asset_drive_details }}
+            <input type="text" name="asset_drive_details" class="form-control" placeholder="">
           </div>
         </div>
 
         <div class="form-group row ">
           <label class="control-label col-md-3 col-sm-3 ">Asset year:</label>
           <div class="col-md-9 col-sm-9 ">
-            {{ form.asset_year }}
+            <input type="text" name="asset_year" class="form-control" placeholder="">
           </div>
         </div>
 
         <div class="form-group row ">
           <label class="control-label col-md-3 col-sm-3 ">Asset month:</label>
           <div class="col-md-9 col-sm-9 ">
-            {{ form.asset_month }}
+            <input type="text" name="asset_month" class="form-control" placeholder="">
           </div>
         </div>
  
@@ -80,8 +79,7 @@
         <div class="btn-group">
           <label class="control-label col-md-3 col-sm-3 ">Asset image primary:</label>
           <a class="btn" title="Insert picture (or just drag & drop)" id="pictureBtn"><i class="fa fa-picture-o float-right"></i></a>
-          {{ form.asset_image_primary }}
-          {% comment %} <input type="file" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage"/> {% endcomment %}
+          <input type="file" name="asset_image_primary" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage"/>
         </div>
 
 
