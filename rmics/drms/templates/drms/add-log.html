@@ -27,23 +27,33 @@
         <div class="row">
 
             <div class="col-md-4 col-sm-12  form-group">
-                <input type="text" placeholder="Wo seq num" class="form-control">
+                <label for="wo_seq_num">WO Sequence Number:</label>
+                <input type="text" name="wo_seq_num" class="form-control" placeholder="">
             </div>
 
             <div class="col-md-4 col-sm-12  form-group">
-                <input type="text" placeholder="Description of work" class="form-control">
+                <label for="description_of_work">Machine failure breakdown:</label>
+                <input type="text" placeholder="" class="form-control">
             </div>
 
             <div class="col-md-4 col-sm-12  form-group">
-                <input type="text" placeholder="Work type:" class="form-control">
+                <label for="work_type">Work Type:</label>
+                    <select class="form-control">
+                        <option>Choose option</option>
+                        {% for choice in form.work_type.field.choices %}
+                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                        {% endfor %}
+                    </select>		
             </div>
 
             <div class="col-md-6 col-sm-12  form-group">
-                <input type="text" placeholder="Machine failure breakdown:" class="form-control">
+                <label for="description_of_work">Description of Work:</label>
+                <textarea id="description_of_work" required="required" class="form-control" name="description_of_work"></textarea>
             </div>
 
             <div class="col-md-6 col-sm-12  form-group">
-                <input type="text" placeholder="Root cause:" class="form-control">
+                <label for="root_cause">Root cause:</label>
+                <textarea id="root_cause" required="required" class="form-control" name="root_cause"></textarea>
             </div>
 
             <div class="col-md-6 col-sm-12  form-group">
@@ -144,90 +154,9 @@
 
     </div>
 </div>
-{% endblock %}
 
 
-
-{% block MaintenanceLogSummary %}
-<div class="x_panel">
-    <div class="x_title">
-      <h2>Maintenance Record Summary</h2>
-      <ul class="nav navbar-right panel_toolbox">
-        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">Settings 1</a>
-              <a class="dropdown-item" href="#">Settings 2</a>
-            </div>
-        </li>
-        <li><a class="close-link"><i class="fa fa-close"></i></a>
-        </li>
-      </ul>
-      <div class="clearfix"></div>
-    </div>
-
-    <div class="x_content">
-
-      <p>Note: Make sure to provide accurate records.</p>
-
-      <div class="table-responsive">
-        <table class="table table-striped jambo_table bulk_action">
-          <thead>
-            <tr class="headings">
-                <th class="column-title">Date</th>
-                <th class="column-title">Time Consumed (hh:mm):</th>
-                <th class="column-title">Machine failure breakdown</th>
-                <th class="column-title">Description of work</th>
-                <th class="column-title">Root Cause </th>
-                <th class="column-title">Equipment Name </th>
-                <th class="column-title">Status </th>
-                <th class="column-title">Affecting Bagging? </th>
-                <th class="column-title">Includ Log? </th>
-                <th class="column-title">Action </th>
-              </th>
-              <th class="bulk-actions" colspan="7">
-                <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
-              </th>
-            </tr>
-          </thead>
-
-          {% for log in maintenance_log %}
-          <tbody>
-            <tr class="even pointer">
-              <td class=" ">{{ log.machine_failure_breakdown }}</td>
-              <td class=" ">{{ log.machine_failure_breakdown }}</td>
-              <td class=" ">{{ log.machine_failure_breakdown }}</td>
-              <td class=" ">{{ log.machine_failure_breakdown }}</td>
-              <td class=" ">{{ log.machine_failure_breakdown }}</td>
-              <td class=" ">{{ log.machine_failure_breakdown }}</td>
-              <td class=" ">{{ log.machine_failure_breakdown }}</td>
-              <td class=" ">{{ log.machine_failure_breakdown }}</td>
-              <td class=" ">{{ log.machine_failure_breakdown }}</td>
-              <td class=" ">{{ log.machine_failure_breakdown }}</td>
-            </tr>
-          </tbody>
-          {% endfor %}
-        </table>
-      </div>
-              
-          
-    </div>
-  </div>
-
-
-
-
-
-
-
-
-
-
-
-
-  <div class="form-group">
+<div class="form-group">
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
@@ -235,3 +164,5 @@
     </form>
 </div>
 {% endblock %}
+
+
