@@ -4,7 +4,7 @@
 {% block MaintenanceLogForm %}
 <div class="x_panel">
     <div class="x_title">
-        <h2>Log Maintenance Record</h2>
+        <h2>🔧 Log Maintenance Record</h2>
         <ul class="nav navbar-right panel_toolbox">
             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
             </li>
@@ -24,7 +24,6 @@
     <div class="x_content">
 
         <div class="row">
-
             <div class="col-md-4 col-sm-12  form-group">
                 <label for="wo_seq_num">WO Sequence Number:</label>
                 <input type="text" name="wo_seq_num" class="form-control" placeholder="">
@@ -33,6 +32,7 @@
             <div class="col-md-4 col-sm-12  form-group">
                 <label for="description_of_work">Machine failure breakdown:</label>
                 <input type="text" placeholder="" class="form-control">
+
             </div>
 
             <div class="col-md-4 col-sm-12  form-group">
@@ -168,8 +168,9 @@
                 </div>
               </div>
         </div>
-
     </div>
+
+{% endblock %}
 
 
 <div class="form-group">
@@ -179,6 +180,3 @@
         <button class="btn btn-info" type="Submit">Save</button>
     </form>
 </div>
-{% endblock %}
-
-
