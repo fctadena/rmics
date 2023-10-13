@@ -21,162 +21,186 @@
         
         <div class="clearfix"></div>
     </div>
+
     <div class="x_content">
-
-        <div class="row">
-            <div class="col-md-4 col-sm-12  form-group">
-                <label for="wo_seq_num">WO Sequence Number:</label>
-                <input type="text" name="wo_seq_num" class="form-control" placeholder="">
-            </div>
-
-            <div class="col-md-4 col-sm-12  form-group">
-                <label for="description_of_work">Machine failure breakdown:</label>
-                <input type="text" placeholder="" class="form-control">
-
-            </div>
-
-            <div class="col-md-4 col-sm-12  form-group">
-                <label for="work_type">Work Type:</label>
+        <form method="POST" enctype="multipart/form-data" class="form-horizontal form-label-left">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-4 col-sm-12 form-group">
+                    <label for="wo_seq_num">WO Sequence Number:</label>
+                    {% comment %} <div class="form-group form-control">{{ form.wo_seq_num }}</div> {% endcomment %}
+                    <input type="text" name="wo_seq_num" class="form-control" placeholder=""> 
+                </div>
+    
+                <div class="col-md-4 col-sm-12  form-group">
+                    <label for="description_of_work">Machine failure breakdown:</label>
+                    <input type="text" name="machine_failure_breakdown" placeholder="" class="form-control">
+                </div>
+    
+                <div class="col-md-4 col-sm-12  form-group">
+                    <label for="work_type">Work Type:</label>
+                        <select class="form-control">
+                            <option>Choose option</option>
+                            {% for choice in form.work_type.field.choices %}
+                            <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                            {% endfor %}
+                        </select>		
+                </div>
+    
+                <div class="col-md-6 col-sm-12  form-group">
+                    <label for="description_of_work">Description of Work:</label>
+                    <textarea id="description_of_work" required="required" class="form-control" name="description_of_work"></textarea>
+                </div>
+    
+                <div class="col-md-6 col-sm-12  form-group">
+                    <label for="root_cause">Root cause:</label>
+                    <textarea id="root_cause" required="required" class="form-control" name="root_cause"></textarea>
+                </div>
+    
+                <div class="col-md-6 col-sm-12  form-group">
+                    <label for="job_start">Job Start:</label>
+                    <input type="text" name="job_start" placeholder="" class="form-control">
+                    
+                </div>
+    
+                <div class="col-md-6 col-sm-12  form-group">
+                    <label for="job_end">Job End:</label>
+                    <input type="text" name="job_end" placeholder="" class="form-control">
+                </div>
+    
+                <div class="col-md-4 col-sm-12  form-group">
+                    <label for="time_consumed">Time Consumed (hh:mm):</label>
+                    <input type='text' name="time_consumed" placeholder="" class="form-control"/>
+                </div>
+    
+                <div class="col-md-4 col-sm-12  form-group">
+                    <label for="affecting_production">Affecting Production (hh:mm):</label>
+                    <input type="text" name="affecting_production" placeholder="" class="form-control">
+                </div>
+    
+                <div class="col-md-4 col-sm-12  form-group">
+                    <label for="affecting_time">Affecting Time (hh:mm):</label>
+                    <input type="text" name="affecting_time" placeholder="" class="form-control">
+                </div>
+    
+                <div class="col-md-3 col-sm-12  form-group">
+                    <label for="equipment_name">Equipment name:</label>
+                    <input type="text" name="equipment_name" placeholder="" class="form-control">
+                </div>
+    
+                <div class="col-md-3 col-sm-12  form-group">
+                    <label for="equipment_code">Equipment code:</label>
+                    <input type="text" name="equipment_code" placeholder="" class="form-control">
+                </div>
+    
+                <div class="col-md-3 col-sm-12  form-group">
+                    <label for="section">Section:</label>
+                    <input type="text" name="section" placeholder="" class="form-control">
+                </div>
+    
+                <div class="col-md-3 col-sm-12  form-group">
+                    <label for="system">System:</label>
+                    <input type="text" name="system" placeholder="" class="form-control">
+                </div>
+                </div>
+    
+                <div class="col-md-4 col-sm-12  form-group">
+                    Affecting Bagging <input type="checkbox" name="affecting_bagging" class="flat form-control"> 
+                </div>
+    
+                <div class="col-md-4 col-sm-12  form-group">
+                    Machine Failure <input type="checkbox" name="machine_failure" class="flat form-control"> 
+                </div>
+    
+    
+                <div class="col-md-4 col-sm-12  form-group">
+                    <label for="type_of_stop_time">Type of stop time:</label>
                     <select class="form-control">
                         <option>Choose option</option>
-                        {% for choice in form.work_type.field.choices %}
+                        {% for choice in form.type_of_stop_time.field.choices %}
                         <option value="{{ choice.0 }}">{{ choice.1 }}</option>
                         {% endfor %}
-                    </select>		
-            </div>
-
-            <div class="col-md-6 col-sm-12  form-group">
-                <label for="description_of_work">Description of Work:</label>
-                <textarea id="description_of_work" required="required" class="form-control" name="description_of_work"></textarea>
-            </div>
-
-            <div class="col-md-6 col-sm-12  form-group">
-                <label for="root_cause">Root cause:</label>
-                <textarea id="root_cause" required="required" class="form-control" name="root_cause"></textarea>
-            </div>
-
-            <div class="col-md-6 col-sm-12  form-group">
-                <input type="text" placeholder="Job start:" class="form-control">
+                    </select>	
+                </div>
+    
+                <div class="col-md-6 col-sm-12  form-group">
+                    <label for="work_center">Work center:</label>
+                    <select class="form-control">
+                        <option>Choose option</option>
+                        {% for choice in form.work_center.field.choices %}
+                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                        {% endfor %}
+                    </select>	
+                </div>
+    
+                <div class="col-md-6 col-sm-12  form-group">
+                    <label for="personnel_assigned">Personnel assigned:</label>
+                    <input type="text" name="personnel_assigned" placeholder="" class="form-control">
+                </div>
+    
+                <div class="col-md-4 col-sm-12  form-group">
+                    <label for="parts_replaced">Parts replaced:</label>
+                    <input type="text" name="parts_replaced" placeholder="" class="form-control">
+                </div>
+    
+                <div class="col-md-4 col-sm-12  form-group">
+                    <label for="quantity_of_parts">Quantity of parts:</label>
+                    <input type="text" name="quantity_of_parts" placeholder="" class="form-control">
+                </div>
+    
+                <div class="col-md-4 col-sm-12  form-group">
+                    <label for="status">Status:</label>
+                    <select class="form-control">
+                        <option>Choose option</option>
+                        {% for choice in form.status.field.choices %}
+                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                        {% endfor %}
+                    </select>	
+                </div>
+    
+                <div class="col-md-6 col-sm-12  form-group">
+                    <label for="remarks">Remarks:</label>
+                    <input type="text" name="remarks" placeholder="" class="form-control">
+                </div>
+    
+                <div class="col-md-6 col-sm-12  form-group">
+                    <label for="spare_details">Spare Details:</label>
+                    <input type="text" name="spare_details" placeholder="" class="form-control">
+                </div>
+    
+                <div class="col-md-6 col-sm-12  form-group">
+                  <label for="notification_num">Notification No:</label>
+                    <input type="text" name="notification_num" placeholder="" class="form-control">
+                </div>
+    
+                <div class="col-md-6 col-sm-12  form-group">
+                    Include log: <input type="checkbox" name="include_log" class="flat form-control" checked="checked"> 
+                </div>
+    
                 
-            </div>
-
-            <div class="col-md-6 col-sm-12  form-group">
-                <input type="text" placeholder="Job end:" class="form-control">
-            </div>
-
-            <div class="col-md-4 col-sm-12  form-group">
-                    <label for="time_consumed">Time Consumed (hh:mm):</label>
-                    <input type='text' class="form-control" readonly="readonly" />
-            </div>
-
-            <div class="col-md-4 col-sm-12  form-group">
-                <label for="description_of_work">Affecting Production (hh:mm):</label>
-                <input type="text" placeholder="" class="form-control">
-            </div>
-
-            <div class="col-md-4 col-sm-12  form-group">
-                <label for="description_of_work">Affecting Time (hh:mm):</label>
-                <input type="text" placeholder="" class="form-control">
-            </div>
-
-            <div class="col-md-3 col-sm-12  form-group">
-                <label for="description_of_work">Equipment name:</label>
-                <input type="text" placeholder="" class="form-control">
-            </div>
-
-            <div class="col-md-3 col-sm-12  form-group">
-                <label for="description_of_work">Equipment code:</label>
-                <input type="text" placeholder="" class="form-control">
-            </div>
-
-            <div class="col-md-3 col-sm-12  form-group">
-                <label for="description_of_work">Section:</label>
-                <input type="text" placeholder="" class="form-control">
-            </div>
-
-            <div class="col-md-3 col-sm-12  form-group">
-                <label for="description_of_work">System:</label>
-                <input type="text" placeholder="" class="form-control">
-            </div>
-            </div>
-
-            <div class="col-md-4 col-sm-12  form-group">
-                <label for="description_of_work">Affecting bagging:</label>
-                <input type="text" placeholder="" class="form-control">
-            </div>
-
-            <div class="col-md-4 col-sm-12  form-group">
-                <label for="description_of_work">Machine failure:</label>
-                <input type="text" placeholder="" class="form-control">
-            </div>
-
-            <div class="col-md-4 col-sm-12  form-group">
-                <label for="description_of_work">Type of stop time:</label>
-                <input type="text" placeholder="" class="form-control">
-            </div>
-
-            <div class="col-md-6 col-sm-12  form-group">
-                <label for="description_of_work">Work center:</label>
-                <input type="text" placeholder="" class="form-control">
-            </div>
-
-            <div class="col-md-6 col-sm-12  form-group">
-                <label for="description_of_work">Personnel assigned:</label>
-                <input type="text" placeholder="" class="form-control">
-            </div>
-
-            <div class="col-md-4 col-sm-12  form-group">
-                <label for="description_of_work">Parts replaced:</label>
-                <input type="text" placeholder="" class="form-control">
-            </div>
-
-            <div class="col-md-4 col-sm-12  form-group">
-                <label for="description_of_work">Quantity of parts:</label>
-                <input type="text" placeholder="" class="form-control">
-            </div>
-
-            <div class="col-md-4 col-sm-12  form-group">
-                <label for="description_of_work">Status:</label>
-                <input type="text" placeholder="" class="form-control">
-            </div>
-
-            <div class="col-md-6 col-sm-12  form-group">
-                <label for="description_of_work">Remarks:</label>
-                <input type="text" placeholder="" class="form-control">
-            </div>
-
-            <div class="col-md-6 col-sm-12  form-group">
-                <label for="description_of_work">Spare Details:</label>
-                <input type="text" placeholder="" class="form-control">
-            </div>
-
-            <div class="col-md-6 col-sm-12  form-group">
-              <label for="description_of_work">Notification No:</label>
-                <input type="text" placeholder="" class="form-control">
-            </div>
-
-            <div class="col-md-6 col-sm-12  form-group">
-                <label for="description_of_work">Include log:</label>
-                <input type="text" placeholder="" class="form-control">
-            </div>
-
-            <div class="col-md-12 col-sm-12">
-                <div class="row">
-                  <div class="col-md-12 col-sm-12">
-                    <button class="btn btn-info float-right" type="submit">Add Maintenance Log</button>
+    
+                <div class="col-md-12 col-sm-12">
+                    <div class="row">
+                      <div class="col-md-12 col-sm-12">
+                        <button class="btn btn-info float-right" type="submit">Add Maintenance Log</button>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-        </div>
+        </form>   
     </div>
+
+
+    
 
 {% endblock %}
 
 
-<div class="form-group">
+
+{% comment %} <div class="form-group">
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         <button class="btn btn-info" type="Submit">Save</button>
     </form>
-</div>
+</div> {% endcomment %}

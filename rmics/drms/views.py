@@ -42,3 +42,7 @@ def delete_log(request):
 def update_log(request):
     return render(request, 'drms/update-log.html')
 
+
+def maintenance_records(request):
+    return render(request, 'drms/maintenance-records.html')
+

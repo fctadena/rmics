@@ -3,7 +3,6 @@
 
 
 {% block addassetform %}
-{% comment %} THIS IS FROM TEMPLATE {% endcomment %}
 <div class="">
   <div class="x_panel">
     <div class="x_title">
@@ -17,6 +16,7 @@
     </div>
     <div class="x_content">
       <br />
+      
       <form method="POST" enctype="multipart/form-data" class="form-horizontal form-label-left">
         {% csrf_token %}
         <div class="form-group row ">
@@ -98,7 +98,6 @@
   </div>
 </div>
 
-{% comment %} THIS IS FROM DEFAULT {% endcomment %}
 
 {% comment %} <div class="x_title">
   <h2>Add Asset</h2>

@@ -30,6 +30,7 @@
 
     <!-- Custom Theme Style -->
     <link href="{% static 'build/css/custom.min.css' %}" rel="stylesheet">
+
   </head>
 
   <body class="nav-md">
@@ -91,9 +92,9 @@
                     </ul>
                   <li><a><i class="fa fa-edit"></i> MP Dashboard <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href={% url 'drms:add_log' %}> Log Maintenance Record</a></li>
+                      <li><a href={% url 'drms:add_log' %}> Log Maintenance Record</a></li> 
                       <li><a href="form.html">Plant Status Summary</a></li>
-                      <li><a href="form_advanced.html">Maintenance Record Summary</a></li>
+                      <li><a href={% url 'drms:maintenance_records' %}> Maintenance Record Summary</a></li>
                       <li><a href="form_validation.html">Create Critical Issue</a></li>
                       <li><a href="form_validation.html">Create Maintenance Cost Report</a></li>
  
