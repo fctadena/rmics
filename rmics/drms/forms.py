@@ -7,6 +7,7 @@ class MaintenanceLogForm(forms.ModelForm):
     class Meta:
             model = MaintenanceLog
             fields = [
+                'wo_seq_num',
                 'machine_failure_breakdown',
                 'description_of_work',
                 'work_type',

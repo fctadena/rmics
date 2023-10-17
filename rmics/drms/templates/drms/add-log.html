@@ -29,7 +29,7 @@
             <div class="form-group row">
                 <div class="col-md-4 col-sm-12 form-group">
                     <label for="wo_seq_num">WO Sequence Number:</label>
-                    <input type="text" name="wo_seq_num" class="form-control" placeholder=""> 
+                    <input type="number" name="wo_seq_num" class="form-control" placeholder="" id="wo_seq_num"> 
                 </div>
     
                 <div class="col-md-4 col-sm-12  form-group">
@@ -49,37 +49,37 @@
     
                 <div class="col-md-6 col-sm-12  form-group">
                     <label for="description_of_work">Description of Work:</label>
-                    <textarea id="description_of_work" required="required" class="form-control" name="description_of_work"></textarea>
+                    <textarea id="description_of_work" class="form-control" name="description_of_work"></textarea>
                 </div>
     
                 <div class="col-md-6 col-sm-12  form-group">
                     <label for="root_cause">Root cause:</label>
-                    <textarea id="root_cause" required="required" class="form-control" name="root_cause"></textarea>
+                    <textarea id="root_cause" class="form-control" name="root_cause"></textarea>
                 </div>
     
                 <div class="col-md-6 col-sm-12  form-group">
                     <label for="job_start">Job Start:</label>
-                    <input type="text" name="job_start" placeholder="" class="form-control">{{ form.job_start }}
-                </div>
+                    <input type="datetime-local" name="job_start" placeholder="" class="form-control">
+                </div> 
     
                 <div class="col-md-6 col-sm-12  form-group">
                     <label for="job_end">Job End:</label>
-                    <input type="text" name="job_end" placeholder="" class="form-control">
+                    <input type="datetime-local" name="job_end" placeholder="" class="form-control">
                 </div>
     
                 <div class="col-md-4 col-sm-12  form-group">
                     <label for="time_consumed">Time Consumed (hh:mm):</label>
-                    <input type='text' name="time_consumed" placeholder="" class="form-control"/>
+                    <input type='time' name="time_consumed" placeholder="" class="form-control"/>
                 </div>
     
                 <div class="col-md-4 col-sm-12  form-group">
                     <label for="affecting_production">Affecting Production (hh:mm):</label>
-                    <input type="text" name="affecting_production" placeholder="" class="form-control">
+                    <input type="time" name="affecting_production" placeholder="" class="form-control">
                 </div>
     
                 <div class="col-md-4 col-sm-12  form-group">
                     <label for="affecting_time">Affecting Time (hh:mm):</label>
-                    <input type="text" name="affecting_time" placeholder="" class="form-control">
+                    <input type="time" name="affecting_time" placeholder="" class="form-control">
                 </div>
     
                 <div class="col-md-3 col-sm-12  form-group">
@@ -89,7 +89,7 @@
     
                 <div class="col-md-3 col-sm-12  form-group">
                     <label for="equipment_code">Equipment code:</label>
-                    <input type="text" name="equipment_code" placeholder="" class="form-control">
+                    <input type="text" name="equipment_code" placeholder="" class="form-control" >
                 </div>
     
                 <div class="col-md-3 col-sm-12  form-group">
@@ -98,7 +98,7 @@
                 </div>
     
                 <div class="col-md-3 col-sm-12  form-group">
-                    <label for="system">System:</label>
+                    <label for="system">System:</label> 
                     <input type="text" name="system" placeholder="" class="form-control">
                 </div>
                 </div>
@@ -176,7 +176,6 @@
                     Include log: <input type="checkbox" name="include_log" class="flat form-control" checked="checked"> 
                 </div>
     
-                
     
                 <div class="col-md-12 col-sm-12">
                     <div class="row">
@@ -189,19 +188,15 @@
 
             </div>
         </form>   
-    </div>
 
-
-  
-
-
+{% comment %} 
     <div class="form-group">
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_p }}
             <button class="btn btn-info" type="Submit">Save</button>
         </form>
-    </div>
+    </div> {% endcomment %}
 
 
 
