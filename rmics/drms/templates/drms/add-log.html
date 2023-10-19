@@ -24,6 +24,7 @@
     
     <div class="x_content">
         <br />
+        {{ form.errors }}
         <form method="POST" enctype="multipart/form-data" class="form-horizontal form-label-left">
             {% csrf_token %}
             <div class="form-group row">
@@ -39,8 +40,8 @@
     
                 <div class="col-md-4 col-sm-12  form-group">
                     <label for="work_type">Work Type:</label>
-                        <select class="form-control">
-                            <option>Choose option</option>
+                        <select class="form-control" name="work_type">
+                            <option value="">Choose option</option>
                             {% for choice in form.work_type.field.choices %}
                             <option value="{{ choice.0 }}">{{ choice.1 }}</option>
                             {% endfor %}
@@ -48,13 +49,13 @@
                 </div>
     
                 <div class="col-md-6 col-sm-12  form-group">
-                    <label for="description_of_work">Description of Work:</label>
-                    <textarea id="description_of_work" class="form-control" name="description_of_work"></textarea>
+                    <label for="id_description_of_work">Description of Work:</label>
+                    <textarea id="id_description_of_work" class="form-control" name="description_of_work"></textarea>
                 </div>
     
                 <div class="col-md-6 col-sm-12  form-group">
-                    <label for="root_cause">Root cause:</label>
-                    <textarea id="root_cause" class="form-control" name="root_cause"></textarea>
+                    <label for="id_root_cause">Root cause:</label>
+                    <textarea id="id_root_cause" class="form-control" name="root_cause"></textarea>
                 </div>
     
                 <div class="col-md-6 col-sm-12  form-group">
@@ -97,10 +98,19 @@
                     <input type="text" name="section" placeholder="" class="form-control">
                 </div>
     
-                <div class="col-md-3 col-sm-12  form-group">
+                {% comment %} <div class="col-md-3 col-sm-12  form-group">
                     <label for="system">System:</label> 
                     <input type="text" name="system" placeholder="" class="form-control">
-                </div>
+                </div> {% endcomment %}
+
+                <div class="col-md-3 col-sm-12  form-group">
+                    <label for="system">System:</label>
+                        <select class="form-control" name="system">
+                            <option value="">Choose option</option>
+                            {% for choice in form.system.field.choices %}
+                            <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                            {% endfor %}
+                        </select>		
                 </div>
     
                 <div class="col-md-4 col-sm-12  form-group">
@@ -189,14 +199,14 @@
             </div>
         </form>   
 
-{% comment %} 
+
     <div class="form-group">
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_p }}
             <button class="btn btn-info" type="Submit">Save</button>
         </form>
-    </div> {% endcomment %}
+    </div>
 
 
 
