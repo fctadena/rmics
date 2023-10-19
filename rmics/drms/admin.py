@@ -31,6 +31,7 @@ class MaintenanceLogAdmin(admin.ModelAdmin):
         'remarks',
         'spare_details',
         'notification_num',
+        'include_log',
     )
 
 admin.site.register(MaintenanceLog, MaintenanceLogAdmin)

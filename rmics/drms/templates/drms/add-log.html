@@ -124,8 +124,8 @@
     
                 <div class="col-md-4 col-sm-12  form-group">
                     <label for="type_of_stop_time">Type of stop time:</label>
-                    <select class="form-control">
-                        <option>Choose option</option>
+                    <select class="form-control" name="type_of_stop_time">
+                        <option value="">Choose option</option>
                         {% for choice in form.type_of_stop_time.field.choices %}
                         <option value="{{ choice.0 }}">{{ choice.1 }}</option>
                         {% endfor %}
@@ -134,8 +134,8 @@
     
                 <div class="col-md-6 col-sm-12  form-group">
                     <label for="work_center">Work center:</label>
-                    <select class="form-control">
-                        <option>Choose option</option>
+                    <select class="form-control" name="work_center">
+                        <option value="">Choose option</option>
                         {% for choice in form.work_center.field.choices %}
                         <option value="{{ choice.0 }}">{{ choice.1 }}</option>
                         {% endfor %}
@@ -159,8 +159,8 @@
     
                 <div class="col-md-4 col-sm-12  form-group">
                     <label for="status">Status:</label>
-                    <select class="form-control">
-                        <option>Choose option</option>
+                    <select class="form-control" name="status">
+                        <option value="">Choose option</option>
                         {% for choice in form.status.field.choices %}
                         <option value="{{ choice.0 }}">{{ choice.1 }}</option>
                         {% endfor %}
