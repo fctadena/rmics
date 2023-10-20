@@ -12,9 +12,9 @@ class MaintenanceLog(models.Model):
     root_cause = models.TextField(max_length=600, blank=True, null=True)
     job_start = models.DateTimeField(blank=True, null=True)
     job_end = models.DateTimeField(blank=True, null=True)
-    time_consumed = models.TimeField(blank=True, null=True)
-    affecting_production = models.TimeField(blank=True, null=True)
-    affecting_time = models.TimeField(blank=True, null=True)
+    time_consumed = models.DurationField(blank=True, null=True) #Modified to DurationField
+    affecting_production = models.DurationField(blank=True, null=True) #Modified to DurationField
+    affecting_time = models.DurationField(blank=True, null=True) #Modified to DurationField
     equipment_name = models.CharField(max_length=255, blank=True, null=True)
     equipment_code = models.CharField(max_length=255, blank=True, null=True)
     section = models.CharField(max_length=255, blank=True, null=True)

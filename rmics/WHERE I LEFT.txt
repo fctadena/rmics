@@ -1,0 +1,7 @@
+Modifying the time format for 
+
+   time_consumed = models.DurationField(blank=True, null=True) #Modified to DurationField
+    affecting_production = models.DurationField(blank=True, null=True) #Modified to DurationField
+    affecting_time = models.DurationField(blank=True, null=True) #Modified to DurationField
+
+    because in the record, it shows hh:mm:ss instead of hh:mm

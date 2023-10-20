@@ -420,6 +420,20 @@
     <!-- Custom Theme Scripts -->
     <script src="{% static 'build/js/custom.min.js' %}"></script>
 
+    <!-- This handles the time differene on the add-log fields.-->
+    <script>
+      function validateTimeInput(inputField) {
+          // Regular expression to match 'hh:mm' format
+          var pattern = /^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/;
+  
+          if (!pattern.test(inputField.value)) {
+              alert("Please enter a valid time in the format 'hh:mm'");
+              inputField.value = "";
+          }
+      }
+    </script>
+  
+
 	
   </body>
 </html>

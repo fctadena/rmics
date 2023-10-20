@@ -32,21 +32,15 @@ def update_log(request):
 
 
 def maintenance_records(request):
-    return render(request, 'drms/maintenance-records.html')
-
-
-# class add_log(CreateView):
-#     model = MaintenanceLog
-#     maintenance_log = model.objects.all()
-#     context = {
-#         'maintenance_log':maintenance_log,
-#     }
-#     form_class = MaintenanceLogForm
-#     template_name = 'drms/add-log.html'
+    model = MaintenanceLog
     
-#     def get_success_url(self):
-#         messages.success(self.request, 'Log Maintenance Task Successfully', extra_tags='success')
-#         return reverse_lazy('drms:daily_report', context)
+    return render(request, 'drms/maintenance-records.html', )
+
+def maintenance_records(request):
+    maintenance_log = MaintenanceLog.objects.all()
+    return render(request, 'drms/maintenance-records.html', {'maintenance_log':maintenance_log})
+
+
 
 
 

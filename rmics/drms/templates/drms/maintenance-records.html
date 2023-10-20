@@ -1,4 +1,6 @@
 {% extends 'rmics/base.html' %}
+
+
 <!DOCTYPE html>
 
 
@@ -87,16 +89,16 @@
           {% for log in maintenance_log %}
           <tbody>
             <tr class="even pointer">
+              <td class=" ">{{ log.job_start }}</td>
+              <td class=" ">{{ log.time_consumed }}</td>
               <td class=" ">{{ log.machine_failure_breakdown }}</td>
-              <td class=" ">{{ log.machine_failure_breakdown }}</td>
-              <td class=" ">{{ log.machine_failure_breakdown }}</td>
-              <td class=" ">{{ log.machine_failure_breakdown }}</td>
-              <td class=" ">{{ log.machine_failure_breakdown }}</td>
-              <td class=" ">{{ log.machine_failure_breakdown }}</td>
-              <td class=" ">{{ log.machine_failure_breakdown }}</td>
-              <td class=" ">{{ log.machine_failure_breakdown }}</td>
-              <td class=" ">{{ log.machine_failure_breakdown }}</td>
-              <td class=" ">{{ log.machine_failure_breakdown }}</td>
+              <td class=" ">{{ log.description_of_work }}</td>
+              <td class=" ">{{ log.root_cause }}</td>
+              <td class=" ">{{ log.equipment_name }}</td>
+              <td class=" ">{{ log.status }}</td>
+              <td class=" ">{{ log.affecting_bagging }}</td>
+              <td class=" ">{{ log.include_log }}</td>
+              <td class=" ">Action</td>
             </tr>
           </tbody>
           {% endfor %}
@@ -104,6 +106,5 @@
       </div>
     </div>
   </div>
-</div> 
 
 {% endblock %}
