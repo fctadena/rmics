@@ -33,3 +33,25 @@ MODELS Summary
 > MaintenanceLog(models.Model)
 > User
 > UserProfile
+
+
+
+
+PLANTS:
+BMEG-Bataan 1
+BMEG-Bataan 2
+BMEG-Echague
+BMEG-Leganes
+BMEG-Ormoc
+BMEG-Pavia
+BMEG-San Ildefonso
+BMEG-Sta. Cruz
+BMEG-Tagoloan
+BMEG-Tarlac
+BMEG-Pangasinan
+Mills-Mabini 1
+Mills-Mabini 2
+Mills-Tabangao
+BMEG-Mandaue
+Mills-Mabini Premix
+Monterey-Sumilao

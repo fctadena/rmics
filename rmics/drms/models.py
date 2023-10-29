@@ -5,7 +5,7 @@ from django.db import models
 
 
 class MaintenanceLog(models.Model):
-    wo_seq_num = models.PositiveIntegerField(validators=[MinValueValidator(1, message="WORK SEQ NUM must be a positive number")], blank=True, null=True)
+    wo_seq_num = models.BigIntegerField(validators=[MinValueValidator(1, message="WORK SEQ NUM must be a positive number")], blank=True, null=True)
     machine_failure_breakdown = models.CharField(max_length=255, blank=True, null=True)
     description_of_work = models.TextField(max_length=600, blank=True, null=True)
     work_type = models.CharField(max_length=50, choices=[('Repair', 'Repair'), ('Preventive Maintenance', 'Preventive Maintenance'), ('Fabrication', 'Fabrication'), ('Equipment Setup', 'Equipment Setup'), ('General Jobs', 'General Jobs')], blank=True, null=True)
