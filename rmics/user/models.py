@@ -4,7 +4,10 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 
-class UserProfile(models.Model):
+class CustomUserProfile(models.Model):
+    # User Basic Info
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    
     # Profile Picture
     profile_picture = models.ImageField(upload_to='pics', default='D:\Legacy Projects\rmics\rmics\media\smcrmi_logo_1.jpg')
 
@@ -74,6 +77,5 @@ class UserProfile(models.Model):
     motto = models.TextField(blank=True, null=True)
 
     def __str__(self):
-        return self.user.username  # Replace 'user' with the actual User field in your model
+        return self.user.username  
 
-# Note: Ensure that you have imported the necessary modules, including 'ImageField' and 'models'.
