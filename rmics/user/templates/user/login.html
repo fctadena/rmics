@@ -38,22 +38,25 @@
         <div class="animate form login_form">
           <section class="login_content">
             <div>
-                <img src="{% static 'user/smcrmi_logo_2.png' %}" alt="Logo" style="width: 60%; height: auto;">
+                <img src="{% static 'user/rmicolsys_logo_1.png' %}" alt="Logo" style="width: 100%; height: auto;">
             </div>
-            <form>
-            <h1><i class="fa fa-wrench"></i> RMI ColSys </h1>
-              <h1>Login</h1>
-              <div>
-                <input type="text" class="form-control" placeholder="Username" required="" />
-              </div>
-              <div>
-                <input type="password" class="form-control" placeholder="Password" required="" />
-              </div>
+            <form method="POST">
+              {% csrf_token %}
+              <h1><i class="fa fa-wrench"></i> RMI ColSys </h1>
+              <form>
+                <div>
+                  <input type="text" name="username" class="form-control" placeholder="Username" required=""/>
+                </div>
+                <div>
+                  <input type="password" name="password" class="form-control" placeholder="Password" required="" />
+                </div>
 
-              <div>
-                <a class="btn btn-default submit" href="index.html">Log in</a>
-                <a class="reset_pass" href="#">Lost your password?</a>
-              </div>
+                <div>
+                  <button class= "btn btn-default" type="submit" >Login</button>
+                  <a class="reset_pass" href="#">Lost your password?</a>
+                </div>
+            </form>
+              
 
               <div class="clearfix"></div>
 
@@ -63,7 +66,7 @@
                 <br />
 
                 <div>
-                  <p>©2023 All Rights Reserved. SMC Repairs & Maintenace Inc. Privacy and Terms</p>
+                  <p>©2023 All Rights Reserved. 2Bit Synsergy Ltd. Privacy and Terms</p>
                 </div>
               </div>
             </form>
@@ -72,4 +75,6 @@
       </div>
     </div>
   </body>
+
 </html>
+

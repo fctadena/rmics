@@ -5,3 +5,7 @@ Modifying the time format for
     affecting_time = models.DurationField(blank=True, null=True) #Modified to DurationField
 
     because in the record, it shows hh:mm:ss instead of hh:mm
+
+
+anjo
+password: Gat#105anjo2
