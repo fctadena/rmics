@@ -1,14 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from .forms import LogginForm, CreateUser, ManageUser
 from django.http import HttpResponse
 
 # Create your views here.
 
 
-def manage_users(request):
-    return render(request, template_name='user/manage-users.html')
+
 
 
 def create_user(request):
@@ -34,3 +33,10 @@ def manage_users(request):
     else:
         form = ManageUser()
     return render(request, 'user/manage-users.html', {'form':form})
+
+# def manage_users(request):
+#     return render(request, template_name='user/manage-users.html')
+
+
+def profile(request):
+    return render(request, template_name='user/profile.html')

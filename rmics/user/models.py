@@ -13,6 +13,7 @@ class CustomUserProfile(models.Model):
 
     # Position Choices
     POSITION_CHOICES = [
+        ('Operations Analyst', 'Operations Analyst'),
         ('Material Custodian', 'Material Custodian'),
         ('Maintenance Planner', 'Maintenance Planner'),
         ('Supervisor', 'Supervisor'),
@@ -35,6 +36,7 @@ class CustomUserProfile(models.Model):
 
     # Plant Assignment Choices
     PLANT_ASSIGNMENT_CHOICES = [
+        ('National Office - Pasig', 'National Office - Pasig'),
         ('BMEG-Bataan 1', 'BMEG-Bataan 1'),
         ('BMEG-Bataan 2', 'BMEG-Bataan 2'),
         ('BMEG-Echague', 'BMEG-Echague'),

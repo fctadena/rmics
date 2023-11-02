@@ -73,27 +73,27 @@
                       <li><a href="index3.html">Dashboard3</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-edit"></i> NOM Dashboard <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-dashboard"></i> NOM Dashboard <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="form.html">Plant Status Summary</a></li>
                       <li><a href="form_advanced.html">Maintenance Record Summary</a></li>
                       <li><a href="form_advanced.html">Create Deliverables</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-edit"></i> OA/OE Dashboard <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-dashboard"></i> OA/OE Dashboard <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="form.html">Plant Status Summary</a></li>
                       <li><a href="form_advanced.html">Maintenance Record Summary</a></li>
                       <li><a href="form_advanced.html">Create Deliverables</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-edit"></i> EH Dashboard <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-dashboard"></i> EH Dashboard <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="form.html">Plant Status Summary</a></li>
                       <li><a href="form_advanced.html">Maintenance Record Summary</a></li>
                       <li><a href="form_validation.html">Create Critical Issue</a></li>
                     </ul>
-                  <li><a><i class="fa fa-edit"></i> MP Dashboard <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-dashboard"></i> MP Dashboard <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href={% url 'drms:add_log' %}> Log Maintenance Record</a></li> 
                       <li><a href="form.html">Plant Status Summary</a></li>
@@ -103,10 +103,16 @@
  
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-table"></i> Asset MS <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-gears"></i> Asset MS <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href={% url 'ams:asset_list' %}> Asset List</a></li>
                       <li><a href={% url 'ams:add_asset' %}> Add Asset</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-users"></i> User Management <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href={% url 'create_user' %}> Add User</a></li>
+                      <li><a href={% url 'manage_users' %}> Manage Users</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-clone"></i> Create<span class="fa fa-chevron-down"></span></a>
@@ -302,6 +308,16 @@
 
                     {% block MaintenanceLogSummary %}
                     {% endblock %}
+
+                    <!-- USER BLOCK -->
+                    {% block profile %}
+                    {% endblock %}
+
+
+                    {% block ManageUsers %}
+                    {% endblock %}
+
+
                   </div>
 
                   <!-- start project-detail sidebar -->
