@@ -60,19 +60,13 @@
     
                 <div class="col-md-6 col-sm-12  form-group">
                     <label for="job_start">Job Start:</label>
-                    <input type="datetime-local" name="job_start" placeholder="" class="form-control">
+                    <input type="datetime-local" name="job_start" id="job_start" placeholder="" class="form-control">
                 </div> 
     
                 <div class="col-md-6 col-sm-12  form-group">
                     <label for="job_end">Job End:</label>
-                    <input type="datetime-local" name="job_end" placeholder="" class="form-control">
+                    <input type="datetime-local" name="job_end" id="job_end" placeholder="" class="form-control">
                 </div>
-    
-                {% comment %} <div class="col-md-4 col-sm-12  form-group">
-                    <label for="time_consumed">Time Consumed (hh:mm):</label>
-                    <input type='time' name="time_consumed" placeholder="" class="form-control"/>
-                </div> {% endcomment %}
-
              
                 <div class="col-md-4 col-sm-12 form-group">
                     <label for="time_consumed">Time Consumed (hh:mm):</label>
@@ -201,6 +195,41 @@
         </form>   
 
     </div>
+
+    <script>
+        // THIS IS FROM CHATGPT
+        // Function to calculate the time difference and update time_consumed
+        function calculateTimeConsumed() {
+            const jobStartInput = document.getElementById("job_start");
+            const jobEndInput = document.getElementById("job_end");
+            const timeConsumedInput = document.querySelector('input[name="time_consumed"]');
+    
+            // Parse datetime values from input fields
+            const jobStart = new Date(jobStartInput.value);
+            const jobEnd = new Date(jobEndInput.value);
+    
+            // Check if both job_start and job_end have valid values
+            if (!isNaN(jobStart) && !isNaN(jobEnd)) {
+                const timeDiffInMilliseconds = jobEnd - jobStart;
+                const hours = Math.floor(timeDiffInMilliseconds / 3600000);
+                const minutes = Math.floor((timeDiffInMilliseconds % 3600000) / 60000);
+    
+                // Format the time difference as "hh:mm"
+                const timeConsumed = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+                timeConsumedInput.value = timeConsumed;
+            }
+        }
+    
+        // Add event listeners to job_start and job_end input fields
+        document.getElementById("job_start").addEventListener("change", calculateTimeConsumed);
+        document.getElementById("job_end").addEventListener("change", calculateTimeConsumed);
+    
+        // Function to validate the time input (you mentioned you have this function)
+        function validateTimeInput(input) {
+            // Your validation logic here
+        }
+    </script>
+    
 
 {% endblock %}
 

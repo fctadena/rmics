@@ -4,12 +4,7 @@
 {% block ManageUsers %}
 
 
-{% comment %} 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Sign up</button>
-</form> {% endcomment %}
+
 
 <div class="table-responsive">
     <table class="table table-striped jambo_table bulk_action">
@@ -47,6 +42,16 @@
       {% endfor %}
     </table>
   </div>
+
+
+<div>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Sign up</button>
+</form>
+
+</div>
 
 
   {% endblock %}

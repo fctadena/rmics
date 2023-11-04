@@ -33,6 +33,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'ams',
+    'cfms',
+    'dvms',
     'drms',
     'drom',
     'user',
