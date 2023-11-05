@@ -70,17 +70,17 @@
              
                 <div class="col-md-4 col-sm-12 form-group">
                     <label for="time_consumed">Time Consumed (hh:mm):</label>
-                    <input type='text' name="time_consumed" placeholder="hh:mm" class="form-control" onblur="validateTimeInput(this)" />
+                    <input type='text' name="time_consumed" id="time_consumed" placeholder="hh:mm" class="form-control" />
                 </div>
 
                 <div class="col-md-4 col-sm-12 form-group">
                     <label for="affecting_production">Affecting Production (hh:mm):</label>
-                    <input type='text' name="affecting_production" placeholder="hh:mm" class="form-control" onblur="validateTimeInput(this)" />
+                    <input type='text' name="affecting_production" id="affecting_production" placeholder="hh:mm" class="form-control" />
                 </div>
 
                 <div class="col-md-4 col-sm-12 form-group">
                     <label for="affecting_time">Affecting Time (hh:mm):</label>
-                    <input type='text' name="affecting_time" placeholder="hh:mm" class="form-control" onblur="validateTimeInput(this)" />
+                    <input type='text' name="affecting_time" id="affecting_time" placeholder="hh:mm" class="form-control" />
                 </div>
     
                 <div class="col-md-3 col-sm-12  form-group">
@@ -192,43 +192,68 @@
                 </div>
 
             </div>
-        </form>   
 
-    </div>
+            <!-- This handles the timeformat for the 3 fields that has DurationField-->
+        {% comment %} <script>
+            function validateTimeInput(inputField) {
+                // Regular expression to match 'hh:mm' format
+                var pattern = /^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/;
+            
+                if (!pattern.test(inputField.value)) {
+                    // Check if the user has already seen the error message
+                    if (!inputField.dataset.errorMessageShown) {
+                        alert("Please enter a valid time in the format 'hh:mm'");
+                        inputField.dataset.errorMessageShown = true;
+                    }
+                    // Add a red border to the input field
+                    inputField.style.border = "2px solid red";
+                } else {
+                    // If the input is valid, remove the red border
+                    inputField.style.border = "";
+                    // If the input is valid, add ":00" to represent seconds
+                    if (!inputField.value.endsWith(":00")) {
+                        inputField.value += ":00";
+                    }
+                    // Clear the error message flag
+                    inputField.dataset.errorMessageShown = false;
+                }
+            }
+        </script>
 
-    <script>
-        // THIS IS FROM CHATGPT
-        // Function to calculate the time difference and update time_consumed
-        function calculateTimeConsumed() {
-            const jobStartInput = document.getElementById("job_start");
-            const jobEndInput = document.getElementById("job_end");
-            const timeConsumedInput = document.querySelector('input[name="time_consumed"]');
-    
-            // Parse datetime values from input fields
-            const jobStart = new Date(jobStartInput.value);
-            const jobEnd = new Date(jobEndInput.value);
-    
-            // Check if both job_start and job_end have valid values
-            if (!isNaN(jobStart) && !isNaN(jobEnd)) {
+        <!-- This handles the time differene on the add-log fields.-->
+        <script>
+            // Function to calculate the time difference and update time_consumed
+            function calculateTimeConsumed() {
+                const jobStartInput = document.getElementById("job_start");
+                const jobEndInput = document.getElementById("job_end");
+                const timeConsumedInput = document.querySelector('input[name="time_consumed"]');
+            
+                // Parse datetime values from input fields
+                const jobStart = new Date(jobStartInput.value);
+                const jobEnd = new Date(jobEndInput.value);
+            
+                // Check if both job_start and job_end have valid values
+                if (!isNaN(jobStart) && !isNaN(jobEnd)) {
                 const timeDiffInMilliseconds = jobEnd - jobStart;
                 const hours = Math.floor(timeDiffInMilliseconds / 3600000);
                 const minutes = Math.floor((timeDiffInMilliseconds % 3600000) / 60000);
-    
-                // Format the time difference as "hh:mm"
-                const timeConsumed = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+                const seconds = Math.floor((timeDiffInMilliseconds % 60000) / 1000);
+            
+                // Format the time difference as "HH:MM:SS"
+                const timeConsumed = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
                 timeConsumedInput.value = timeConsumed;
+                }
             }
-        }
+            
+            // Add event listeners to job_start and job_end input fields
+            document.getElementById("job_start").addEventListener("change", calculateTimeConsumed);
+            document.getElementById("job_end").addEventListener("change", calculateTimeConsumed);
+        </script> {% endcomment %}
+    </form>   
+
+    </div>
+
     
-        // Add event listeners to job_start and job_end input fields
-        document.getElementById("job_start").addEventListener("change", calculateTimeConsumed);
-        document.getElementById("job_end").addEventListener("change", calculateTimeConsumed);
-    
-        // Function to validate the time input (you mentioned you have this function)
-        function validateTimeInput(input) {
-            // Your validation logic here
-        }
-    </script>
     
 
 {% endblock %}

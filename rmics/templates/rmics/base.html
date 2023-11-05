@@ -444,20 +444,89 @@
     <!-- Custom Theme Scripts -->
     <script src="{% static 'build/js/custom.min.js' %}"></script>
 
-    <!-- This handles the time differene on the add-log fields.-->
+
+
+
+    <!-- ChatGPT Provided Script: Making sure Job End is later date compared to Job Start -->
     <script>
-      function validateTimeInput(inputField) {
-          // Regular expression to match 'hh:mm' format
-          var pattern = /^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/;
+      document.getElementById("job_end").addEventListener("change", function () {
+          let jobStart = new Date(document.getElementById("job_start").value);
+          let jobEnd = new Date(document.getElementById("job_end").value);
   
-          if (!pattern.test(inputField.value)) {
-              alert("Please enter a valid time in the format 'hh:mm'");
-              inputField.value = "";
+          if (jobEnd <= jobStart) {
+              alert("Job End must be later than Job Start");
+              // You can also disable form submission or perform other actions as needed
+          }
+      });
+    </script>
+
+    <!-- ChatGPT Provided Script: Dynamic Calculation of Time Consumed  -->
+    <script>
+      const jobStartInput = document.getElementById('job_start');
+      const jobEndInput = document.getElementById('job_end');
+      const timeConsumedInput = document.getElementById('time_consumed');
+
+      jobStartInput.addEventListener('change', updateDuration);
+      jobEndInput.addEventListener('change', updateDuration);
+
+      function updateDuration() {
+        const jobStart = new Date(jobStartInput.value);
+        const jobEnd = new Date(jobEndInput.value);
+        const timeDifference = jobEnd - jobStart;
+
+        // Calculate days, hours, and minutes
+        const days = Math.floor(timeDifference / (24 * 60 * 60 * 1000));
+        const remainingTime = timeDifference - days * 24 * 60 * 60 * 1000;
+        const hours = Math.floor(remainingTime / (60 * 60 * 1000));
+        const remainingMinutes = remainingTime - hours * 60 * 60 * 1000;
+        const minutes = Math.floor(remainingMinutes / (60 * 1000));
+
+        // Format the result in "DD HH:MM:SS" with seconds set to "00"
+        const formattedDuration = `${days} ${hours}:${minutes}:00`;
+
+        timeConsumedInput.value = formattedDuration;
+      }
+
+    </script>
+    
+      
+    
+  
+
+    <!-- ChatGPT Provided Script: Making sure format is correct  -->
+
+    <script>
+      document.getElementById("affecting_production").addEventListener("change", formatTime);
+      document.getElementById("affecting_time").addEventListener("change", formatTime);
+  
+      function formatTime() {
+          let value = this.value;
+          // Check if the input is in "hh:mm" format
+          if (/^\d{1,2}:\d{1,2}$/.test(value)) {
+              // Split the input into hours and minutes
+              const parts = value.split(":");
+              const hours = parts[0].padStart(2, "0"); // Ensure two digits for hours
+              const minutes = parts[1].padStart(2, "0"); // Ensure two digits for minutes
+              this.value = `${hours}:${minutes}:00`;
           }
       }
     </script>
   
 
-	
+  
+    {% comment %} <script>
+      document.getElementById("affecting_production").addEventListener("change", formatTime);
+      document.getElementById("affecting_time").addEventListener("change", formatTime);
+
+      function formatTime() {
+          let value = this.value;
+          // Check if the input is in "hh:mm" format
+          if (/^\d{2}:\d{2}$/.test(value)) {
+              this.value = value + ":00";
+          }
+      }
+    </script>     {% endcomment %}
+
+
   </body>
 </html>
