@@ -1,1 +1,55 @@
-This is log detail
+{% extends 'rmics/base.html' %}
+<!DOCTYPE html>
+
+
+{% block LogDetail %}
+
+<div class="x_panel">
+    <div class="x_title">
+      <h2>Log Detail</h2>
+      <ul class="nav navbar-right panel_toolbox">
+        <li><a href="{% url 'drms:maintenance_records' %}"><i class="fa fa-long-arrow-left"> Maintenance Log Summary</i></a>
+        </li>
+        <li><a href=""><i class="fa fa-pencil-square-o"> Edit Log</i></a>
+        </li>
+        <li><a href="{% url 'drms:delete_log' object.id %}"><i class="fa fa-pencil-square-o"> Delete Log</i></a>
+        </li>
+      </ul>
+      <div class="clearfix"></div>
+    </div>
+
+    <div class="x_content">
+
+      <p>Note: Make sure to provide accurate records.</p>
+
+      <div>
+        <div class="card mb-3 border-top border-info shadow-sm">
+            <div class="row no-gutters">
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ object.equipment_code }} - {{ object.equipment_name }} : {{ object.machine_failure_breakdown }}</h5>
+                        <p class="card-text">{{ object.description_of_work }}</p>
+                        <p class="card-text" style="margin-bottom: 0.2rem;"><strong>Status:</strong> {{ object.status }}</p>
+                        <p class="card-text" style="margin-bottom: 0.2rem;"><strong>Affecting Bagging?</strong> {{ object.affecting_bagging }}</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item py-1"><strong>Date:</strong> {{ object.job_start }}</li>
+                        <li class="list-group-item py-1"><strong>Time Consumed:</strong> {{ object.time_consumed }}</li>
+                        <li class="list-group-item py-1"><strong>Include Log?</strong> {{ object.include_log }}</li>
+                        <li class="list-group-item py-1"><a href="">Delete</a></li>
+                    </ul>
+                    
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  
+  
+
+{% endblock %}

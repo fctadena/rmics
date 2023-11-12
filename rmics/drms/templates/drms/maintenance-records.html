@@ -60,51 +60,42 @@
       </ul>
       <div class="clearfix"></div>
     </div>
-
+    
+    <div>
+      <a href="{% url 'drms:add_log' %}" class="btn btn-sm btn-primary float-right">Add Log</a>
+      <br>
+      </div>
+  
     <div class="x_content">
-
-      <p>Note: Make sure to provide accurate records.</p>
-
-      <div class="table-responsive">
-        <table class="table table-striped jambo_table bulk_action">
-          <thead>
-            <tr class="headings">
-                <th class="column-title">Date</th>
-                <th class="column-title">Time Consumed (hh:mm):</th>
-                <th class="column-title">Machine failure breakdown</th>
-                <th class="column-title">Description of work</th>
-                <th class="column-title">Root Cause </th>
-                {% comment %} <th class="column-title">Equipment Name </th> {% endcomment %}
-                <th class="column-title">Status </th>
-                <th class="column-title">Affecting Bagging? </th>
-                <th class="column-title">Includ Log? </th>
-                <th class="column-title">Action </th>
-              </th>
-              <th class="bulk-actions" colspan="7">
-                <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
-              </th>
-            </tr>
-          </thead>
-
-          {% for log in maintenance_log %}
-          <tbody>
-            <tr class="even pointer">
-              <td class=" ">{{ log.job_start }}</td>
-              <td class=" ">{{ log.time_consumed }}</td>
-              <td class=" ">{{ log.machine_failure_breakdown }}</td>
-              <td class=" ">{{ log.description_of_work }}</td>
-              <td class=" ">{{ log.root_cause }}</td>
-              {% comment %} <td class=" ">{{ log.equipment_name }}</td> {% endcomment %}
-              <td class=" ">{{ log.status }}</td>
-              <td class=" ">{{ log.affecting_bagging }}</td>
-              <td class=" ">{{ log.include_log }}</td>
-              <td class=" ">Action</td>
-            </tr>
-          </tbody>
-          {% endfor %}
-        </table>
+      <div>
+        {% for log in maintenance_log %}
+        <div class="card mb-3 border-top border-info shadow-sm">
+            <div class="row no-gutters">
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ log.equipment_code }} - {{ log.equipment_name }}: {{ log.machine_failure_breakdown }}</h5>
+                        <p class="card-text">{{ log.description_of_work }}</p>
+                        <p class="card-text" style="margin-bottom: 0.2rem;"><strong>Status:</strong> {{ log.status }}</p>
+                        <p class="card-text" style="margin-bottom: 0.2rem;"><strong>Affecting Bagging?</strong> {{ log.affecting_bagging }}</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item py-1"><strong>Date:</strong> {{ log.job_start }}</li>
+                        <li class="list-group-item py-1"><strong>Time Consumed:</strong> {{ log.time_consumed }}</li>
+                        <li class="list-group-item py-1"><strong>Include Log?</strong> {{ log.include_log }}</li>
+                        <li class="list-group-item py-1"><a href="{% url 'drms:log_detail' log.id %}">View</a> | <a href="">Delete</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
       </div>
     </div>
   </div>
+
+
+  
+  
 
 {% endblock %}
