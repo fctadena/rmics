@@ -1,9 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import MaintenanceLog
 from django.views.generic.edit import CreateView
 from .forms import MaintenanceLogForm
 from django.contrib import messages
 from django.urls import reverse_lazy
+
+#IMPORTS FOR THE HANDLER
+from django.views import View
+from django.contrib import messages
+from .models import MaintenanceLog
+from ams.models import Asset
 
 
 
@@ -52,3 +58,27 @@ class add_log(CreateView):
     def get_success_url(self):
         messages.success(self.request, 'ADDED LOG SUCCESSFULLY', extra_tags='success')
         return reverse_lazy('drms:maintenance_records')
+    
+    
+#ERROR HANDLER
+def update_records_view(request):
+    template_name = 'drms/update-log.html'
+
+    if request.method == 'GET':
+        return render(request, template_name)
+    elif request.method == 'POST':
+        try:
+            # Update logic
+            maintenance_logs = MaintenanceLog.objects.filter(equipment_name__isnull=False)
+            
+            for log in maintenance_logs:
+                log.equipment_name = None
+                log.save()
+
+            # Display success message
+            messages.success(request, 'Records updated successfully.')
+        except Exception as e:
+            # Display error message if update fails
+            messages.error(request, f'An error occurred: {str(e)}')
+
+        return redirect('drms:update_log')

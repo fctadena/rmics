@@ -74,7 +74,7 @@
                 <th class="column-title">Machine failure breakdown</th>
                 <th class="column-title">Description of work</th>
                 <th class="column-title">Root Cause </th>
-                <th class="column-title">Equipment Name </th>
+                {% comment %} <th class="column-title">Equipment Name </th> {% endcomment %}
                 <th class="column-title">Status </th>
                 <th class="column-title">Affecting Bagging? </th>
                 <th class="column-title">Includ Log? </th>
@@ -94,7 +94,7 @@
               <td class=" ">{{ log.machine_failure_breakdown }}</td>
               <td class=" ">{{ log.description_of_work }}</td>
               <td class=" ">{{ log.root_cause }}</td>
-              <td class=" ">{{ log.equipment_name }}</td>
+              {% comment %} <td class=" ">{{ log.equipment_name }}</td> {% endcomment %}
               <td class=" ">{{ log.status }}</td>
               <td class=" ">{{ log.affecting_bagging }}</td>
               <td class=" ">{{ log.include_log }}</td>

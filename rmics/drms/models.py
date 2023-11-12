@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
+from ams.models import Asset
 
 
 
@@ -12,10 +13,11 @@ class MaintenanceLog(models.Model):
     root_cause = models.TextField(max_length=600, blank=True, null=True)
     job_start = models.DateTimeField(blank=True, null=True)
     job_end = models.DateTimeField(blank=True, null=True)
-    time_consumed = models.DurationField(blank=True, null=True) #Modified to DurationField
-    affecting_production = models.DurationField(blank=True, null=True) #Modified to DurationField
-    affecting_time = models.DurationField(blank=True, null=True) #Modified to DurationField
-    equipment_name = models.CharField(max_length=255, blank=True, null=True)
+    time_consumed = models.DurationField(blank=True, null=True) 
+    affecting_production = models.DurationField(blank=True, null=True) 
+    affecting_time = models.DurationField(blank=True, null=True)
+    # equipment_name = models.CharField(max_length=255, blank=True, null=True)
+    equipment_name = models.ForeignKey(Asset, on_delete=models.CASCADE, blank=True, null=True)
     equipment_code = models.CharField(max_length=255, blank=True, null=True)
     section = models.CharField(max_length=255, blank=True, null=True)
     system = models.CharField(max_length=100, choices=[('Process', 'Process'), ('Civil', 'Civil'), ('Auxiliary', 'Auxiliary'), ('Plant Water', 'Plant Water'), ('Power', 'Power'), ('Steam', 'Steam'), ('Compressed Air', 'Compressed Air'), ('FFW', 'FFW')], default='Process', blank=True, null=True)
