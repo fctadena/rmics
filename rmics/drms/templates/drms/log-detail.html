@@ -10,7 +10,7 @@
       <ul class="nav navbar-right panel_toolbox">
         <li><a href="{% url 'drms:maintenance_records' %}"><i class="fa fa-long-arrow-left"> Maintenance Log Summary</i></a>
         </li>
-        <li><a href=""><i class="fa fa-pencil-square-o"> Edit Log</i></a>
+        <li><a href="{% url 'drms:update_log' object.id %}"><i class="fa fa-pencil-square-o"> Edit Log</i></a>
         </li>
         <li><a href="{% url 'drms:delete_log' object.id %}"><i class="fa fa-pencil-square-o"> Delete Log</i></a>
         </li>
@@ -37,8 +37,9 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item py-1"><strong>Date:</strong> {{ object.job_start }}</li>
                         <li class="list-group-item py-1"><strong>Time Consumed:</strong> {{ object.time_consumed }}</li>
+                        <li class="list-group-item py-1"><strong>SAP PM No.:</strong> {{ object.wo_seq_num }}</li>
                         <li class="list-group-item py-1"><strong>Include Log?</strong> {{ object.include_log }}</li>
-                        <li class="list-group-item py-1"><a href="">Delete</a></li>
+                        
                     </ul>
                     
                 </div>

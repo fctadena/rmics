@@ -5,6 +5,7 @@ from .forms import MaintenanceLogForm
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views.generic.detail import DetailView
+from .forms import MaintenanceLogForm
 
 #IMPORTS FOR THE HANDLER
 from django.views import View
@@ -37,8 +38,22 @@ def delete_log(request,id):
     return render(request, 'drms/delete-log.html', {'log':log})
 
 
-def update_log(request):
-    return render(request, 'drms/update-log.html')
+def update_log(request,id):
+    log = MaintenanceLog.objects.get(id=id)
+    
+    if request.method == 'POST':
+        form = MaintenanceLogForm(request.POST, instance=log)
+        if form.is_valid():
+            log = form.save(commit=False)
+            log.save()
+            messages.success(request, 'UPDATED LOG SUCCESSFULLY', extra_tags='info')
+            return redirect('drms:maintenance_records')
+    else:
+        form = MaintenanceLogForm(instance=log)
+    return render(request, 'drms/update-log.html', {'form':form, 'log':log})
+    
+    
+
 
 def maintenance_records(request):
     maintenance_log = MaintenanceLog.objects.all()

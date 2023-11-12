@@ -1,26 +1,38 @@
-<!-- update_records.html -->
-<div>
-    This is update log
 
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <p><strong>Machine Failure Breakdown:</strong> Lorem ipsum dolor sit amet.</p>
-            <p><strong>Description of Work:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <p><strong>Work Type:</strong> Repair</p>
-            <p><strong>Root Cause:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </div>
-        <div class="col-md-6">
-            <p><strong>Job Start:</strong> 2023-11-04 08:00 AM</p>
-            <p><strong>Job End:</strong> 2023-11-04 10:00 AM</p>
-            <p><strong>Time Consumed:</strong> 2 hours</p>
-            <p><strong>Status:</strong> Completed</p>
-        </div>
-    </div>
+
+{% extends 'rmics/base.html' %}
+
+{% block updateassetform %}
+
+<div class="x_title">
+    <h2>Update Log</h2>
+    <ul class="nav navbar-right panel_toolbox">
+        <li><a href="{% url 'drms:log_detail' log.id %}"><i class="fa fa-long-arrow-left"> Back to Log Detail</i></a>
+        </li>
+        <li><a href="{% url 'drms:maintenance_records' %}"><i class="fa fa-long-arrow-left"> Go to Maintenance Log Summary</i></a>
+        </li>
+        <li><a href="{% url 'drms:delete_log' log.id %}"><i class="fa fa-pencil-square-o"> Delete Log</i></a>
+        </li>
+      </ul>
+      <div class="clearfix"></div>
+  </div>
+
+  <div class="form-group">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-info" type="Submit">Save</button>
+    </form>
 </div>
 
-</div>
+{% endblock %}
+
+
+
+
+
+
 
 
 
@@ -42,3 +54,31 @@
 
 
  {% endcomment %}
+
+
+
+
+
+ <!-- update_records.html -->
+{% comment %} <div>
+    This is update log
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <p><strong>Machine Failure Breakdown:</strong> Lorem ipsum dolor sit amet.</p>
+            <p><strong>Description of Work:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <p><strong>Work Type:</strong> Repair</p>
+            <p><strong>Root Cause:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+        <div class="col-md-6">
+            <p><strong>Job Start:</strong> 2023-11-04 08:00 AM</p>
+            <p><strong>Job End:</strong> 2023-11-04 10:00 AM</p>
+            <p><strong>Time Consumed:</strong> 2 hours</p>
+            <p><strong>Status:</strong> Completed</p>
+        </div>
+    </div>
+</div>
+
+</div> {% endcomment %}

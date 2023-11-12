@@ -42,24 +42,19 @@
     {% endfor %}
 {% endif %}
 
-<div class="x_panel">
+{% comment %} <div class="x_panel"> {% endcomment %}
     <div class="x_title">
       <h2>Maintenance Record Summary</h2>
-      <ul class="nav navbar-right panel_toolbox">
-        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">Settings 1</a>
-              <a class="dropdown-item" href="#">Settings 2</a>
-            </div>
-        </li>
-        <li><a class="close-link"><i class="fa fa-close"></i></a>
-        </li>
-      </ul>
+      <div class="form-group pull-right top_search">
+        <form action="" method="GET" class="input-group">
+          <input type="search" name = "search_asset" class="form-control" placeholder="Search Asset...">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="submit">Go!</button>
+          </span>
+        </form>
+      </div>
       <div class="clearfix"></div>
-    </div>
+      </div>
     
     <div>
       <a href="{% url 'drms:add_log' %}" class="btn btn-sm btn-primary float-right">Add Log</a>
@@ -83,8 +78,9 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item py-1"><strong>Date:</strong> {{ log.job_start }}</li>
                         <li class="list-group-item py-1"><strong>Time Consumed:</strong> {{ log.time_consumed }}</li>
+                        <li class="list-group-item py-1"><strong>SAP PM No.:</strong> {{ log.wo_seq_num }}</li>
                         <li class="list-group-item py-1"><strong>Include Log?</strong> {{ log.include_log }}</li>
-                        <li class="list-group-item py-1"><a href="{% url 'drms:log_detail' log.id %}">View</a> | <a href="">Delete</a></li>
+                        <li class="list-group-item py-1"><a href="{% url 'drms:log_detail' log.id %}">View</a> | <a href="{% url 'drms:delete_log' log.id %}">Delete</a></li>
                     </ul>
                 </div>
             </div>
@@ -92,10 +88,4 @@
         {% endfor %}
       </div>
     </div>
-  </div>
-
-
-  
-  
-
 {% endblock %}
