@@ -1,0 +1,15 @@
+Model: FindingsLog
+    date_time - date and time the findings has been logged (auto)
+    date_time_observed - date the findings has been observed
+    plant - the plant (auto from user field plant)
+    equipment name - the equipment of interest
+    title - title of the findings
+    description - description of findings
+    estimated time of repair - the time it takes to address the findings
+    action plan = (Inspect, Repair)
+    action plan date = date
+    communicated to user = (Yes, NO boolean)
+    parts availability - (Requested, In Transit, Available)  
+
+    
+    status - status of findings (Scheduled for Inspection)

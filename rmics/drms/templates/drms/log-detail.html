@@ -22,7 +22,34 @@
 
       <p>Note: Make sure to provide accurate records.</p>
 
-      <div>
+      <div class="card mb-3 border-info shadow-sm">
+        <div class="card-header bg-info text-white h5">
+            {{ object.equipment_code }} - {{ object.equipment_name }}: {{ object.machine_failure_breakdown }}
+        </div>
+        <div class="row no-gutters">
+            <div class="col-md-8">
+                <div class="card-body">
+                    <p class="card-text">{{ object.description_of_work }}</p>
+                    <p class="card-text"><strong>Status:</strong> {{ object.status }}</p>
+                    <p class="card-text"><strong>Affecting Bagging?</strong> {{ object.affecting_bagging }}</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card-body">
+                    <p class="card-text"><strong>Date:</strong> {{ object.job_start }}</p>
+                    <p class="card-text"><strong>Time Consumed:</strong> {{ object.time_consumed }}</p>
+                    <p class="card-text"><strong>SAP PM No.:</strong> {{ object.wo_seq_num }}</p>
+                    <p class="card-text"><strong>Status</strong> {{ object.status }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            {% comment %} <a href="{% url 'drms:log_detail' object.id %}" class="btn btn-info btn-sm mr-1">View</a>
+            <a href="{% url 'drms:delete_log' object.id %}" class="btn btn-danger btn-sm">Delete</a> {% endcomment %}
+        </div>
+    </div>
+
+      {% comment %} <div>
         <div class="card mb-3 border-top border-info shadow-sm">
             <div class="row no-gutters">
                 <div class="col-md-8">
@@ -45,7 +72,7 @@
                 </div>
             </div>
         </div>
-      </div>
+      </div> {% endcomment %}
     </div>
   </div>
 
