@@ -1,0 +1,15 @@
+{% extends 'rmics/base.html' %}
+<!DOCTYPE html>
+
+{% block AddFindingsLog %}
+
+<form>
+    {% csrf_token %}
+    <div>{{ form.as_p }}</div>
+    <button method="POST">Add Findings</button>
+</form>
+
+{% endblock %}
+
+
+

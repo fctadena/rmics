@@ -1,0 +1,26 @@
+Findings Summary
+{% for log in logs %}
+{{ log.time_of_discovery }}
+<br>
+{{ log.reported_time }}
+<br>
+{{ log.findings_title }}
+<br>
+{{ log.findings_description }}
+<br>
+{{ log.action_plan }}
+<br>
+{{ log.action_plan_schedule }}
+<br>
+{{ log.parts_availability }}
+<br>
+{{ log.status }}
+<br>
+{{ log.comments }}
+
+
+{% endfor %}
+
+
+
+

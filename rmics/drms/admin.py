@@ -34,7 +34,7 @@ class MaintenanceLogAdmin(admin.ModelAdmin):
         'include_log',
     )
 
-admin.site.register(MaintenanceLog, MaintenanceLogAdmin)
 
+admin.site.register(MaintenanceLog, MaintenanceLogAdmin)
 
     

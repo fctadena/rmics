@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" href="images/favicon.ico" type="image/ico" />
 
-    <title>RMI ColSys</title>
+    <title>RMI Collaboration System</title>
 
     <!-- Bootstrap -->
     <link href="{% static 'vendors/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -27,13 +27,9 @@
     <link href="{% static 'vendors/jqvmap/dist/jqvmap.min.css' %}" rel="stylesheet"/>
     <!-- bootstrap-daterangepicker -->
     <link href="{% static 'vendors/bootstrap-daterangepicker/daterangepicker.css' %}" rel="stylesheet">
+
     <!-- Custom Theme Style -->
     <link href="{% static 'build/css/custom.min.css' %}" rel="stylesheet">
-
-
-
-
-
   </head>
 
   <body class="nav-md">
@@ -50,7 +46,7 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="{% static 'images/fcatadena.png' %}" alt="..." class="img-circle profile_img">
+                <img src="{% static 'images/img.jpg' %}" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
@@ -73,47 +69,40 @@
                       <li><a href="index3.html">Dashboard3</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-dashboard"></i> NOM Dashboard <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-edit"></i> NOM Dashboard <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="form.html">Plant Status Summary</a></li>
                       <li><a href="form_advanced.html">Maintenance Record Summary</a></li>
                       <li><a href="form_advanced.html">Create Deliverables</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-dashboard"></i> OA/OE Dashboard <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-edit"></i> OA/OE Dashboard <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="form.html">Plant Status Summary</a></li>
                       <li><a href="form_advanced.html">Maintenance Record Summary</a></li>
                       <li><a href="form_advanced.html">Create Deliverables</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-dashboard"></i> EH Dashboard <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-edit"></i> EH Dashboard <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="form.html">Plant Status Summary</a></li>
                       <li><a href="form_advanced.html">Maintenance Record Summary</a></li>
                       <li><a href="form_validation.html">Create Critical Issue</a></li>
                     </ul>
-                  <li><a><i class="fa fa-dashboard"></i> MP Dashboard <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-edit"></i> MP Dashboard <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href={% url 'drms:add_log' %}> Log Maintenance Record</a></li> 
-                      <li><a href={% url 'drms:maintenance_records' %}> Maintenance Record Summary</a></li>
-                      <li><a href="{% url 'cfms:add_findings' %}">Add Findings</a></li>
-                      <li><a href="{% url 'cfms:delete_findings' %}">Delete Findings</a></li>
-                      <li><a href="{% url 'cfms:findings_detail' %}">Findings Detail</a></li>
-                      <li><a href="{% url 'cfms:findings_summary' %}">Findings Summary</a></li>
-                      <li><a href="{% url 'cfms:update_findings' %}">Update Findings</a></li>
+                      <li><a href="form.html">Log Maintenance Record</a></li>
+                      <li><a href="form.html">Plant Status Summary</a></li>
+                      <li><a href="form_advanced.html">Maintenance Record Summary</a></li>
+                      <li><a href="form_validation.html">Create Critical Issue</a></li>
+                      <li><a href="form_validation.html">Create Maintenance Cost Report</a></li>
+ 
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-gears"></i> Asset MS <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-table"></i> Asset MS <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href={% url 'ams:asset_list' %}> Asset List</a></li>
                       <li><a href={% url 'ams:add_asset' %}> Add Asset</a></li>
-                    </ul>
-                  </li>
-                  <li><a><i class="fa fa-users"></i> User Management <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href={% url 'create_user' %}> Add User</a></li>
-                      <li><a href={% url 'manage_users' %}> Manage Users</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-clone"></i> Create<span class="fa fa-chevron-down"></span></a>
@@ -156,7 +145,7 @@
               <ul class=" navbar-right">
                 <li class="nav-item dropdown open" style="padding-left: 15px;">
                   <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                    <img src="{% static 'images/fcatadena.png' %}" alt="">FCA Tadena
+                    <img src="{% static 'images/img.jpg' %}" alt="">FCA Tadena
                   </a>
                   <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item"  href="javascript:;"> Profile</a>
@@ -165,7 +154,7 @@
                         <span>Settings</span>
                       </a>
                   <a class="dropdown-item"  href="javascript:;">Help</a>
-                    <a class="dropdown-item"  href="{% url 'logout' %}"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                    <a class="dropdown-item"  href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                   </div>
                 </li>
 
@@ -283,84 +272,41 @@
           <div class="row">
             <div class="col-md-12">
               <div class="x_panel">
-                
+                <div class="x_title">
+                  <h2>CFMS - Critical Findings Management System</h2>
+                  <div class="clearfix"></div>
+                </div>
+
                 <div class="x_content">
+
                   <div class="col-md-9 col-sm-9  ">
-                    <!-- USER BLOCK -->
-                    {% block profile %}
-                    {% endblock %}
 
-                    {% block ManageUsers %}
-                    {% endblock %}
-
-                    {% block ChangePassword %}
-                    {% endblock %}
-
-                    {% block RegisterUser %}
-                    {% endblock %}
-                    
-                    <!-- AMS BLOCK -->
-                    {% block assetlist %}
-                    {% endblock %}
-
-                    {% block assetdetail %}
-                    {% endblock %}
-
-                    {% block addassetform %}
-                    {% endblock %}
-
-                    {% block deleteasset %}
-                    {% endblock %}
-
-                    {% block updateassetform %}
-                    {% endblock %}
-
-                  
-                    <!-- DRMS BLOCK -->
                     {% block MaintenanceLogForm %}
                     {% endblock %}
 
 
-                    {% block MaintenanceLogSummary %}
-                    {% endblock %}
-                    
-
-                    {% block LogDetail %}
-                    {% endblock %}
-
-                    {% block deletelog %}
-                    {% endblock %}
-
-                    <!-- CFMS BLOCK -->
-                    {% block AddFindingsLog %}
-                    {% endblock %}
-
+                  <!-- ADD MAINTENANCE LOG FORM HERE -->
+                  
+                  
                   </div>
 
                   <!-- start project-detail sidebar -->
                   <div class="col-md-3 col-sm-3  ">
+
                     <section class="panel">
+
                       <div class="x_title">
-                        <h2>Recognition & Announcment Board </h2>
+                        <h2>RMI ColSys Sidebar</h2>
                         <div class="clearfix"></div>
                       </div>
                       <div class="panel-body">
-                        <h5 class="green"> Employee of the Quarter </h5>
-
-                        <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terr.</p>
-                        <br />
-
-                        <h5 class="green"> Announcement </h5>
-
-                        <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terr.</p>
-                        <br />
-
-                        <h5 class="green"> Featured RCFA </h5>
+                        <h3 class="green"> RMI ColSys</h3>
 
                         <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terr.</p>
                         <br />
 
                         <div class="project_detail">
+
                           <p class="title">Client Company</p>
                           <p>Deveint Inc</p>
                           <p class="title">Project Leader</p>
@@ -368,7 +314,20 @@
                         </div>
 
                         <br />
-                        
+                        <h5>Project files</h5>
+                        <ul class="list-unstyled project_files">
+                          <li><a href=""><i class="fa fa-file-word-o"></i> Functional-requirements.docx</a>
+                          </li>
+                          <li><a href=""><i class="fa fa-file-pdf-o"></i> UAT.pdf</a>
+                          </li>
+                          <li><a href=""><i class="fa fa-mail-forward"></i> Email-from-flatbal.mln</a>
+                          </li>
+                          <li><a href=""><i class="fa fa-picture-o"></i> Logo.png</a>
+                          </li>
+                          <li><a href=""><i class="fa fa-file-word-o"></i> Contract-10_12_2014.docx</a>
+                          </li>
+                        </ul>
+                        <br />
 
                         <div class="text-center mtop20">
                           <a href="#" class="btn btn-sm btn-primary">Add files</a>
@@ -452,90 +411,6 @@
 
     <!-- Custom Theme Scripts -->
     <script src="{% static 'build/js/custom.min.js' %}"></script>
-
-
-
-
-    <!-- ChatGPT Provided Script: Making sure Job End is later date compared to Job Start -->
-    <script>
-      document.getElementById("job_end").addEventListener("change", function () {
-          let jobStart = new Date(document.getElementById("job_start").value);
-          let jobEnd = new Date(document.getElementById("job_end").value);
-  
-          if (jobEnd <= jobStart) {
-              alert("Job End must be later than Job Start");
-              // You can also disable form submission or perform other actions as needed
-          }
-      });
-    </script>
-
-    <!-- ChatGPT Provided Script: Dynamic Calculation of Time Consumed  -->
-    <script>
-      const jobStartInput = document.getElementById('job_start');
-      const jobEndInput = document.getElementById('job_end');
-      const timeConsumedInput = document.getElementById('time_consumed');
-
-      jobStartInput.addEventListener('change', updateDuration);
-      jobEndInput.addEventListener('change', updateDuration);
-
-      function updateDuration() {
-        const jobStart = new Date(jobStartInput.value);
-        const jobEnd = new Date(jobEndInput.value);
-        const timeDifference = jobEnd - jobStart;
-
-        // Calculate days, hours, and minutes
-        const days = Math.floor(timeDifference / (24 * 60 * 60 * 1000));
-        const remainingTime = timeDifference - days * 24 * 60 * 60 * 1000;
-        const hours = Math.floor(remainingTime / (60 * 60 * 1000));
-        const remainingMinutes = remainingTime - hours * 60 * 60 * 1000;
-        const minutes = Math.floor(remainingMinutes / (60 * 1000));
-
-        // Format the result in "DD HH:MM:SS" with seconds set to "00"
-        const formattedDuration = `${days} ${hours}:${minutes}:00`;
-
-        timeConsumedInput.value = formattedDuration;
-      }
-
-    </script>
-    
-      
-    
-  
-
-    <!-- ChatGPT Provided Script: Making sure format is correct  -->
-
-    <script>
-      document.getElementById("affecting_production").addEventListener("change", formatTime);
-      document.getElementById("affecting_time").addEventListener("change", formatTime);
-  
-      function formatTime() {
-          let value = this.value;
-          // Check if the input is in "hh:mm" format
-          if (/^\d{1,2}:\d{1,2}$/.test(value)) {
-              // Split the input into hours and minutes
-              const parts = value.split(":");
-              const hours = parts[0].padStart(2, "0"); // Ensure two digits for hours
-              const minutes = parts[1].padStart(2, "0"); // Ensure two digits for minutes
-              this.value = `${hours}:${minutes}:00`;
-          }
-      }
-    </script>
-  
-
-  
-    {% comment %} <script>
-      document.getElementById("affecting_production").addEventListener("change", formatTime);
-      document.getElementById("affecting_time").addEventListener("change", formatTime);
-
-      function formatTime() {
-          let value = this.value;
-          // Check if the input is in "hh:mm" format
-          if (/^\d{2}:\d{2}$/.test(value)) {
-              this.value = value + ":00";
-          }
-      }
-    </script>     {% endcomment %}
-
-
+	
   </body>
 </html>

@@ -18,7 +18,7 @@ from ams.models import Asset
 # Create your views here.
 
 def drms(request):
-    return render(request, 'rmics/drms-base.html')
+    return render(request, 'rmics/base.html')
 
 
 #CRUD STARTS HERE

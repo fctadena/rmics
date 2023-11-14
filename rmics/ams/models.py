@@ -29,3 +29,10 @@ class Asset(models.Model):
     
     def get_absolute_url(self):
         return render(request, template_name='ams/asset-list.html')
+    
+    
+    
+
+class PlantAssignment(models.Model):
+    plant = models.CharField(max_length=50, blank=True, null=True)
+    plant_code = models.CharField(max_length=50, blank=True, null=True)

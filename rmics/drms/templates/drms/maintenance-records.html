@@ -66,65 +66,42 @@
 
 
         {% for log in maintenance_log %}
-<div class="card mb-3 border-info shadow-sm">
-    <div class="card-header bg-info text-white h5">
-        {{ log.equipment_code }} - {{ log.equipment_name }}: {{ log.machine_failure_breakdown }}
-    </div>
-    <div class="row no-gutters">
-        <div class="col-md-8">
-            <div class="card-body">
-                <p class="card-text">{{ log.description_of_work }}</p>
-                <p class="card-text"><strong>Status:</strong> {{ log.status }}</p>
-                <p class="card-text"><strong>Affecting Bagging?</strong> {{ log.affecting_bagging }}</p>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card-body">
-                <p class="card-text"><strong>Date:</strong> {{ log.job_start }}</p>
-                <p class="card-text"><strong>Time Consumed:</strong> {{ log.time_consumed }}</p>
-                <p class="card-text"><strong>SAP PM No.:</strong> {{ log.wo_seq_num }}</p>
-                <p class="card-text"><strong>Status</strong> {{ log.status }}</p>
-            </div>
-        </div>
-    </div>
-    <div class="card-footer">
-        <a href="{% url 'drms:log_detail' log.id %}" class="btn btn-info btn-sm mr-1">View</a>
-        <a href="{% url 'drms:delete_log' log.id %}" class="btn btn-danger btn-sm">Delete</a>
-    </div>
-</div>
+
+          
+        <div class="card mb-2 border-info shadow-sm">
+          <div class="card-header bg-info text-white h6 py-2 px-3">
+              {{ log.equipment_code }} - {{ log.equipment_name }}: {{ log.machine_failure_breakdown }}
+          </div>
+          <div class="row no-gutters">
+              <div class="col-md-8">
+                  <div class="card-body py-2 px-3">
+                      <p class="card-text">{{ log.description_of_work }}</p>
+                      <p class="card-text"><strong>Status:</strong> {{ log.status }}</p>
+                      <p class="card-text"><strong>Affecting Bagging?</strong> {{ log.affecting_bagging }}</p>
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="card-body py-2 px-3">
+                      <p class="card-text"><strong>Date:</strong> {{ log.job_start }}</p>
+                      <p class="card-text"><strong>Time Consumed:</strong> {{ log.time_consumed }}</p>
+                      <p class="card-text"><strong>SAP PM No.:</strong> {{ log.wo_seq_num }}</p>
+                      <p class="card-text"><strong>Status</strong> {{ log.status }}</p>
+                  </div>
+              </div>
+          </div>
+          <div class="card-footer py-2 px-3">
+              <div class="btn-group">
+                  <a href="{% url 'drms:log_detail' log.id %}" class="btn btn-info btn-sm" style="font-size: 80%;">View</a>
+                  <a href="{% url 'drms:delete_log' log.id %}" class="btn btn-danger btn-sm" style="font-size: 80%;">Delete</a>
+              </div>
+          </div>
+      </div>
+      
+      
+      
 {% endfor %}
 
 
-
-
-{% comment %} 
-{% for log in maintenance_log %}
-        <div class="card mb-3 border-top border-info shadow-sm">
-            <div class="row no-gutters">
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ log.equipment_code }} - {{ log.equipment_name }}: {{ log.machine_failure_breakdown }}</h5>
-                        <p class="card-text">{{ log.description_of_work }}</p>
-                        <p class="card-text" style="margin-bottom: 0.2rem;"><strong>Status:</strong> {{ log.status }}</p>
-                        <p class="card-text" style="margin-bottom: 0.2rem;"><strong>Affecting Bagging?</strong> {{ log.affecting_bagging }}</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item py-1"><strong>Date:</strong> {{ log.job_start }}</li>
-                        <li class="list-group-item py-1"><strong>Time Consumed:</strong> {{ log.time_consumed }}</li>
-                        <li class="list-group-item py-1"><strong>SAP PM No.:</strong> {{ log.wo_seq_num }}</li>
-                        <li class="list-group-item py-1"><strong>Include Log?</strong> {{ log.include_log }}</li>
-                        <li class="list-group-item py-1" style="display: flex; justify-content: flex-end;">
-                            <a href="{% url 'drms:log_detail' log.id %}" class="btn btn-info btn-sm mr-1">View</a>
-                            <a href="{% url 'drms:delete_log' log.id %}" class="btn btn-danger btn-sm">Delete</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    {% endfor %} {% endcomment %}
-    
 
       </div>
     </div>
