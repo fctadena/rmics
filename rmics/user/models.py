@@ -83,8 +83,5 @@ class CustomUserProfile(models.Model):
 
 
 
-class PlantAssignment(models.Model):
-    plant = models.CharField(max_length=50, blank=True, null=True)
-    plant_code = models.CharField(max_length=50, blank=True, null=True)
 
     

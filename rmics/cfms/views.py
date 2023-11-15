@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import FindingsLog
 from .forms import FindingsLogForm
 from django.http import HttpResponse
+from django.urls import reverse_lazy
 
 # Create your views here.
 
@@ -16,7 +17,8 @@ def add_findings(request):
         form = FindingsLogForm(request.POST)
         if form.is_valid():
             findings = form.save()
-            return HttpResponse('Successfully added form')
+        return redirect('cfms:findings_summary')
+            
     
     else:
         form = FindingsLogForm()

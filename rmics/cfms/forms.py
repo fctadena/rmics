@@ -1,8 +1,10 @@
 from django import forms
 from .models import FindingsLog
+from django.forms import DateTimeInput, Textarea, Select
 
 
-class FindingsLogForm(forms.ModelForm):
+
+class FindingsLogForm(forms.ModelForm):    
     class Meta:
         model = FindingsLog
         fields = [
@@ -16,5 +18,3 @@ class FindingsLogForm(forms.ModelForm):
             'status', 
             'comments'   
         ]
-        
-      
