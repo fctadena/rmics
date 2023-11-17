@@ -67,42 +67,65 @@
 
         {% for log in maintenance_log %}
 
-          
-        <div class="card mb-2 border-info shadow-sm">
-          <div class="card-header bg-info text-white h6 py-2 px-3">
-              {{ log.equipment_code }} - {{ log.equipment_name }}: {{ log.machine_failure_breakdown }}
-          </div>
-          <div class="row no-gutters">
-              <div class="col-md-8">
-                  <div class="card-body py-2 px-3">
-                      <p class="card-text">{{ log.description_of_work }}</p>
-                      <p class="card-text"><strong>Status:</strong> {{ log.status }}</p>
-                      <p class="card-text"><strong>Affecting Bagging?</strong> {{ log.affecting_bagging }}</p>
-                  </div>
-              </div>
-              <div class="col-md-4">
-                  <div class="card-body py-2 px-3">
-                      <p class="card-text"><strong>Date:</strong> {{ log.job_start }}</p>
-                      <p class="card-text"><strong>Time Consumed:</strong> {{ log.time_consumed }}</p>
-                      <p class="card-text"><strong>SAP PM No.:</strong> {{ log.wo_seq_num }}</p>
-                      <p class="card-text"><strong>Status</strong> {{ log.status }}</p>
-                  </div>
-              </div>
-          </div>
-          <div class="card-footer py-2 px-3">
-              <div class="btn-group">
-                  <a href="{% url 'drms:log_detail' log.id %}" class="btn btn-info btn-sm" style="font-size: 80%;">View</a>
-                  <a href="{% url 'drms:delete_log' log.id %}" class="btn btn-danger btn-sm" style="font-size: 80%;">Delete</a>
-              </div>
-          </div>
-      </div>
-      
-      
+        
+<!-- Start of Maintenance Log Summary -->
+<ul class="messages">
+  <li>
+    <div class="message_date ml-5">
+      <h5 class="date text-info">{{ log.time_consumed }} Hrs.</h5>
+      <p class="month">{{ log.status }}</p>
+    </div>
+    <div class="message_wrapper">
+      <h4 class="heading">{{ log.equipment_code }} - {{ log.equipment_name }}: {{ log.machine_failure_breakdown }}</h4>
+      <blockquote class="message">{{ log.description_of_work }}</blockquote>
+      <br />
+      <p class="url">
+        <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
+        <a>Date: {{ log.job_start }}</a> | <a>Affecting Bagging?: {{ log.affecting_bagging }}</a><br>
+        <a> SAP PM No: {{ log.wo_seq_num }}</a><br>
+        <a href="{% url 'drms:log_detail' log.id %}"><i class="fa fa-hand-o-right"></i><strong> View</strong></a> | <a href="{% url 'drms:delete_log' log.id %}"><i class="fa fa-trash"></i> Delete</a>
+      </p>
+    </div>
+  </li>
+</ul>
+<!-- End of Maintenance Log Summary -->
+
       
 {% endfor %}
 
-
-
       </div>
     </div>
+
+
+
+
 {% endblock %}
+
+{% comment %} <div class="card mb-2 border-info shadow-sm">
+  <div class="card-header bg-info text-white h6 py-2 px-3">
+      {{ log.equipment_code }} - {{ log.equipment_name }}: {{ log.machine_failure_breakdown }}
+  </div>
+  <div class="row no-gutters">
+      <div class="col-md-8">
+          <div class="card-body py-2 px-3">
+              <p class="card-text">{{ log.description_of_work }}</p>
+              <p class="card-text"><strong>Status:</strong> {{ log.status }}</p>
+              <p class="card-text"><strong>Affecting Bagging?</strong> {{ log.affecting_bagging }}</p>
+          </div>
+      </div>
+      <div class="col-md-4">
+          <div class="card-body py-2 px-3">
+              <p class="card-text"><strong>Date:</strong> {{ log.job_start }}</p>
+              <p class="card-text"><strong>Time Consumed:</strong> {{ log.time_consumed }}</p>
+              <p class="card-text"><strong>SAP PM No.:</strong> {{ log.wo_seq_num }}</p>
+              <p class="card-text"><strong>Status</strong> {{ log.status }}</p>
+          </div>
+      </div>
+  </div>
+  <div class="card-footer py-2 px-3">
+      <div class="btn-group">
+          <a href="{% url 'drms:log_detail' log.id %}" class="btn btn-info btn-sm" style="font-size: 80%;">View</a>
+          <a href="{% url 'drms:delete_log' log.id %}" class="btn btn-danger btn-sm" style="font-size: 80%;">Delete</a>
+      </div>
+  </div>
+</div> {% endcomment %}

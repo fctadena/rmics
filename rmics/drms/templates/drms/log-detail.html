@@ -19,60 +19,42 @@
     </div>
 
     <div class="x_content">
+        <ul class="messages">
+            <li>
+              <div class="message_date ml-5">
+                <h5 class="date text-info">{{ object.time_consumed }} Hrs.</h5>
+                <p class="month">{{ object.status }}</p>
+              </div>
+              <div class="message_wrapper">
+                <h4 class="heading">{{ object.equipment_code }} - {{ object.equipment_name }}: {{ object.machine_failure_breakdown }}</h4>
+                <blockquote class="message">{{ object.description_of_work }}</blockquote>
+                <br />
+                <p class="url">
+                  <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
+                  <p><strong>Root Cause:</strong> {{ object.root_cause }}</p><br>
+                  <p><strong>Affecting Bagging?</strong> {{ object.affecting_bagging }}</p><br>
+                  <a>Duration: {{ object.job_start }}</a> | <a>{{ object.job_end }}</a><br>
+                  <a> SAP PM No: {{ object.wo_seq_num }}</a><br>
+                  <a> Work Type: {{ object.work_type }}</a><br>
+                  <a> Affecting Production: {{ object.affecting_production }}</a><br>
+                  <a> Affecting Time: {{ object.affecting_time }}</a><br>
+                  <a> Section: {{ object.section }}</a><br>
+                  <a> System: {{ object.system }}</a><br>
+                  <a> Type of Stop Time: {{ object.type_of_stop_time }}</a><br>
+                  <a> Work Center: {{ object.work_center }}</a><br>
+                  <a> Personnel Assigned: {{ object.personnel_assigned }}</a><br>
+                  <a> Parts Replaced: {{ object.parts_replaced }}</a><br>
+                  <a> Remarks: {{ object.remarks }}</a><br>
+                  <a> Notif. No.: {{ object.notification_num }}</a><br>
+                  <a> Include Log? {{ object.include_log }}</a><br>
 
-      <p>Note: Make sure to provide accurate records.</p>
 
-      <div class="card mb-3 border-info shadow-sm">
-        <div class="card-header bg-info text-white h5">
-            {{ object.equipment_code }} - {{ object.equipment_name }}: {{ object.machine_failure_breakdown }}
-        </div>
-        <div class="row no-gutters">
-            <div class="col-md-8">
-                <div class="card-body">
-                    <p class="card-text">{{ object.description_of_work }}</p>
-                    <p class="card-text"><strong>Status:</strong> {{ object.status }}</p>
-                    <p class="card-text"><strong>Affecting Bagging?</strong> {{ object.affecting_bagging }}</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card-body">
-                    <p class="card-text"><strong>Date:</strong> {{ object.job_start }}</p>
-                    <p class="card-text"><strong>Time Consumed:</strong> {{ object.time_consumed }}</p>
-                    <p class="card-text"><strong>SAP PM No.:</strong> {{ object.wo_seq_num }}</p>
-                    <p class="card-text"><strong>Status</strong> {{ object.status }}</p>
-                </div>
-            </div>
-        </div>
-        <div class="card-footer">
-            {% comment %} <a href="{% url 'drms:log_detail' object.id %}" class="btn btn-info btn-sm mr-1">View</a>
-            <a href="{% url 'drms:delete_log' object.id %}" class="btn btn-danger btn-sm">Delete</a> {% endcomment %}
-        </div>
-    </div>
 
-      {% comment %} <div>
-        <div class="card mb-3 border-top border-info shadow-sm">
-            <div class="row no-gutters">
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ object.equipment_code }} - {{ object.equipment_name }} : {{ object.machine_failure_breakdown }}</h5>
-                        <p class="card-text">{{ object.description_of_work }}</p>
-                        <p class="card-text" style="margin-bottom: 0.2rem;"><strong>Status:</strong> {{ object.status }}</p>
-                        <p class="card-text" style="margin-bottom: 0.2rem;"><strong>Affecting Bagging?</strong> {{ object.affecting_bagging }}</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item py-1"><strong>Date:</strong> {{ object.job_start }}</li>
-                        <li class="list-group-item py-1"><strong>Time Consumed:</strong> {{ object.time_consumed }}</li>
-                        <li class="list-group-item py-1"><strong>SAP PM No.:</strong> {{ object.wo_seq_num }}</li>
-                        <li class="list-group-item py-1"><strong>Include Log?</strong> {{ object.include_log }}</li>
-                        
-                    </ul>
-                    
-                </div>
-            </div>
-        </div>
-      </div> {% endcomment %}
+                  <a href="{% url 'drms:log_detail' object.id %}"><i class="fa fa-hand-o-right"></i><strong> View</strong></a> | <a href="{% url 'drms:delete_log' object.id %}"><i class="fa fa-trash"></i> Delete</a>
+                </p>
+              </div>
+            </li>
+          </ul>
     </div>
   </div>
 
