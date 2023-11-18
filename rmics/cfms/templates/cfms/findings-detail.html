@@ -1,1 +1,29 @@
-Findings Detail
+{% extends 'rmics/base.html' %}
+<!DOCTYPE html>
+
+{% block FindingsDetail %}
+
+<h3>{{ object.findings_title }}</h3>
+{{ object.time_of_discovery }}
+<br>
+{{ object.reported_time }}
+<br>
+{{ object.findings_description }}
+<br>
+{{ object.action_plan }}
+<br>
+{{ object.action_plan_schedule }}
+<br>
+{{ object.parts_availability }}
+<br>
+{{ object.status }}
+<br>
+{{ object.comments }}
+<br>
+<a href="">View</a> | <a href="{% url 'cfms:delete_findings' object.pk %}">Delete</a> | <a href="{% url 'cfms:findings_detail' object.pk %}">Findings Detail</a> | <a href="">Update Findings</a> | <a href="{% url 'cfms:add_findings' %}">Add Findings</a>
+{% endblock %}
+
+
+
+
+

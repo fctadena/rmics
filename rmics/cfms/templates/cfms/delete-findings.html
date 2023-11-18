@@ -1,1 +1,8 @@
-Delete findings
+
+
+<form method="POST">
+    {% csrf_token %}
+    <h2>Delete Asset</h2>
+    <h3>Confirm Deletion of Findings Log: {{ findingslog.findings_title }}</h3>
+    <button type="submit">Confirm</button>
+</form>

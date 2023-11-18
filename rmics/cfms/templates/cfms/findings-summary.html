@@ -1,10 +1,13 @@
-Findings Summary
+{% extends 'rmics/base.html' %}
+<!DOCTYPE html>
+
+{% block FindingsLogSummary %}
 {% for log in logs %}
+
+<h3>{{ log.findings_title }}</h3>
 {{ log.time_of_discovery }}
 <br>
 {{ log.reported_time }}
-<br>
-{{ log.findings_title }}
 <br>
 {{ log.findings_description }}
 <br>
@@ -17,9 +20,11 @@ Findings Summary
 {{ log.status }}
 <br>
 {{ log.comments }}
-
-
+<br>
+<a href="{% url 'cfms:delete_findings' log.id %}">Delete</a> | <a href="{% url 'cfms:findings_detail' log.id %}">Findings Detail</a> | <a href="">Update Findings</a> | <a href="{% url 'cfms:add_findings' %}">Add Findings</a>
 {% endfor %}
+{% endblock %}
+
 
 
 

@@ -98,8 +98,6 @@
                       <li><a href={% url 'drms:add_log' %}> Log Maintenance Record</a></li> 
                       <li><a href={% url 'drms:maintenance_records' %}> Maintenance Record Summary</a></li>
                       <li><a href="{% url 'cfms:add_findings' %}">Add Findings</a></li>
-                      <li><a href="{% url 'cfms:delete_findings' %}">Delete Findings</a></li>
-                      <li><a href="{% url 'cfms:findings_detail' %}">Findings Detail</a></li>
                       <li><a href="{% url 'cfms:findings_summary' %}">Findings Summary</a></li>
                       <li><a href="{% url 'cfms:update_findings' %}">Update Findings</a></li>
                     </ul>
@@ -333,6 +331,12 @@
 
                     <!-- CFMS BLOCK -->
                     {% block AddFindingsLog %}
+                    {% endblock %}
+
+                    {% block FindingsLogSummary %}
+                    {% endblock %}
+
+                    {% block FindingsDetail %}
                     {% endblock %}
 
                   </div>
