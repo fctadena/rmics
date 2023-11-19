@@ -5,11 +5,9 @@ from .forms import MaintenanceLogForm
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views.generic.detail import DetailView
-from .forms import MaintenanceLogForm
 
 #IMPORTS FOR THE HANDLER
 from django.views import View
-from django.contrib import messages
 from .models import MaintenanceLog
 from ams.models import Asset
 
@@ -56,7 +54,7 @@ def update_log(request,id):
 
 
 def maintenance_records(request):
-    maintenance_log = MaintenanceLog.objects.all()
+    maintenance_log = MaintenanceLog.objects.all().order_by('-job_start')
     return render(request, 'drms/maintenance-records.html', {'maintenance_log':maintenance_log})
 
 

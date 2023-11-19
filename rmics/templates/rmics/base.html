@@ -99,7 +99,6 @@
                       <li><a href={% url 'drms:maintenance_records' %}> Maintenance Record Summary</a></li>
                       <li><a href="{% url 'cfms:add_findings' %}">Add Findings</a></li>
                       <li><a href="{% url 'cfms:findings_summary' %}">Findings Summary</a></li>
-                      <li><a href="{% url 'cfms:update_findings' %}">Update Findings</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-gears"></i> Asset MS <span class="fa fa-chevron-down"></span></a>
@@ -297,6 +296,7 @@
                     {% block RegisterUser %}
                     {% endblock %}
                     
+                    
                     <!-- AMS BLOCK -->
                     {% block assetlist %}
                     {% endblock %}
@@ -318,16 +318,15 @@
                     {% block MaintenanceLogForm %}
                     {% endblock %}
 
-
                     {% block MaintenanceLogSummary %}
                     {% endblock %}
                     
-
                     {% block LogDetail %}
                     {% endblock %}
 
                     {% block deletelog %}
                     {% endblock %}
+
 
                     <!-- CFMS BLOCK -->
                     {% block AddFindingsLog %}
@@ -337,6 +336,12 @@
                     {% endblock %}
 
                     {% block FindingsDetail %}
+                    {% endblock %}
+
+                    {% block deletefindings %}
+                    {% endblock %}
+
+                    {% block updatefindingsform %}
                     {% endblock %}
 
                   </div>
@@ -389,10 +394,6 @@
               </div>
             </div>
           </div>
-
-
-
-
           <!-- End of Primary Element Holder -->
 
 

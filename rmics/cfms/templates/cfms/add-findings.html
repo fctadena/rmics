@@ -4,21 +4,7 @@
 {% block AddFindingsLog %}
 <div class="x_panel">
     <div class="x_title">
-        <h2>🔧 Log a Critical Findings - ADD PROMPT MESSAGE HERE IF SUCCESSFULL</h2>
-        <ul class="nav navbar-right panel_toolbox">
-            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-            </li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="#">Settings 1</a>
-                  <a class="dropdown-item" href="#">Settings 2</a>
-                </div>
-            </li>
-            <li><a class="close-link"><i class="fa fa-close"></i></a>
-            </li>
-          </ul>
-        
+        <h2>🔧 Log a Critical Findings</h2>
         <div class="clearfix"></div>
     </div>
     
@@ -28,8 +14,6 @@
         <form method="POST" enctype="multipart/form-data" class="form-horizontal form-label-left">
             {% csrf_token %}
             <div class="form-group row">
-              
-    
                 <div class="col-md-4 col-sm-12  form-group">
                     <label for="time_of_discovery">Time of Discovery:</label>
                     <input type="datetime-local" name="time_of_discovery" placeholder="" class="form-control">
@@ -101,8 +85,6 @@
             </div>
     </form>   
     </div>
-
-
 {% endblock %}
 
 

@@ -1,6 +1,4 @@
 {% extends 'rmics/base.html' %}
-
-
 <!DOCTYPE html>
 
 
@@ -8,7 +6,6 @@
 
 {% if messages %}
     {% for message in messages %}
-
             {% if message.extra_tags == 'success' %}
             <div class="alert alert-success" role="alert">
               {{ message }}
@@ -35,14 +32,11 @@
                 <span aria-hidden="true">&times;</span>
             </button>
             </div>
-              
-          
-            {% endif %}
             
+            {% endif %}
     {% endfor %}
 {% endif %}
 
-{% comment %} <div class="x_panel"> {% endcomment %}
     <div class="x_title">
       <h2>Maintenance Record Summary</h2>
       <div class="form-group pull-right top_search">
@@ -65,10 +59,7 @@
       <div>
 
 
-        {% for log in maintenance_log %}
-
-        
-<!-- Start of Maintenance Log Summary -->
+{% for log in maintenance_log %}
 <ul class="messages">
   <li>
     <div class="message_date ml-5">
@@ -95,37 +86,4 @@
 
       </div>
     </div>
-
-
-
-
 {% endblock %}
-
-{% comment %} <div class="card mb-2 border-info shadow-sm">
-  <div class="card-header bg-info text-white h6 py-2 px-3">
-      {{ log.equipment_code }} - {{ log.equipment_name }}: {{ log.machine_failure_breakdown }}
-  </div>
-  <div class="row no-gutters">
-      <div class="col-md-8">
-          <div class="card-body py-2 px-3">
-              <p class="card-text">{{ log.description_of_work }}</p>
-              <p class="card-text"><strong>Status:</strong> {{ log.status }}</p>
-              <p class="card-text"><strong>Affecting Bagging?</strong> {{ log.affecting_bagging }}</p>
-          </div>
-      </div>
-      <div class="col-md-4">
-          <div class="card-body py-2 px-3">
-              <p class="card-text"><strong>Date:</strong> {{ log.job_start }}</p>
-              <p class="card-text"><strong>Time Consumed:</strong> {{ log.time_consumed }}</p>
-              <p class="card-text"><strong>SAP PM No.:</strong> {{ log.wo_seq_num }}</p>
-              <p class="card-text"><strong>Status</strong> {{ log.status }}</p>
-          </div>
-      </div>
-  </div>
-  <div class="card-footer py-2 px-3">
-      <div class="btn-group">
-          <a href="{% url 'drms:log_detail' log.id %}" class="btn btn-info btn-sm" style="font-size: 80%;">View</a>
-          <a href="{% url 'drms:delete_log' log.id %}" class="btn btn-danger btn-sm" style="font-size: 80%;">Delete</a>
-      </div>
-  </div>
-</div> {% endcomment %}

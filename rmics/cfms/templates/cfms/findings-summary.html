@@ -1,7 +1,107 @@
 {% extends 'rmics/base.html' %}
 <!DOCTYPE html>
 
+
 {% block FindingsLogSummary %}
+
+{% if messages %}
+    {% for message in messages %}
+            {% if message.extra_tags == 'success' %}
+            <div class="alert alert-success" role="alert">
+              {{ message }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+                
+      
+            {% elif message.extra_tags == 'warning' %}
+            <div class="alert alert-danger" role="alert">
+              {{ message }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            
+
+            {% elif message.extra_tags == 'info' %}
+            <div class="alert alert-warning" role="alert">
+              {{ message }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+              
+          
+            {% endif %}
+    {% endfor %}
+{% endif %}
+
+    <div class="x_title">
+      <h2>Findings Log Summary</h2>
+      <div class="form-group pull-right top_search">
+        <form action="" method="GET" class="input-group">
+          <input type="search" name = "search_asset" class="form-control" placeholder="Search Asset...">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="submit">Go!</button>
+          </span>
+        </form>
+      </div>
+      <div class="clearfix"></div>
+      </div>
+    
+    <div>
+      <a href="{% url 'cfms:add_findings' %}" class="btn btn-sm btn-primary float-right">Add Log</a>
+      <br>
+      </div>
+  
+    <div class="x_content">
+      <div>
+
+
+{% for log in logs %}
+<ul class="messages">
+  <li>
+    <div class="message_date ml-5">
+      <h5 class="date text-info">{{ log.time_of_discovery }}</h5>
+      <p class="month">Action Plan Status: {{ log.status }}</p>
+    </div>
+    <div class="message_wrapper">
+      <h4 class="heading">{{ log.findings_title }}</h4>
+      <blockquote class="message">{{ log.findings_description }}</blockquote>
+      <br />
+      <p class="url">
+        <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
+        <a><strong>Action Plan: </strong>{{ log.action_plan }}</a><br>
+        <a><strong>Action Plan Schedule: </strong> {{ log.action_plan_schedule }}</a><br>
+        <a><strong>Parts Availability: </strong> {{ log.parts_availability }}</a><br>
+        <a><strong>Status: </strong> {{ log.status }}</a><br>
+        <a><strong>Comments: </strong> {{ log.comments }}</a><br>
+        <a href="{% url 'cfms:findings_detail' log.id %}"><i class="fa fa-hand-o-right"></i><strong> View</strong></a> | <a href="{% url 'cfms:delete_findings' log.id %}"><i class="fa fa-trash"></i> Delete</a>
+      </p>
+    </div>
+  </li>
+</ul>
+{% endfor %}
+
+      </div>
+    </div>
+{% endblock %}
+
+
+
+
+
+
+
+{% comment %} 
+
+{% extends 'rmics/base.html' %}
+<!DOCTYPE html>
+
+{% block FindingsLogSummary %}
+
+
 {% for log in logs %}
 
 <h3>{{ log.findings_title }}</h3>
@@ -23,9 +123,4 @@
 <br>
 <a href="{% url 'cfms:delete_findings' log.id %}">Delete</a> | <a href="{% url 'cfms:findings_detail' log.id %}">Findings Detail</a> | <a href="">Update Findings</a> | <a href="{% url 'cfms:add_findings' %}">Add Findings</a>
 {% endfor %}
-{% endblock %}
-
-
-
-
-
+{% endblock %} {% endcomment %}

@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView
 
 # Create your views here.
 
@@ -14,27 +15,33 @@ def cfms(request):
     return render(request, 'rmics/base.html')
 
 
-def add_findings(request):    
-    if request.method == 'POST':
-        form = FindingsLogForm(request.POST)
-        if form.is_valid():
-            findings = form.save()
-        return redirect('cfms:findings_summary')
+
+class add_findings(CreateView):
+    model = FindingsLog
+    form_class = FindingsLogForm
+    template_name = 'cfms/add-findings.html'
+    
+    def get_success_url(self):
+        messages.success(self.request, 'ADDED FINDINGS SUCCESSFULLY', extra_tags='success')
+        return reverse_lazy('cfms:findings_summary')
+
+
+
+
+# def add_findings(request):    
+#     if request.method == 'POST':
+#         form = FindingsLogForm(request.POST)
+#         if form.is_valid():
+#             findings = form.save()
+#         return redirect('cfms:findings_summary')
             
     
-    else:
-        form = FindingsLogForm()
-    return render(request, 'cfms/add-findings.html', {'form':form})
+#     else:
+#         form = FindingsLogForm()
+#     return render(request, 'cfms/add-findings.html', {'form':form})
 
-# USE THIS TO AS REFERENCE TO CONVERT add_findings to Class view with message succes
-# class add_log(CreateView):
-#     model = MaintenanceLog
-#     form_class = MaintenanceLogForm
-#     template_name = 'drms/add-log.html'
-    
-#     def get_success_url(self):
-#         messages.success(self.request, 'ADDED LOG SUCCESSFULLY', extra_tags='success')
-#         return reverse_lazy('drms:maintenance_records')
+
+
 
 
 def delete_findings(request, id):
@@ -57,5 +64,23 @@ def findings_summary(request):
     logs = FindingsLog.objects.all().order_by('-time_of_discovery')
     return render(request, 'cfms/findings-summary.html', {'logs':logs})
 
-def update_findings(request):
-    return render(request, 'cfms/update-findings.html')
+
+
+
+def update_findings(request, id):
+    findings = FindingsLog.objects.get(id=id)
+    
+    if request.method == "POST":
+        form = FindingsLogForm(request.POST, instance=findings)
+        if form.is_valid():
+            findings = form.save(commit=False)
+            findings.save()
+            messages.success(request, 'UPDATED FINDINGS SUCCESSFULLY', extra_tags='info')
+            return redirect('cfms:findings_summary')
+    
+    else:
+        form = FindingsLogForm(instance=findings)
+    
+    return render(request, 'cfms/update-findings.html', {'form':form, 'findings':findings})
+
+

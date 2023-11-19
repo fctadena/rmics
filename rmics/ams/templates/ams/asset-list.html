@@ -5,25 +5,6 @@
 
 {% block assetlist %}
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<div class="x_title">
-  <h2>Asset List</h2>
-  <div class="form-group pull-right top_search">
-      <form action="" method="GET" class="input-group">
-        <input type="search" name = "search_asset" class="form-control" placeholder="Search Asset...">
-        <span class="input-group-btn">
-          <button class="btn btn-default" type="submit">Go!</button>
-        </span>
-      </form>
-  </div>
-  <div class="clearfix"></div>
-</div>
-<div>
-<a href="{% url 'ams:add_asset' %}" class="btn btn-sm btn-primary float-right">Add Asset</a>
-<br>
-</div>
-
 {% if messages %}
     {% for message in messages %}
 
@@ -59,6 +40,27 @@
             
     {% endfor %}
 {% endif %}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div class="x_title">
+  <h2>Asset List</h2>
+  <div class="form-group pull-right top_search">
+      <form action="" method="GET" class="input-group">
+        <input type="search" name = "search_asset" class="form-control" placeholder="Search Asset...">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="submit">Go!</button>
+        </span>
+      </form>
+  </div>
+  <div class="clearfix"></div>
+</div>
+<div>
+<a href="{% url 'ams:add_asset' %}" class="btn btn-sm btn-primary float-right">Add Asset</a>
+<br>
+</div>
+
+
 
 
     <div class="table-responsive">

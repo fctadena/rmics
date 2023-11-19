@@ -1,29 +1,52 @@
 {% extends 'rmics/base.html' %}
 <!DOCTYPE html>
 
+
 {% block FindingsDetail %}
+<div class="x_panel">
+    <div class="x_title">
+      <h2>Findings Detail</h2>
+      <ul class="nav navbar-right panel_toolbox">
+        <li><a href="{% url 'cfms:findings_summary' %}"><i class="fa fa-long-arrow-left"> Go to Findings Summary</i></a>
+        </li>
+        <li><a href="{% url 'cfms:update_findings' object.id %}"><i class="fa fa-pencil-square-o"> Edit Findings</i></a>
+        </li>
+        <li><a href="{% url 'cfms:delete_findings' object.id %}"><i class="fa fa-pencil-square-o"> Delete Findings</i></a>
+        </li>
+      </ul>
+      <div class="clearfix"></div>
+    </div>
 
-<h3>{{ object.findings_title }}</h3>
-{{ object.time_of_discovery }}
-<br>
-{{ object.reported_time }}
-<br>
-{{ object.findings_description }}
-<br>
-{{ object.action_plan }}
-<br>
-{{ object.action_plan_schedule }}
-<br>
-{{ object.parts_availability }}
-<br>
-{{ object.status }}
-<br>
-{{ object.comments }}
-<br>
-<a href="">View</a> | <a href="{% url 'cfms:delete_findings' object.pk %}">Delete</a> | <a href="{% url 'cfms:findings_detail' object.pk %}">Findings Detail</a> | <a href="">Update Findings</a> | <a href="{% url 'cfms:add_findings' %}">Add Findings</a>
+    <div class="x_content">
+        <ul class="messages">
+            <li>
+              <div class="message_date ml-5">
+                <h5 class="date text-info">{{ object.time_of_discovery }}</h5>
+                <p class="month">{{ object.status }}</p>
+              </div>
+              <div class="message_wrapper">
+                <h4 class="heading">{{ object.findings_title }}</h4>
+                <blockquote class="message">{{ object.findings_description }}</blockquote>
+                <br />
+                <p class="url">
+                  <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
+                  <p><strong>Action Plan: </strong> {{ object.action_plan }}</p><br>
+                  <p><strong>Action Plan Schedule: </strong> {{ object.action_plan_schedule }}</p><br>
+                  <p><strong>Reported time: </strong> {{ object.reported_time }}</p><br>
+                  <p><strong>Parts Availabiltiy: </strong> {{ object.parts_availability }}</p><br>
+                  <p><strong>Comments: </strong> {{ object.comments }}</p><br>
+                </p>
+              </div>
+            </li>
+          </ul>
+    </div>
+  </div>
+
+
+  
+  
+
 {% endblock %}
-
-
 
 
 
