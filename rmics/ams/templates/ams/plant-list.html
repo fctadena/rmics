@@ -1,0 +1,45 @@
+{% extends 'rmics/base.html' %}
+
+{% block PlantList %}
+
+{% if messages %}
+    {% for message in messages %}
+
+            {% if message.extra_tags == 'success' %}
+            <div class="alert alert-success" role="alert">
+              {{ message }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+                
+      
+            {% elif message.extra_tags == 'warning' %}
+            <div class="alert alert-danger" role="alert">
+              {{ message }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            
+
+
+            {% elif message.extra_tags == 'info' %}
+            <div class="alert alert-warning" role="alert">
+              {{ message }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+              
+          
+            {% endif %}
+            
+    {% endfor %}
+{% endif %}
+
+{% for facility in plant %}
+    {{ facility.plant }} | {{ facility.plant_code }} <br>    
+{% endfor %}
+
+{% endblock %}

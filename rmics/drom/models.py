@@ -32,7 +32,3 @@ class daily_report_om(models.Model):
     
 
 
-    
-    
-    def get_absolute_url(self):
-        return render(request, template_name='ams/asset-list.html')

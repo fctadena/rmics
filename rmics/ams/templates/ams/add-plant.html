@@ -1,0 +1,10 @@
+{% extends 'rmics/base.html' %}
+
+{% block AddPlant %}
+<form method = "POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button method="POST">Add Plant</button>
+</form>
+
+{% endblock %}

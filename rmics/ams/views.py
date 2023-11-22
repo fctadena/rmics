@@ -1,13 +1,12 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView
-from .models import Asset
+from .models import Asset, PlantAssignment
 from django.contrib import messages
 from django.urls import reverse_lazy
-from .forms import AssetForm
+from .forms import AssetForm, PlantForm
 from django.http import HttpResponse
 from django.views.generic.detail import DetailView
 from django.core.files.storage import FileSystemStorage
-from django.contrib import messages
 from django.db.models import Q
 
 
@@ -86,3 +85,35 @@ def UpdateAsset(request,id):
     else:
         form = AssetForm(instance=asset)
     return render(request, 'ams/update-asset.html', {'form': form, 'asset': asset})
+
+
+def add_plant(request):
+    if request.method == "POST":
+        form = PlantForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'ADDED PLANT SUCCESSFULLY', extra_tags='success')
+            return redirect('ams:plant_list')
+        
+            
+    else:
+        form = PlantForm()
+    
+    return render(request, 'ams/add-plant.html', {'form':form})
+
+
+def plant_list(request):
+    plant = PlantAssignment.objects.all()
+    return render(request, 'ams/plant-list.html', {'plant':plant})
+
+
+
+# def edit_plant(request, id=id):
+#     plant = PlantAssignment.objects.get(id=id)
+#     if request.method == "POST":
+#         form = PlantForm(request.POST, instance=plant)
+#         if form.is_valid():
+#             plant = form.save(commit=False)
+#             plant.save()
+            
+            

@@ -82,9 +82,8 @@
                   </li>
                   <li><a><i class="fa fa-dashboard"></i> OA/OE Dashboard <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="form.html">Plant Status Summary</a></li>
-                      <li><a href="form_advanced.html">Maintenance Record Summary</a></li>
-                      <li><a href="form_advanced.html">Create Deliverables</a></li>
+                      <li><a href="{% url 'ams:add_plant' %}">Add Plant</a></li>
+                      <li><a href="{% url 'ams:plant_list' %}">Plant List</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-dashboard"></i> EH Dashboard <span class="fa fa-chevron-down"></span></a>
@@ -313,6 +312,12 @@
                     {% block updateassetform %}
                     {% endblock %}
 
+                    {% block PlantList %}
+                    {% endblock %}
+
+                    {% block AddPlant %}
+                    {% endblock %}
+
                   
                     <!-- DRMS BLOCK -->
                     {% block MaintenanceLogForm %}
@@ -343,6 +348,10 @@
 
                     {% block updatefindingsform %}
                     {% endblock %}
+
+
+                    <!-- DROM BLOCK -->
+
 
                   </div>
 

@@ -1,6 +1,5 @@
 from django import forms
-from .models import Asset
-
+from .models import Asset, PlantAssignment
 
 
 class AssetForm(forms.ModelForm):
@@ -13,7 +12,10 @@ class AssetForm(forms.ModelForm):
        
        
        
-       
+class PlantForm(forms.ModelForm):
+    class Meta:
+        model = PlantAssignment
+        fields = ['plant', 'plant_code']
        
        
         
