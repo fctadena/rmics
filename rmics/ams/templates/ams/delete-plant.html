@@ -1,0 +1,23 @@
+{% extends 'rmics/base.html' %}
+
+{% block deletePlant %}
+
+
+<form method="POST">
+
+    {% csrf_token %}
+    <div class="x_title">
+        <h2>Delete Asset</h2>
+        <ul class="nav navbar-right panel_toolbox">
+            <li><a href="{% url 'ams:plant_list' %}"><i class="fa fa-long-arrow-left"> Go to Plant List</i></a>
+            </li>
+          </ul>
+          <div class="clearfix"></div>
+      </div>
+
+
+    <h2>Confirm Asset Deletion: {{ plant.plant }} {{ plant.plant_code }}</h2>
+    <button type="submit">Delete</button>
+</form>
+
+{% endblock %}

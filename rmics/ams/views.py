@@ -108,6 +108,35 @@ def plant_list(request):
 
 
 
+def delete_plant(request, id):
+    plant = PlantAssignment.objects.get(id=id)
+    
+    if request.method == "POST":
+        plant.delete()
+        messages.success(request, 'SUCCESSFULLY DELETED PLANT', extra_tags="warning")
+        return redirect('ams:plant_list')
+    
+    return render(request, 'ams/delete-plant.html', {'plant':plant})
+
+
+def update_plant(request, id):
+    plant = PlantAssignment.objects.get(id=id)
+    if request.method == "POST":
+        form = PlantForm(request.POST, instance=plant)
+        if form.is_valid():
+            plant = form.save(commit=False)
+            plant.save()
+            messages.success(request, 'SUCCESSFULLY UPDATED PLANT', extra_tags='info')
+            return redirect('ams:plant_list')
+    
+    else:
+        form = PlantForm(instance=plant)
+    return render(request, 'ams/update-plant.html', {'form':form, 'plant':plant})
+        
+
+
+
+
 # def edit_plant(request, id=id):
 #     plant = PlantAssignment.objects.get(id=id)
 #     if request.method == "POST":

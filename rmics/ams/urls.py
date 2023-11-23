@@ -18,5 +18,8 @@ urlpatterns = [
     path('delete-asset/<int:id>/', views.DeleteAsset, name='delete_asset'),
     path('add-plant/', views.add_plant, name='add_plant'),
     path('plant-list/', views.plant_list, name='plant_list'),
+    path('delete-plant/<int:id>/', views.delete_plant, name='delete_plant'),
+    path('update-plant/<int:id>/', views.update_plant, name='update_plant'),
+    
 
 ]
