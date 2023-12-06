@@ -1,7 +1,8 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
-from ams.models import Asset
+from ams.models import Asset, PlantAssignment
+from django.contrib.auth.models import User
 
 
 
@@ -16,7 +17,6 @@ class MaintenanceLog(models.Model):
     time_consumed = models.DurationField(blank=True, null=True) 
     affecting_production = models.DurationField(blank=True, null=True) 
     affecting_time = models.DurationField(blank=True, null=True)
-    # equipment_name = models.CharField(max_length=255, blank=True, null=True)
     equipment_name = models.ForeignKey(Asset, on_delete=models.CASCADE, blank=True, null=True)
     equipment_code = models.CharField(max_length=255, blank=True, null=True)
     section = models.CharField(max_length=255, blank=True, null=True)
@@ -33,3 +33,7 @@ class MaintenanceLog(models.Model):
     spare_details = models.TextField(blank=True, null=True)
     notification_num = models.CharField(max_length=255, blank=True, null=True)
     include_log = models.BooleanField(default=True, blank=True)
+    plant_of_record = models.ForeignKey(PlantAssignment, on_delete=models.PROTECT, blank=True, null=True)
+    log_reporter = models.ForeignKey(User, on_delete=models.PROTECT, blank=True, null=True)
+
+    # plant_assignment = models.OneToOneField("app.Model", verbose_name=_(""), on_delete=models.CASCADE)

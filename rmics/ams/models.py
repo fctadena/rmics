@@ -12,10 +12,17 @@ from django.db.models import Q
 
 
 class Asset(models.Model):
+
     
     def __str__(self):
-        return self.asset_manufacturer
+        return self.get_asset_name()
+   
     
+    def get_asset_name(self):
+        name_parts = [self.asset_type, self.asset_manufacturer, self.asset_model, str(self.asset_rated_capacity)]
+        # Filter out empty or None parts
+        name_parts = filter(None, name_parts)
+        return ' | '.join(name_parts)
     
     asset_manufacturer = models.CharField(max_length = 100)
     asset_model = models.CharField(max_length = 100)
@@ -36,3 +43,7 @@ class Asset(models.Model):
 class PlantAssignment(models.Model):
     plant = models.CharField(max_length=50, blank=True, null=True)
     plant_code = models.CharField(max_length=50, blank=True, null=True)
+    
+    def __str__(self):
+        return f"{self.plant} {self.plant_code}"
+    

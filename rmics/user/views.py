@@ -40,3 +40,8 @@ def manage_users(request):
 
 def profile(request):
     return render(request, template_name='user/profile.html')
+
+
+def user_list(request):
+    user = User.objects.all()
+    return render(request, 'user/user-list.html', {'user':user})

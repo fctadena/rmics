@@ -39,7 +39,7 @@
 {% endif %}
 
 {% for facility in plant %}
-    {{ facility.plant }} | {{ facility.plant_code }} | <a href="{% url 'ams:delete_plant' facility.id %}">Delete</a> | <a href="{% url 'ams:update_plant' facility.id %}">Update</a><br>
+{{ facility.id }} | {{ facility.plant }} | {{ facility.plant_code }} | <a href="{% url 'ams:delete_plant' facility.id %}">Delete</a> | <a href="{% url 'ams:update_plant' facility.id %}">Update</a><br>
       
 {% endfor %}
 

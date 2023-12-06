@@ -13,5 +13,6 @@ urlpatterns = [
     path('create-user/', views.create_user, name='create_user'),
     path('manage-users/', views.manage_users, name='manage_users'),
     path('profile/', views.profile, name='profile'),
+    path('user-list/', views.user_list, name='user_list'),
 
 ]

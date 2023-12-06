@@ -5,7 +5,7 @@ from .models import Asset, PlantAssignment
 
 
 class AssetAdmin(admin.ModelAdmin):
-    list_display = ('asset_manufacturer', 'asset_rated_capacity', 'asset_model', 'asset_type', 'asset_sub_type', 'asset_drive_details', 'asset_year', 'asset_month', 'asset_image_primary')
+    list_display = ('get_asset_name','asset_manufacturer')
 
 
 class PlantAssignmentAdmin(admin.ModelAdmin):
