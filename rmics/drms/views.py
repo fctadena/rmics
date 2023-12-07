@@ -8,8 +8,8 @@ from django.views.generic.detail import DetailView
 
 #IMPORTS FOR THE HANDLER
 from django.views import View
-from .models import MaintenanceLog
 from ams.models import Asset
+from user.models import CustomUserProfile
 
 
 
@@ -62,11 +62,51 @@ class add_log(CreateView):
     model = MaintenanceLog
     form_class = MaintenanceLogForm
     template_name = 'drms/add-log.html'
-    
-    def get_success_url(self):
+
+    def form_valid(self, form):
+        # Get the current user and their associated CustomUserProfile
+        current_user = self.request.user
+        user_profile = CustomUserProfile.objects.get(user=current_user)
+        
+        # Set the log_reporter field to the current user and plant_assignment
+        form.instance.log_reporter = current_user
+        form.instance.plant_of_record = user_profile.plant_assignment
+        
+        # Call the form_valid method of the parent class to save the instance
+        response = super().form_valid(form)
+
+        # Add a success message
         messages.success(self.request, 'ADDED LOG SUCCESSFULLY', extra_tags='success')
+
+        return response
+
+    def get_success_url(self):
         return reverse_lazy('drms:maintenance_records')
+
     
+    
+# COPY OF OLD add_log view
+# class add_log(CreateView):
+#     model = MaintenanceLog
+#     form_class = MaintenanceLogForm
+#     template_name = 'drms/add-log.html'
+    
+#     def get_success_url(self):
+#         messages.success(self.request, 'ADDED LOG SUCCESSFULLY', extra_tags='success')
+#         return reverse_lazy('drms:maintenance_records')
+    
+
+
+# EXAMPLE TO FILTER LOGS THAT CURRENT USER WAS CREATOR
+# def my_purchases(request):
+#     orders = OrderDetail.objects.filter(customer_email=request.user.email)
+    
+#     context = {
+#         'orders':orders
+#     }
+#     return render(request, 'main/purchases.html', context)
+
+
 
 #ERROR HANDLER
 # def update_records_view(request):
@@ -90,3 +130,15 @@ class add_log(CreateView):
 #             messages.error(request, f'An error occurred: {str(e)}')
 
 #         return redirect('drms:update_log')
+
+
+def test_view(request):
+    if request.method == "GET":
+        current_user = request.user
+        
+        context = {
+            'current_user':current_user
+        }
+        return render(request, 'drms/test.html', context)
+        
+    

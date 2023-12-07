@@ -13,4 +13,5 @@ urlpatterns = [
     path('delete-log/<int:id>/', views.delete_log, name='delete_log'),
     path('update-log/<int:id>/', views.update_log, name='update_log'),
     path('maintenance-records/', views.maintenance_records, name='maintenance_records'),
+    path('test/', views.test_view, name='test'),
 ]
