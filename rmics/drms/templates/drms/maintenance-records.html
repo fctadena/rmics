@@ -66,8 +66,8 @@
       <h5 class="date text-info">{{ log.time_consumed }} Hrs.</h5>
       <p class="month">{{ log.status }}</p>
     </div>
-    <div class="message_wrapper">
-      <h4 class="heading">{{ log.equipment_code }} - {{ log.equipment_name }}: {{ log.machine_failure_breakdown }}</h4>
+    <div class="message_wrapper" >
+      <h4 class="heading"><a href="{% url 'drms:log_detail' log.id %}">{{ log.equipment_code }} - {{ log.equipment_name }}: {{ log.machine_failure_breakdown }}</a></h4>
       <blockquote class="message">{{ log.description_of_work }}</blockquote>
       <br />
       <p class="url">

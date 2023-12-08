@@ -40,10 +40,23 @@ def AssetList(request):
     return render(request, 'ams/asset-list.html', context)
 
 
+# class AssetDetail(DetailView):
+#     model = Asset
+#     template_name = 'ams/asset-detail.html'
+
+
 class AssetDetail(DetailView):
     model = Asset
     template_name = 'ams/asset-detail.html'
-
+    context_object_name = 'asset'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Access related maintenance logs and pass them to the template
+        context['related_maintenance_log'] = self.object.maintenance_logs_equipment.all()
+        return context
+    
+    
     
 
 #CRUD STARTS HERE

@@ -97,62 +97,22 @@
               <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                 <div class="dashboard-widget-content">
                   <ul class="list-unstyled timeline widget">
+                    {% for log in related_maintenance_log %}
                     <li>
                       <div class="block">
                         <div class="block_content">
-                          <h2 class="title">
-                                            <a>PPR4 - Buhler: (slow grinding on wincos)- Request by prod engr</a>
-                                        </h2>
                           <div class="byline">
-                            <span>BMP MisOr 1</span> | <a>0:25:00 Hrs.</a>
+                            <span>{{ log.plant_of_record }}</span> | <a>{{ log.time_consumed }} hrs</a>
                           </div>
-                          <p class="excerpt">Change screen to 3.0mm & 2.0mm at AHZC HM L1/T1. This is requested by the FME.                            <a>Read&nbsp;More</a>
-                          </p>
+                          <h2 class="title">
+                                            <a>{{ log.machine_failure_breakdown }} | {{ log.description_of_work }}</a>
+                                        </h2>
+                          
+                          <p class="excerpt">{{ log.root_cause }}</p>
                         </div>
                       </div>
                     </li>
-                    <li>
-                      <div class="block">
-                        <div class="block_content">
-                          <h2 class="title">
-                                            <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
-                                        </h2>
-                          <div class="byline">
-                            <span>13 hours ago</span> by <a>Jane Smith</a>
-                          </div>
-                          <p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
-                          </p>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="block">
-                        <div class="block_content">
-                          <h2 class="title">
-                                            <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
-                                        </h2>
-                          <div class="byline">
-                            <span>13 hours ago</span> by <a>Jane Smith</a>
-                          </div>
-                          <p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
-                          </p>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="block">
-                        <div class="block_content">
-                          <h2 class="title">
-                                            <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
-                                        </h2>
-                          <div class="byline">
-                            <span>13 hours ago</span> by <a>Jane Smith</a>
-                          </div>
-                          <p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
-                          </p>
-                        </div>
-                      </div>
-                    </li>
+                    {% endfor %}
                   </ul>
                 </div>
 

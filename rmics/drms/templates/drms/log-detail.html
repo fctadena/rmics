@@ -26,7 +26,7 @@
                 <p class="month">{{ object.status }}</p>
               </div>
               <div class="message_wrapper">
-                <h4 class="heading">{{ object.equipment_code }} - {{ object.equipment_name }}: {{ object.machine_failure_breakdown }}</h4>
+                <h4 class="heading"><a href="{% url 'drms:log_detail' object.id %}">{{ object.equipment_code }} - {{ object.equipment_name }}: {{ object.machine_failure_breakdown }}</a></h4>
                 <blockquote class="message">{{ object.description_of_work }}</blockquote>
                 <br />
                 <p class="url">
