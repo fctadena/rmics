@@ -110,6 +110,7 @@
                     <ul class="nav child_menu">
                       <li><a href={% url 'create_user' %}> Add User</a></li>
                       <li><a href={% url 'manage_users' %}> Manage Users</a></li>
+                      <li><a href={% url 'user_list' %}> The Team</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-clone"></i> Create<span class="fa fa-chevron-down"></span></a>
@@ -289,6 +290,9 @@
                     {% block ManageUsers %}
                     {% endblock %}
 
+                    {% block UpdateUser %}
+                    {% endblock %}
+
                     {% block ChangePassword %}
                     {% endblock %}
 
@@ -386,12 +390,7 @@
                         </div>
 
                         <br />
-                        
-
-                        <div class="text-center mtop20">
-                          <a href="#" class="btn btn-sm btn-primary">Add files</a>
-                          <a href="#" class="btn btn-sm btn-warning">Report contact</a>
-                        </div>
+                      
                       </div>
 
                     </section>

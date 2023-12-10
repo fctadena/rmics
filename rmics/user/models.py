@@ -10,7 +10,7 @@ class CustomUserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     
     # Profile Picture
-    profile_picture = models.ImageField(upload_to='pics', default='D:\Legacy Projects\rmics\rmics\media\smcrmi_logo_1.jpg')
+    profile_picture = models.ImageField(upload_to='pics', default='smcrmi_logo_1.jpg')
 
     # Position Choices
     POSITION_CHOICES = [
@@ -35,28 +35,7 @@ class CustomUserProfile(models.Model):
     ]
     profession = models.CharField(max_length=100, choices=PROFESSION_CHOICES, blank=True, null=True)
 
-    # # Plant Assignment Choices
-    # PLANT_ASSIGNMENT_CHOICES = [
-    #     ('National Office - Pasig', 'National Office - Pasig'),
-    #     ('BMEG-Bataan 1', 'BMEG-Bataan 1'),
-    #     ('BMEG-Bataan 2', 'BMEG-Bataan 2'),
-    #     ('BMEG-Echague', 'BMEG-Echague'),
-    #     ('BMEG-Leganes', 'BMEG-Leganes'),
-    #     ('BMEG-Ormoc', 'BMEG-Ormoc'),
-    #     ('BMEG-Pavia', 'BMEG-Pavia'),
-    #     ('BMEG-San Ildefonso', 'BMEG-San Ildefonso'),
-    #     ('BMEG-Sta. Cruz', 'BMEG-Sta. Cruz'),
-    #     ('BMEG-Tagoloan', 'BMEG-Tagoloan'),
-    #     ('BMEG-Tarlac', 'BMEG-Tarlac'),
-    #     ('BMEG-Pangasinan', 'BMEG-Pangasinan'),
-    #     ('Mills-Mabini 1', 'Mills-Mabini 1'),
-    #     ('Mills-Mabini 2', 'Mills-Mabini 2'),
-    #     ('Mills-Tabangao', 'Mills-Tabangao'),
-    #     ('BMEG-Mandaue', 'BMEG-Mandaue'),
-    #     ('Mills-Mabini Premix', 'Mills-Mabini Premix'),
-    #     ('Monterey-Sumilao', 'Monterey-Sumilao'),
-    # ]
-    # plant_assignment = models.CharField(max_length=100, choices=PLANT_ASSIGNMENT_CHOICES, blank=True, null=True)
+    
     
     plant_assignment = models.ForeignKey(PlantAssignment, on_delete=models.SET_NULL, null=True, blank=True)
     
@@ -82,9 +61,30 @@ class CustomUserProfile(models.Model):
     motto = models.TextField(blank=True, null=True)
 
     def __str__(self):
-        return self.user.username  
+        return self.user.username
 
 
 
 
-    
+# # Plant Assignment Choices
+    # PLANT_ASSIGNMENT_CHOICES = [
+    #     ('National Office - Pasig', 'National Office - Pasig'),
+    #     ('BMEG-Bataan 1', 'BMEG-Bataan 1'),
+    #     ('BMEG-Bataan 2', 'BMEG-Bataan 2'),
+    #     ('BMEG-Echague', 'BMEG-Echague'),
+    #     ('BMEG-Leganes', 'BMEG-Leganes'),
+    #     ('BMEG-Ormoc', 'BMEG-Ormoc'),
+    #     ('BMEG-Pavia', 'BMEG-Pavia'),
+    #     ('BMEG-San Ildefonso', 'BMEG-San Ildefonso'),
+    #     ('BMEG-Sta. Cruz', 'BMEG-Sta. Cruz'),
+    #     ('BMEG-Tagoloan', 'BMEG-Tagoloan'),
+    #     ('BMEG-Tarlac', 'BMEG-Tarlac'),
+    #     ('BMEG-Pangasinan', 'BMEG-Pangasinan'),
+    #     ('Mills-Mabini 1', 'Mills-Mabini 1'),
+    #     ('Mills-Mabini 2', 'Mills-Mabini 2'),
+    #     ('Mills-Tabangao', 'Mills-Tabangao'),
+    #     ('BMEG-Mandaue', 'BMEG-Mandaue'),
+    #     ('Mills-Mabini Premix', 'Mills-Mabini Premix'),
+    #     ('Monterey-Sumilao', 'Monterey-Sumilao'),
+    # ]
+    # plant_assignment = models.CharField(max_length=100, choices=PLANT_ASSIGNMENT_CHOICES, blank=True, null=True)

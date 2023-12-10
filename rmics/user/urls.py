@@ -12,7 +12,9 @@ urlpatterns = [
     path('success-password-change/', authentication_views.PasswordChangeDoneView.as_view(template_name='user/password-change-success.html')),
     path('create-user/', views.create_user, name='create_user'),
     path('manage-users/', views.manage_users, name='manage_users'),
-    path('profile/', views.profile, name='profile'),
+    path('profile/<int:id>/', views.profile, name='profile'),
     path('user-list/', views.user_list, name='user_list'),
+    path('update-user/<int:id>/', views.update_user, name='update_user'),
+
 
 ]

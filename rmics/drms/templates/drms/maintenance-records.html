@@ -64,7 +64,7 @@
   <li>
     <div class="message_date ml-5">
       <h5 class="date text-info">{{ log.time_consumed }} Hrs.</h5>
-      <p class="month">{{ log.status }}</p>
+      <p class="{% if log.status == 'Waiting for Parts' %}badge badge-secondary{% elif log.status == 'On-going' %}badge badge-warning{% elif log.status == 'Completed' %}badge badge-success{% elif log.status == 'Pending' %}badge badge-danger{% endif %}">{{ log.status }}</p>
     </div>
     <div class="message_wrapper" >
       <h4 class="heading"><a href="{% url 'drms:log_detail' log.id %}">{{ log.equipment_code }} - {{ log.equipment_name }}: {{ log.machine_failure_breakdown }}</a></h4>
@@ -86,4 +86,8 @@
 
       </div>
     </div>
+
+
 {% endblock %}
+
+

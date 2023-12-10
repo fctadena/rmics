@@ -4,52 +4,89 @@
 {% block ManageUsers %}
 
 
-<div class="table-responsive">
-    <table class="table table-striped jambo_table bulk_action">
-      <thead>
-        <tr class="headings text-center">
-          <th class="column-title align-middle">Image</th>
-          <th class="column-title align-middle">Surname</th>
-          <th class="column-title align-middle">First Name</th>
-          <th class="column-title align-middle">Position</th>
-          <th class="column-title align-middle">Plant assignment</th>
-          <th class="column-title align-middle">Area assignment</th>
-          <th class="column-title align-middle">Business unit</th>
-          <th class="column-title align-middle no-link last"><span class="nobr">Action</span>
-          </th>
-          <th class="bulk-actions" colspan="7">
-            <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
-          </th>
-        </tr>
-      </thead>
+{% if messages %}
+    {% for message in messages %}
 
-      {% for asset in asset_list %}
-      <tbody>
-        <tr class="even pointer" >
-          <td class=" "><img src="{{ asset.asset_image_primary.url }}" alt="..." class="img-thumbnail" style="width: 200px; height: auto;"/></td>
-          <td class="text-center" style="vertical-align: middle;">{{ asset.asset_manufacturer }}</td>
-          <td class="text-center" style="vertical-align: middle;">{{ asset.asset_rated_capacity }}</td>
-          <td class="text-center" style="vertical-align: middle;">{{ asset.asset_model }}</td>
-          <td class="text-center" style="vertical-align: middle;">{{ asset.asset_type }} </td>
-          <td class="text-center" style="vertical-align: middle;">{{ asset.asset_sub_type }} </td>
-          <td class="text-center" style="vertical-align: middle;">{{ asset.asset_drive_details }} </td>
-          <td class="text-center last" style="vertical-align: middle;" ><a href="{% url 'ams:asset_detail' asset.id %}">Manage User</a>
-          </td>
-        </tr>
-      </tbody>
-      {% endfor %}
-    </table>
+            {% if message.extra_tags == 'success' %}
+            <div class="alert alert-success" role="alert">
+              {{ message }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+                
+      
+            {% elif message.extra_tags == 'warning' %}
+            <div class="alert alert-danger" role="alert">
+              {{ message }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            
+
+
+            {% elif message.extra_tags == 'info' %}
+            <div class="alert alert-warning" role="alert">
+              {{ message }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+              
+          
+            {% endif %}
+            
+    {% endfor %}
+{% endif %}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div class="x_title">
+  <h2>Asset List</h2>
+  <div class="form-group pull-right top_search">
+      <form action="" method="GET" class="input-group">
+        <input type="search" name = "search_asset" class="form-control" placeholder="Search Asset...">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="submit">Go!</button>
+        </span>
+      </form>
   </div>
-
-
-<div>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Sign up</button>
-</form>
-
+  <div class="clearfix"></div>
 </div>
 
+    <div class="table-responsive">
+      <table class="table table-striped jambo_table bulk_action">
+        <thead>
+          <tr class="headings text-center">
+            <th class="column-title align-middle">Profile Picture</th>
+            <th class="column-title align-middle">Name</th>
+            <th class="column-title align-middle">Position</th>
+            <th class="column-title align-middle">Profession</th>
+            <th class="column-title align-middle">Plant Assignment</th>
+            <th class="column-title align-middle no-link last"><span class="nobr">Action</span>
+            </th>
+            <th class="bulk-actions" colspan="7">
+              <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+            </th>
+          </tr>
+        </thead>
 
-  {% endblock %}
+        {% for employee in user %}
+        <tbody>
+          <tr class="even pointer" >
+            <td class=" "><img src="{{ employee.customuserprofile.profile_picture.url }}" alt="..." class="img-thumbnail" style="width: 70px; height: auto;"/></td>
+            <td class="text-center" style="vertical-align: middle;">{{ employee.first_name }}, {{ employee.last_name }} </td>
+            <td class="text-center" style="vertical-align: middle;">{{ employee.customuserprofile.position|default:"" }}</td>
+            <td class="text-center" style="vertical-align: middle;">{{ employee.customuserprofile.profession|default:"" }}</td>
+            <td class="text-center" style="vertical-align: middle;">{{ employee.customuserprofile.plant_assignment|default:"" }}</td>
+            <td class="text-center last" style="vertical-align: middle;" ><a href="{% url 'profile' employee.id %}">View</a>
+            </td>
+          </tr>
+        </tbody>
+        {% endfor %}
+      </table>
+    </div>
+
+
+{% endblock %}

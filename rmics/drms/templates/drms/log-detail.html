@@ -23,7 +23,7 @@
             <li>
               <div class="message_date ml-5">
                 <h5 class="date text-info">{{ object.time_consumed }} Hrs.</h5>
-                <p class="month">{{ object.status }}</p>
+                <p class="{% if object.status == 'Waiting for Parts' %}badge badge-secondary{% elif object.status == 'On-going' %}badge badge-warning{% elif object.status == 'Completed' %}badge badge-success{% elif object.status == 'Pending' %}badge badge-danger{% endif %}">{{ object.status }}</p>
               </div>
               <div class="message_wrapper">
                 <h4 class="heading"><a href="{% url 'drms:log_detail' object.id %}">{{ object.equipment_code }} - {{ object.equipment_name }}: {{ object.machine_failure_breakdown }}</a></h4>
