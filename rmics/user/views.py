@@ -1,12 +1,14 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User, Group
-from .forms import LogginForm, CreateUser, ManageUser
+from .forms import LogginForm, CreateUser, ManageUser, UpdateUserForm
 from django.http import HttpResponse
 from .models import CustomUserProfile
 from django.views.generic.edit import UpdateView
 from django.urls import reverse_lazy
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib import messages
+
 
 
 
@@ -22,7 +24,7 @@ def create_user(request):
         form = CreateUser(request.POST)
         if form.is_valid():
             user = form.save()
-            return redirect('user:user_list')
+            return redirect('user_list')
     
     else:
         form = CreateUser()
@@ -65,6 +67,24 @@ def manage_users(request):
     }
     return render(request, 'user/manage-users.html', context)
 
+
+# def update_user(request, id):
+#     user = User.objects.select_related('customuserprofile').get(id=id)
+#     user_profile = user.customuserprofile
+#     if request.method == "POST":
+#         form1 = UpdateUserForm(request.POST, instance=user_profile)
+#         if form1.is_valid():
+#             user = form1.save()
+#             return redirect('profile', id=user.id)
+    
+#     else:
+#         form1 = UpdateUserForm(instance=user)
+#         print(user_profile.position)
+#     context = {
+#         'form1':form1,
+#         'user_profile':user_profile
+#     }
+#     return render(request, 'user/update-user.html', context)
         
 def update_user(request, id):
     user = User.objects.select_related('customuserprofile').get(id=id)
@@ -77,10 +97,10 @@ def update_user(request, id):
             user_profile = form2.save(commit=False)
             user_profile.user = user  # Set the user field of CustomUserProfile
             user_profile.save()
-            return redirect('user:user_list')
-        else:
-            print(form1.errors)
-            print(form2.errors)
+            return redirect('profile', id=user.id )
+        # else:
+        #     print(form1.errors)
+        #     print(form2.errors)
     
     else:
         form1 = UserChangeForm(instance=user)
@@ -91,3 +111,15 @@ def update_user(request, id):
         'form2':form2
     }
     return render(request, 'user/update-user.html', context)
+
+
+def delete_user(request, id):
+    user = User.objects.get(id=id)
+    if request.method == "POST":
+        user.delete()
+        messages.success(request, 'DELETED USER SUCCESSFULLY', extra_tags='warning')
+        return redirect('user_list')
+    
+    return render(request, 'user/delete-user.html', {'user':user})
+        
+        

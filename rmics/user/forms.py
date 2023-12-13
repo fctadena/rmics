@@ -4,6 +4,12 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User, Group
 
 
+class UpdateUserForm(UserCreationForm):
+    # position = forms.CharField()
+    
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'last_name', 'email')
         
 class CreateUser(forms.ModelForm):
     class Meta:

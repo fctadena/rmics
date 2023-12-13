@@ -56,7 +56,6 @@
   <div class="clearfix"></div>
 </div>
 
-{% comment %} CAR DETAIL START HERE # {% endcomment %}
 <div class="row justify-content-between">
 {% for employee in user %}
 <div class="col-md-6 col-sm-6 profile_details"> 
@@ -76,9 +75,12 @@
         <div class=" col-sm-6 emphasis">
           <button type="button" class="btn btn-success btn-sm"> <i class="fa fa-user">
             </i> <i class="fa fa-comments-o"></i> </button>
-          <button type="button" class="btn btn-primary btn-sm">
-            <i class="fa fa-user"> </i> View Profile
-          </button>
+          <a href="{% url 'profile' employee.id %}">
+            <button type="button" class="btn btn-primary btn-sm" href="">
+              <i class="fa fa-user" > </i> View Profile
+            </button>
+
+          </a>
         </div>
       </div>
     </div>

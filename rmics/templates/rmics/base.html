@@ -74,7 +74,7 @@
                     </ul>
                   </li>
                   <li><a><i class="fa fa-dashboard"></i> NOM Dashboard <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
+                    <ul class="nav child_menu"> 
                       <li><a href="">Plant Status Summary</a></li>
                       <li><a href="">Maintenance Record Summary</a></li>
                       <li><a href=" ">Create Deliverables</a></li>
@@ -298,6 +298,10 @@
 
                     {% block RegisterUser %}
                     {% endblock %}
+
+                    {% block deleteuser %}
+                    {% endblock %}
+
                     
                     
                     <!-- AMS BLOCK -->
@@ -372,7 +376,7 @@
                       </div>
                       <div class="panel-body">
                         
-                        <h5 class="green"> Announcement </h5>
+                        <h5 class="green"> !! CONTINUE UPDATE USER </h5>
 
                         <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terr.</p>
                         <br />
@@ -534,21 +538,6 @@
       }
     </script>
   
-
-  
-    {% comment %} <script>
-      document.getElementById("affecting_production").addEventListener("change", formatTime);
-      document.getElementById("affecting_time").addEventListener("change", formatTime);
-
-      function formatTime() {
-          let value = this.value;
-          // Check if the input is in "hh:mm" format
-          if (/^\d{2}:\d{2}$/.test(value)) {
-              this.value = value + ":00";
-          }
-      }
-    </script>     {% endcomment %}
-
 
   </body>
 </html>
