@@ -6,22 +6,7 @@
 
 
 <div class="">
-    <div class="page-title">
-      <div class="title_left">
-        <h3>User Profile</h3>
-      </div>
-
-      <div class="title_right">
-        <div class="col-md-5 col-sm-5  form-group pull-right top_search">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search for...">
-            <span class="input-group-btn">
-              <button class="btn btn-secondary" type="button">Go!</button>
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
+    
     
     <div class="clearfix"></div>
 
@@ -29,16 +14,16 @@
       <div class="col-md-12 col-sm-12 ">
         <div class="x_panel">
           <div class="x_title">
-            <h2>Profile</h2>
+            <h2>My Profile</h2>
 
             <ul class="nav navbar-right panel_toolbox">
               <li><a href="{% url 'manage_users' %}"><i class="fa fa-users"> Manage Users</i></a>
               </li>
               <li><a href="{% url 'user_list' %}"><i class="fa fa-users"> The Team</i></a>
               </li>
-              <li><a href="{% url 'update_user' user.id %}"><i class="fa fa-edit"> Edit User</i></a>
+              <li><a href="{% url 'update_user' current_user.id %}"><i class="fa fa-edit"> Edit User</i></a>
               </li>
-              <li><a href="{% url 'delete_user' user.id %}"><i class="fa fa-trash"> Delete User</i></a>
+              <li><a href="{% url 'delete_user' current_user.id %}"><i class="fa fa-trash"> Delete User</i></a>
               </li>
             </ul>
             
@@ -50,20 +35,20 @@
               <div class="profile_img">
                 <div id="crop-avatar">
                   <!-- Current avatar -->
-                  <img class="img-responsive avatar-view"  src="{{user.customuserprofile.profile_picture.url}}" alt="Avatar" title="Change the avatar" style="width: 200px; height: auto;">
+                  <img class="img-responsive avatar-view"  src="{{current_user.customuserprofile.profile_picture.url}}" alt="Avatar" title="Change the avatar" style="width: 200px; height: auto;">
                 </div>
               </div>
-              <h3>{{ user.last_name }}, {{ user.first_name }}</h3>
-              <h5>{{ user.customuserprofile.position }}</h5>
+              <h3>{{ current_user.last_name }}, {{ current_user.first_name }}</h3>
+              <h5>{{ current_user.customuserprofile.position }}</h5>
 
               <ul class="list-unstyled user_data">
                 
                 <li>
-                  <i class="fa fa-briefcase user-profile-icon"></i> {{ user.customuserprofile.profession }}
+                  <i class="fa fa-briefcase user-profile-icon"></i> {{ current_user.customuserprofile.profession }}
                 </li>
 
                 <li>
-                  <i class="fa fa-briefcase user-profile-icon"></i> {{ user.customuserprofile.plant_assignment }}
+                  <i class="fa fa-briefcase user-profile-icon"></i> {{ current_user.customuserprofile.plant_assignment }}
                 </li>
               </ul>
               <br />

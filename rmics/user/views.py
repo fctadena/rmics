@@ -123,3 +123,10 @@ def delete_user(request, id):
     return render(request, 'user/delete-user.html', {'user':user})
         
         
+def my_profile(request):
+    current_user = User.objects.get(id=request.user.id)
+    
+    context = {
+        'current_user':current_user
+    }
+    return render(request, 'user/my-profile.html', context)
