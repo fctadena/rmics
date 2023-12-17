@@ -1,17 +1,53 @@
 {% extends 'rmics/base.html' %}
 
 {% block UpdateUser %}
-  <h2>Update User</h2>
 
-  <div class="form-group">
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form1.as_p }} 
-        {{ form2.as_p }} 
+<div class="clearfix"></div>
+    <div class="row">
+      <div class="col-md-12 col-sm-12 ">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2>Update User</h2>
 
-        <button class="btn btn-info" type="Submit">Save</button>
-    </form>
-</div>
+            <ul class="nav navbar-right panel_toolbox">
+              <li><a href="{% url 'manage_users' %}"><i class="fa fa-users"> Manage Users</i></a>
+              </li>
+              <li><a href="{% url 'user_list' %}"><i class="fa fa-users"> The Team</i></a>
+              </li>
+              <li><a href="{% url 'update_user' user.id %}"><i class="fa fa-edit"> Edit User</i></a>
+              </li>
+              <li><a href="{% url 'delete_user' user.id %}"><i class="fa fa-trash"> Delete User</i></a>
+              </li>
+            </ul>
+            
+
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+
+            <div class="form-group">
+              <form method="POST" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  {{ form1.as_p }} 
+                  {{ form2.as_p }} 
+          
+                  <button class="btn btn-info" type="Submit">Save</button>
+              </form>
+          </div>
+            
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
 
 
 {% endblock %}
