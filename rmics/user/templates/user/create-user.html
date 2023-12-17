@@ -3,8 +3,73 @@
 
 
 {% block RegisterUser %}
+<div class="x_panel">
+  <div class="x_title">
+      <h2>Register a User</h2>
+      <ul class="nav navbar-right panel_toolbox">
+        <li><a href="{% url 'manage_users' %}"><i class="fa fa-users"> Manage Users</i></a>
+        </li>
+      </ul>
+      
+      <div class="clearfix"></div>
+  </div>
+  
+  <div class="x_content">
+      <br />
+      {{ form.errors }}
+      <form method="POST" enctype="multipart/form-data" class="form-horizontal form-label-left">
+          {% csrf_token %}
+          <div class="form-group row">
+              <div class="col-md-4 col-sm-12 form-group">
+                  <label for="username">Username</label>
+                  <input type="text" name="username" class="form-control" placeholder="" id="username"> 
+              </div>
+  
+              <div class="col-md-4 col-sm-12  form-group">
+                  <label for="first_name">First Name:</label>
+                  <input type="text" name="first_name" placeholder="" class="form-control">
+              </div>
+  
+              <div class="col-md-4 col-sm-12  form-group">
+                  <label for="last_name">Last Name:</label>
+                  <input type="text" name="last_name" placeholder="" class="form-control">
+              </div>
 
-<div class="row">
+              <div class="col-md-6 col-sm-12  form-group">
+                <label for="work_center">Email:</label>
+                <input type="text" name="last_name" placeholder="" class="form-control">
+            </div>
+
+            <div class="col-md-6 col-sm-12  form-group">
+                <label for="password">Password:</label>
+                <input type="text" name="password" placeholder="" class="form-control">
+            </div>
+       
+            <div class="col-md-6 col-sm-12  form-group">
+              <label for="groups">Group:</label>
+              <select name="groups" id="id_groups" class="form-control" name="system">
+                <option value="">Choose option</option>
+                  {% for choice in form.groups.field.choices %}
+                  <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                  {% endfor %}
+              </select>		
+            </div>
+
+            <div class="col-md-12 col-sm-12">
+              <div class="row">
+                <div class="col-md-12 col-sm-12">
+                  <button class="btn btn-info float-right" type="submit">Create User</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          </div>
+  </form>   
+  </div>
+
+
+{% comment %} <div class="row">
     <div class="col-md-12 col-sm-12 ">
       <div class="x_panel">
 
@@ -33,7 +98,7 @@
       </div>
     </div>
   </div>
-
+</div> {% endcomment %}
 
 
 {% endblock %}

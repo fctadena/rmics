@@ -24,12 +24,12 @@ def create_user(request):
         form = CreateUser(request.POST)
         if form.is_valid():
             user = form.save()
+            custom_profile = CustomUserProfile.objects.create(user=user)
             return redirect('user_list')
     
     else:
         form = CreateUser()
     return render(request, 'user/create-user.html', {'form':form})
-
 
 
     
