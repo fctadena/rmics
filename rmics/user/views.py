@@ -88,31 +88,57 @@ def manage_users(request):
         
 def update_user(request, id):
     user = User.objects.select_related('customuserprofile').get(id=id)
-    current_user = request.user
-    if user == current_user:
-        return redirect('manage_users')
-    
-    else:
-        user_profile = user.customuserprofile
-        if request.method == "POST":
-            form1 = UserChangeForm(request.POST, instance=user)
-            form2 = ManageUser(request.POST, request.FILES, instance=user_profile)
-            if form1.is_valid() and form2.is_valid():
-                user = form1.save()
-                user_profile = form2.save(commit=False)
-                user_profile.user = user  # Set the user field of CustomUserProfile
-                user_profile.save()
-                return redirect('profile', id=user.id )
+    user_profile = user.customuserprofile
+    form1 = UserChangeForm(request.POST, instance=user)
+    form2 = ManageUser(request.POST, request.FILES, instance=user_profile)
+    if request.method == "POST":
+        if form1.is_valid() and form2.is_valid():
+            user = form1.save()
+            user_profile = form2.save(commit=False)
+            user_profile.user = user  # Set the user field of CustomUserProfile
+            user_profile.save()
+            return redirect('profile', id=user.id )
         
-        else:
-            form1 = UserChangeForm(instance=user)
-            form2 = ManageUser(instance=user_profile)
+    else:
+        form1 = UserChangeForm(instance=user)
+        form2 = ManageUser(instance=user_profile)
             
-        context = {
-            'form1':form1,
-            'form2':form2
-        }
-        return render(request, 'user/update-user.html', context)
+    context = {
+        'form1':form1,
+        'form2':form2,
+        'id':id
+    }
+    
+    return render(request, 'user/update-user.html', context)
+    
+# def update_user(request, id):
+#     user = User.objects.select_related('customuserprofile').get(id=id)
+#     current_user = request.user
+#     if user == current_user:
+#         return redirect('manage_users')
+    
+#     else:
+#         user_profile = user.customuserprofile
+#         if request.method == "POST":
+#             form1 = UserChangeForm(request.POST, instance=user)
+#             form2 = ManageUser(request.POST, request.FILES, instance=user_profile)
+#             if form1.is_valid() and form2.is_valid():
+#                 user = form1.save()
+#                 user_profile = form2.save(commit=False)
+#                 user_profile.user = user  # Set the user field of CustomUserProfile
+#                 user_profile.save()
+#                 return redirect('profile', id=user.id )
+        
+#         else:
+#             form1 = UserChangeForm(instance=user)
+#             form2 = ManageUser(instance=user_profile)
+            
+#         context = {
+#             'form1':form1,
+#             'form2':form2
+#         }
+#         return render(request, 'user/update-user.html', context)
+    
     
 # def update_user(request, id):
 #     user = User.objects.select_related('customuserprofile').get(id=id)
