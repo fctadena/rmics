@@ -23,32 +23,101 @@
 
             <div class="clearfix"></div>
           </div>
-          <div class="x_content">
-
-            <div class="form-group">
-              <form method="POST" enctype="multipart/form-data">
-                  {% csrf_token %}
-                  {{ form1.as_p }} 
-                  {{ form2.as_p }} 
           
-                  <button class="btn btn-info" type="Submit">Save</button>
-              </form>
+          <div class="x_content">
+            <div class="col-md-3 col-sm-3  profile_left">
+              <div class="profile_img">
+                <div id="crop-avatar">
+                  <!-- Current avatar -->
+                  <img class="img-responsive avatar-view"  src="{{user.customuserprofile.profile_picture.url}}" alt="Avatar" title="Change the avatar" style="width: 200px; height: auto;">
+                </div>
+              </div>
+              <h3>{{ user.last_name }}, {{ user.first_name }}</h3>
+              <h5>{{ user.customuserprofile.position }}</h5>
+
+              <ul class="list-unstyled user_data">
+                
+                <li>
+                  <i class="fa fa-briefcase user-profile-icon"></i> {{ user.customuserprofile.profession }}
+                </li>
+
+                <li>
+                  <i class="fa fa-briefcase user-profile-icon"></i> {{ user.customuserprofile.plant_assignment }}
+                </li>
+              </ul>
+              <br />
+
+              
+
+            </div>
+            <div class="col-md-9 col-sm-9 ">
+              <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                  <li role="presentation" class=""><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Edit Profile</a>
+                  </li>
+
+                </ul>
+                <div id="myTabContent" class="tab-content">
+                  <div role="tabpanel" class="tab-pane active " id="tab_content1" aria-labelledby="home-tab">
+
+                    <!-- Start Update form -->
+                    <div class="item form-group">
+											<label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Username <span class="required">*</span>
+											</label>
+											<div class="col-md-6 col-sm-6 form-control">
+												{{ form1.username }}
+											</div>
+										</div>
+										<div class="item form-group">
+											<label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">First Name <span class="required">*</span>
+											</label>
+											<div class="col-md-6 col-sm-6 form-control ">
+												{{ form1.first_name }}
+											</div>
+										</div>
+										<div class="item form-group">
+											<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Last Name</label>
+											<div class="col-md-6 col-sm-6 form-control">
+												{{ form1.last_name }}
+											</div>
+										</div>
+
+
+                    <!-- End Update form -->
+                    
+                      
+                      
+
+                      <form method="POST" enctype="multipart/form-data">
+                          {% csrf_token %}               
+                          {{ form1.username }} <br>
+                          {{ form1.first_name }} <br>
+                          {{ form1.last_name }} <br>
+                          {{ form1.groups }} <br>
+                          {{ form1.user_permissions }} <br>
+                          {{ form1.date_joined }} <br>
+                          <h2>Divider</h2>
+                          {{ form2.as_p }} <br>
+                          <h2>Divider</h2>
+                         
+                  
+                          <button class="btn btn-info" type="Submit">Save</button>
+                      </form>
+                    </div>
+
+                    
+
+                  </div>
+
+
+
+        
+                </div>
+              </div>
+            </div>
           </div>
-            
-            
           </div>
         </div>
       </div>
-    </div>
-
-
-
-
-
-
-
-
-
-
 {% endblock %}
 

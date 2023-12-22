@@ -17,19 +17,6 @@ class CreateUser(forms.ModelForm):
         fields = ('username', 'first_name', 'last_name', 'email', 'password', 'groups')
         
 
-# class ManageUser(forms.ModelForm):
-#     class Meta:
-#         model = CustomUserProfile
-#         fields = ('user',
-#                   'profile_picture',
-#                   'position',
-#                   'profession',
-#                   'plant_assignment',
-#                   'area_assignment',
-#                   'business_unit',
-#                   'motto')
-
-
 class ManageUser(forms.ModelForm):
     class Meta:
         model = CustomUserProfile
@@ -41,7 +28,7 @@ class ManageUser(forms.ModelForm):
                   'area_assignment',
                   'business_unit',
                   'motto')
-        
+
 
 
 

@@ -16,7 +16,8 @@ from django.contrib import messages
 # Create your views here.
 
 
-
+def home(request):
+    return redirect('login')
 
 
 def create_user(request):
@@ -90,6 +91,7 @@ def update_user(request, id):
     user = User.objects.select_related('customuserprofile').get(id=id)
     user_profile = user.customuserprofile
     form1 = UserChangeForm(request.POST, instance=user)
+    # form1 = UpdateUserForm(request.POST, instance=user)
     form2 = ManageUser(request.POST, request.FILES, instance=user_profile)
     if request.method == "POST":
         if form1.is_valid() and form2.is_valid():
@@ -98,6 +100,9 @@ def update_user(request, id):
             user_profile.user = user  # Set the user field of CustomUserProfile
             user_profile.save()
             return redirect('profile', id=user.id )
+        else:
+            print(form1.errors)
+            print(form2.errors)
         
     else:
         form1 = UserChangeForm(instance=user)
@@ -106,7 +111,8 @@ def update_user(request, id):
     context = {
         'form1':form1,
         'form2':form2,
-        'id':id
+        'id':id,
+        'user':user
     }
     
     return render(request, 'user/update-user.html', context)
@@ -172,7 +178,7 @@ def delete_user(request, id):
     if request.method == "POST":
         user.delete()
         messages.success(request, 'DELETED USER SUCCESSFULLY', extra_tags='warning')
-        return redirect('user_list')
+        return redirect('manage_users')
     
     return render(request, 'user/delete-user.html', {'user':user})
         

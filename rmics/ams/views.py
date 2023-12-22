@@ -101,18 +101,18 @@ def UpdateAsset(request,id):
 
 
 def add_plant(request):
-    if request.method == "POST":
-        form = PlantForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'ADDED PLANT SUCCESSFULLY', extra_tags='success')
-            return redirect('ams:plant_list')
+    # if request.method == "POST":
+    #     form = PlantForm(request.POST)
+    #     if form.is_valid():
+    #         form.save()
+    #         messages.success(request, 'ADDED PLANT SUCCESSFULLY', extra_tags='success')
+    #         return redirect('ams:plant_list')
         
             
-    else:
-        form = PlantForm()
+    # else:
+    #     form = PlantForm()
     
-    return render(request, 'ams/add-plant.html', {'form':form})
+    return render(request, 'ams/add-plant.html')
 
 
 def plant_list(request):
