@@ -26,15 +26,10 @@ def create_user(request):
         if form.is_valid():
             user = form.save()
             custom_profile = CustomUserProfile.objects.create(user=user)
-            return redirect('user_list')
-    
+            return redirect('user_list')   
     else:
         form = CreateUser()
     return render(request, 'user/create-user.html', {'form':form})
-
-
-    
-
 
 
 def profile(request, id):
@@ -90,8 +85,7 @@ def manage_users(request):
 def update_user(request, id):
     user = User.objects.select_related('customuserprofile').get(id=id)
     user_profile = user.customuserprofile
-    form1 = UserChangeForm(request.POST, instance=user)
-    # form1 = UpdateUserForm(request.POST, instance=user)
+    form1 = UpdateUserForm(request.POST, instance=user)
     form2 = ManageUser(request.POST, request.FILES, instance=user_profile)
     if request.method == "POST":
         if form1.is_valid() and form2.is_valid():
@@ -105,7 +99,7 @@ def update_user(request, id):
             print(form2.errors)
         
     else:
-        form1 = UserChangeForm(instance=user)
+        form1 = UpdateUserForm(instance=user)
         form2 = ManageUser(instance=user_profile)
             
     context = {
@@ -190,3 +184,8 @@ def my_profile(request):
         'current_user':current_user
     }
     return render(request, 'user/my-profile.html', context)
+
+
+
+def settings(request):
+    return render(request, 'user/settings.html')

@@ -18,6 +18,8 @@
               </li>
               <li><a href="{% url 'delete_user' user.id %}"><i class="fa fa-trash"> Delete User</i></a>
               </li>
+              <li><a href="{% url 'profile' user.id %}"><i class="fa fa-arrow-left"> Cancel</i></a>
+              </li>
             </ul>
             
 
@@ -30,25 +32,15 @@
                 <div id="crop-avatar">
                   <!-- Current avatar -->
                   <img class="img-responsive avatar-view"  src="{{user.customuserprofile.profile_picture.url}}" alt="Avatar" title="Change the avatar" style="width: 200px; height: auto;">
+                  {{ form2.profile_picture }} <br>
+
                 </div>
               </div>
               <h3>{{ user.last_name }}, {{ user.first_name }}</h3>
               <h5>{{ user.customuserprofile.position }}</h5>
 
-              <ul class="list-unstyled user_data">
-                
-                <li>
-                  <i class="fa fa-briefcase user-profile-icon"></i> {{ user.customuserprofile.profession }}
-                </li>
-
-                <li>
-                  <i class="fa fa-briefcase user-profile-icon"></i> {{ user.customuserprofile.plant_assignment }}
-                </li>
-              </ul>
               <br />
-
               
-
             </div>
             <div class="col-md-9 col-sm-9 ">
               <div class="" role="tabpanel" data-example-id="togglable-tabs">
@@ -61,56 +53,98 @@
                   <div role="tabpanel" class="tab-pane active " id="tab_content1" aria-labelledby="home-tab">
 
                     <!-- Start Update form -->
-                    <div class="item form-group">
-											<label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Username <span class="required">*</span>
-											</label>
-											<div class="col-md-6 col-sm-6 form-control">
-												{{ form1.username }}
-											</div>
-										</div>
-										<div class="item form-group">
-											<label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">First Name <span class="required">*</span>
-											</label>
-											<div class="col-md-6 col-sm-6 form-control ">
-												{{ form1.first_name }}
-											</div>
-										</div>
-										<div class="item form-group">
-											<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Last Name</label>
-											<div class="col-md-6 col-sm-6 form-control">
-												{{ form1.last_name }}
-											</div>
-										</div>
+                    <form method="POST" enctype="multipart/form-data">
+                      {% csrf_token %}  
+                      <h2>Basic Info</h2>
+                      <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="username">Username</label>
+                        <div class="col-md-6 col-sm-6 ">
+                          {{ form1.username }} 
+                        </div>
+                      </div>
+                      <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first_name">First Name</label>
+                        <div class="col-md-6 col-sm-6 ">
+                          {{ form1.first_name }} 
+                        </div>
+                      </div>
+                      <div class="item form-group">
+                        <label for="last_name" class="col-form-label col-md-3 col-sm-3 label-align">Last Name</label>
+                        <div class="col-md-6 col-sm-6 ">
+                          {{ form1.last_name }} 
+                        </div>
+                      </div>
+                      <div class="item form-group">
+                        <label for="last_name" class="col-form-label col-md-3 col-sm-3 label-align">Email</label>
+                        <div class="col-md-6 col-sm-6 ">
+                          {{ form1.email }} 
+                        </div>
+                      </div>
+                      <div class="item form-group">
+                        <label for="last_name" class="col-form-label col-md-3 col-sm-3 label-align">Email</label>
+                        <div class="col-md-6 col-sm-6 ">
+                          {{ form1.date_joined }} 
+                        </div>
+                      </div>
+                      <div class="item form-group">
+                        <label for="last_name" class="col-form-label col-md-3 col-sm-3 label-align">Groups</label>
+                        <div class="col-md-6 col-sm-6 ">
+                          {{ form1.groups }}
+                        </div>
+                      </div>
+                      
+                      <br>
+                      <h2>Operations Details</h2>    
+                      <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="username">Position</label>
+                        <div class="col-md-6 col-sm-6 ">
+                          {{ form2.position }} 
+                        </div>
+                      </div>
+                      <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="username">Profession</label>
+                        <div class="col-md-6 col-sm-6 ">
+                          {{ form2.profession }} 
+                        </div>
+                      </div>
+                      <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="username">Plant Assignment</label>
+                        <div class="col-md-6 col-sm-6 ">
+                          {{ form2.plant_assignment }} 
+                        </div>
+                      </div>
+                      <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="username">Area Assignment</label>
+                        <div class="col-md-6 col-sm-6 ">
+                          {{ form2.area_assignment }} 
+                        </div>
+                      </div>
+                      <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="username">Business Unit</label>
+                        <div class="col-md-6 col-sm-6 ">
+                          {{ form2.business_unit }} 
+                        </div>
+                      </div>
+                      <div class="item form-group">
+                        <label for="last_name" class="col-form-label col-md-3 col-sm-3 label-align">Moto</label>
+                        <div class="col-md-6 col-sm-6 ">
+                          {{ form2.motto }}
+                        </div>
+                      </div>
 
+                      <button class="btn btn-info" type="Submit">Save</button>
+                    </form>
+
+            
+                    
 
                     <!-- End Update form -->
                     
                       
                       
 
-                      <form method="POST" enctype="multipart/form-data">
-                          {% csrf_token %}               
-                          {{ form1.username }} <br>
-                          {{ form1.first_name }} <br>
-                          {{ form1.last_name }} <br>
-                          {{ form1.groups }} <br>
-                          {{ form1.user_permissions }} <br>
-                          {{ form1.date_joined }} <br>
-                          <h2>Divider</h2>
-                          {{ form2.as_p }} <br>
-                          <h2>Divider</h2>
-                         
-                  
-                          <button class="btn btn-info" type="Submit">Save</button>
-                      </form>
+                      
                     </div>
-
-                    
-
-                  </div>
-
-
-
         
                 </div>
               </div>
