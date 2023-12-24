@@ -11,7 +11,7 @@ class CustomUserProfile(models.Model):
     
     # Profile Picture
     profile_picture = models.ImageField(upload_to='pics', default='smcrmi_logo_1.jpg')
-
+    
     # Position Choices
     POSITION_CHOICES = [
         ('Operations Analyst', 'Operations Analyst'),

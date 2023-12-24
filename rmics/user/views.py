@@ -8,6 +8,8 @@ from django.views.generic.edit import UpdateView
 from django.urls import reverse_lazy
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib import messages
+from django.db.models import Q
+
 
 
 
@@ -45,18 +47,40 @@ def profile(request, id):
 
 
 def user_list(request):
-    user = User.objects.select_related('customuserprofile').all()
+    users = User.objects.select_related('customuserprofile').all()
+    
+    search_user = request.GET.get('search_user')
+    
+    if search_user is not None:
+        users = users.filter(
+            Q(username__icontains=search_user) |
+            Q(first_name__icontains=search_user) |
+            Q(last_name__icontains=search_user)
+        )
 
     context = {
-        'user':user
+        'users': users
     }
     return render(request, 'user/user-list.html', context)
+
+
+
+
 
 
     
 
 def manage_users(request):
     user = User.objects.select_related('customuserprofile').all()
+    
+    search_manage_user = request.GET.get('search_manage_user')
+    
+    if search_manage_user is not None:
+        user = user.filter(
+            Q(username__icontains=search_manage_user) |
+            Q(first_name__icontains=search_manage_user) |
+            Q(last_name__icontains=search_manage_user)
+        )
 
     context = {
         'user':user

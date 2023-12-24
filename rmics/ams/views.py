@@ -24,7 +24,7 @@ def AssetList(request):
     
     search_asset = request.GET.get('search_asset')
     
-    if search_asset != '' and search_asset is not None:
+    if search_asset is not None:
         asset_list = asset_list.filter(
             Q(asset_model__icontains=search_asset) |  # Search asset_model field
             Q(asset_manufacturer__icontains=search_asset) |  # Search asset_manufacturer field
