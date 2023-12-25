@@ -15,6 +15,7 @@ from django.db.models import Q
 
 
 
+
 # Create your views here.
 
 
@@ -28,10 +29,20 @@ def create_user(request):
         if form.is_valid():
             user = form.save()
             custom_profile = CustomUserProfile.objects.create(user=user)
-            return redirect('user_list')   
+            messages.success(request, 'CREATED USER SUCCESSFULLY', extra_tags='success')
+            return redirect('manage_users')  
+            
+                 
     else:
         form = CreateUser()
     return render(request, 'user/create-user.html', {'form':form})
+
+
+
+
+
+
+
 
 
 def profile(request, id):
@@ -117,6 +128,7 @@ def update_user(request, id):
             user_profile = form2.save(commit=False)
             user_profile.user = user  # Set the user field of CustomUserProfile
             user_profile.save()
+            messages.success(request, 'UPDATED USER SUCCESSFULLY', extra_tags='info')
             return redirect('profile', id=user.id )
         else:
             print(form1.errors)

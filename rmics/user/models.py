@@ -66,25 +66,8 @@ class CustomUserProfile(models.Model):
 
 
 
-# # Plant Assignment Choices
-    # PLANT_ASSIGNMENT_CHOICES = [
-    #     ('National Office - Pasig', 'National Office - Pasig'),
-    #     ('BMEG-Bataan 1', 'BMEG-Bataan 1'),
-    #     ('BMEG-Bataan 2', 'BMEG-Bataan 2'),
-    #     ('BMEG-Echague', 'BMEG-Echague'),
-    #     ('BMEG-Leganes', 'BMEG-Leganes'),
-    #     ('BMEG-Ormoc', 'BMEG-Ormoc'),
-    #     ('BMEG-Pavia', 'BMEG-Pavia'),
-    #     ('BMEG-San Ildefonso', 'BMEG-San Ildefonso'),
-    #     ('BMEG-Sta. Cruz', 'BMEG-Sta. Cruz'),
-    #     ('BMEG-Tagoloan', 'BMEG-Tagoloan'),
-    #     ('BMEG-Tarlac', 'BMEG-Tarlac'),
-    #     ('BMEG-Pangasinan', 'BMEG-Pangasinan'),
-    #     ('Mills-Mabini 1', 'Mills-Mabini 1'),
-    #     ('Mills-Mabini 2', 'Mills-Mabini 2'),
-    #     ('Mills-Tabangao', 'Mills-Tabangao'),
-    #     ('BMEG-Mandaue', 'BMEG-Mandaue'),
-    #     ('Mills-Mabini Premix', 'Mills-Mabini Premix'),
-    #     ('Monterey-Sumilao', 'Monterey-Sumilao'),
-    # ]
-    # plant_assignment = models.CharField(max_length=100, choices=PLANT_ASSIGNMENT_CHOICES, blank=True, null=True)
+# class Reward(models.Model):
+#     title = models.CharField(max_length=100, blank=True, null=True)
+#     description = models.CharField(max_length=300, blank=True, null=True)
+#     awardee = models.ManyToManyField(User, verbose_name=('awardee'))
+#     certificate = models.FileField(upload_to=None, max_length=100, blank=True, null=True)

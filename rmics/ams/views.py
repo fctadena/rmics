@@ -8,6 +8,8 @@ from django.http import HttpResponse
 from django.views.generic.detail import DetailView
 from django.core.files.storage import FileSystemStorage
 from django.db.models import Q
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+
 
 
 
@@ -21,7 +23,6 @@ def Ams(request):
 
 def AssetList(request):
     asset_list = Asset.objects.all()
-    
     search_asset = request.GET.get('search_asset')
     
     if search_asset is not None:
@@ -33,6 +34,7 @@ def AssetList(request):
             Q(asset_drive_details__icontains=search_asset) |   # Search asset_drive_details field
             Q(asset_rated_capacity__icontains=search_asset)    # Search asset_rated_capacity field
         )
+        
     
     context = {
         'asset_list':asset_list,

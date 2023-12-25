@@ -17,14 +17,10 @@
             <h2>My Profile</h2>
 
             <ul class="nav navbar-right panel_toolbox">
-              <li><a href="{% url 'manage_users' %}"><i class="fa fa-users"> Manage Users</i></a>
+
+              <li><a href="{% url 'update_user' current_user.id %}"><i class="fa fa-edit"> Edit My Profile</i></a>
               </li>
-              <li><a href="{% url 'user_list' %}"><i class="fa fa-users"> The Team</i></a>
-              </li>
-              <li><a href="{% url 'update_user' current_user.id %}"><i class="fa fa-edit"> Edit User</i></a>
-              </li>
-              <li><a href="{% url 'delete_user' current_user.id %}"><i class="fa fa-trash"> Delete User</i></a>
-              </li>
+             
             </ul>
             
 
@@ -41,7 +37,7 @@
               <h3>{{ current_user.last_name }}, {{ current_user.first_name }}</h3>
               <h5>{{ current_user.customuserprofile.position }}</h5>
 
-              <ul class="list-unstyled user_data">
+              {% comment %} <ul class="list-unstyled user_data">
                 
                 <li>
                   <i class="fa fa-briefcase user-profile-icon"></i> {{ current_user.customuserprofile.profession }}
@@ -50,7 +46,28 @@
                 <li>
                   <i class="fa fa-briefcase user-profile-icon"></i> {{ current_user.customuserprofile.plant_assignment }}
                 </li>
+              </ul> {% endcomment %}
+              <ul class="list-unstyled user_data">
+                
+                <li>
+                  <i class="fa fa-briefcase user-profile-icon"></i> {{ current_user.customuserprofile.profession }}
+                </li>
+
+                <li>
+                  <i class="fa fa-wrench user-profile-icon"></i> {{ current_user.customuserprofile.plant_assignment }}
+                </li>
+
+                <li>
+                  <i class=""></i> {{ current_user.customuserprofile.area_assignment }} | {{ current_user.customuserprofile.business_unit }}
+                </li>
+
+                <li>
+                  <i class=""></i> {{ current_user.customuserprofile.motto }}
+                </li>
+
               </ul>
+
+              
               <br />
 
               
