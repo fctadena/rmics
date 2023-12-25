@@ -66,8 +66,13 @@ class CustomUserProfile(models.Model):
 
 
 
-# class Reward(models.Model):
-#     title = models.CharField(max_length=100, blank=True, null=True)
-#     description = models.CharField(max_length=300, blank=True, null=True)
-#     awardee = models.ManyToManyField(User, verbose_name=('awardee'))
-#     certificate = models.FileField(upload_to=None, max_length=100, blank=True, null=True)
+class Reward(models.Model):
+    title = models.CharField(max_length=100, blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+    awardee = models.ManyToManyField(User, verbose_name='awardee')
+    certificate = models.FileField(upload_to='certificates/', max_length=100, blank=True, null=True, verbose_name='certificate')
+
+
+    def __str__(self):
+        awardee_names = ', '.join(str(user) for user in self.awardee.all())
+        return f"{awardee_names} - {self.title}"

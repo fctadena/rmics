@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User, Group
 from .forms import LogginForm, CreateUser, ManageUser, UpdateUserForm
 from django.http import HttpResponse
-from .models import CustomUserProfile
+from .models import CustomUserProfile, Reward
 from django.views.generic.edit import UpdateView
 from django.urls import reverse_lazy
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
@@ -47,9 +47,12 @@ def create_user(request):
 
 def profile(request, id):
     user = User.objects.select_related('customuserprofile').get(id=id)
+    user_rewards = Reward.objects.filter(awardee=user)
+
     
     context = {
-        'user':user
+        'user':user,
+        'user_rewards':user_rewards
     }
     
     return render(request, 'user/profile.html', context)

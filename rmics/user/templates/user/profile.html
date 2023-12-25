@@ -105,38 +105,20 @@
                 <div id="myTabContent" class="tab-content">
                   <div role="tabpanel" class="tab-pane active " id="tab_content1" aria-labelledby="home-tab">
 
-                    <!-- start recent activity -->
+                    <!-- Rewards Here -->
                     <ul class="messages">
+                      {% for rewards in user_rewards %}
                       <li>
                         <img src="{% static 'images/rmi-award-icon.png' %}" class="avatar" alt="Avatar">
                         <div class="message_wrapper">
-                          <h4 class="heading">Employee Of The Year: 2023</h4>
+                          <h4 class="heading">{{ rewards.title }}</h4>
                           <p class="url">
                             <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
-                            <a href="#"><i class="fa fa-file"></i> View Certificate </a>
+                            <a href="{{ rewards.certificate.url }}" target="_blank"><i class="fa fa-file"></i> View Certificate </a>
                           </p>
                         </div>
                       </li>
-                      <li>
-                        <img src="{% static 'images/rmi-award-icon.png' %}" class="avatar" alt="Avatar">
-                        <div class="message_wrapper">
-                          <h4 class="heading">Troubleshooter Champion: 2022 1st Quarter</h4>
-                          <p class="url">
-                            <span class="fs1" aria-hidden="true" data-icon=""></span>
-                            <a href="#" data-original-title="" class="fa fa-file"> View Certificate</a>
-                          </p>
-                        </div>
-                      </li>
-                      <li>
-                        <img src="{% static 'images/rmi-award-icon.png' %}" class="avatar" alt="Avatar">
-                        <div class="message_wrapper">
-                          <h4 class="heading">Safety Award 2022</h4>
-                          <p class="url">
-                            <span class="fs1" aria-hidden="true" data-icon=""></span>
-                            <a href="#" data-original-title="" class="fa fa-file" > View Certificate</a>
-                          </p>
-                        </div>
-                      </li>
+                      {% endfor %}
                     </ul>
                     <!-- end recent activity -->
 
