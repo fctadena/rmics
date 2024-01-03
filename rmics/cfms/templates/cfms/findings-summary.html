@@ -51,7 +51,7 @@
       </div>
     
     <div>
-      <a href="{% url 'cfms:add_findings' %}" class="btn btn-sm btn-primary float-right">Add Log</a>
+      <a href="{% url 'cfms:add_findings' %}" class="btn btn-sm btn-primary float-right">Add Findings</a>
       <br>
       </div>
   
@@ -67,7 +67,7 @@
       <p class="month">Action Plan Status: {{ log.status }}</p>
     </div>
     <div class="message_wrapper">
-      <h4 class="heading">{{ log.findings_title }}</h4>
+      <h4 class="heading"><a href="{% url 'cfms:findings_detail' log.id %}">{{ log.findings_title }}</a></h4>
       <blockquote class="message">{{ log.findings_description }}</blockquote>
       <br />
       <p class="url">

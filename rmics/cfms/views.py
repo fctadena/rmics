@@ -26,24 +26,6 @@ class add_findings(CreateView):
         return reverse_lazy('cfms:findings_summary')
 
 
-
-
-# def add_findings(request):    
-#     if request.method == 'POST':
-#         form = FindingsLogForm(request.POST)
-#         if form.is_valid():
-#             findings = form.save()
-#         return redirect('cfms:findings_summary')
-            
-    
-#     else:
-#         form = FindingsLogForm()
-#     return render(request, 'cfms/add-findings.html', {'form':form})
-
-
-
-
-
 def delete_findings(request, id):
     findingslog = FindingsLog.objects.get(id=id)
     
@@ -80,7 +62,32 @@ def update_findings(request, id):
     
     else:
         form = FindingsLogForm(instance=findings)
+        
+    context = {
+        'findings':findings,
+        'form':form,
+        'findings':findings
+    }
+        
     
-    return render(request, 'cfms/update-findings.html', {'form':form, 'findings':findings})
+    return render(request, 'cfms/update-findings.html', context)
+
+
+
+
+
+
+# def add_findings(request):    
+#     if request.method == 'POST':
+#         form = FindingsLogForm(request.POST)
+#         if form.is_valid():
+#             findings = form.save()
+#         return redirect('cfms:findings_summary')
+            
+    
+#     else:
+#         form = FindingsLogForm()
+#     return render(request, 'cfms/add-findings.html', {'form':form})
+
 
 

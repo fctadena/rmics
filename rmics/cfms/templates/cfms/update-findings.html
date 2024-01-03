@@ -1,18 +1,99 @@
-
-
-
 {% extends 'rmics/base.html' %}
 
 {% block updatefindingsform %}
 
+<div class="x_panel">
+    <div class="x_title">
+        <h2>🔧 Log a Critical Findings</h2>
+        <div class="clearfix"></div>
+    </div>
+    
+    <div class="x_content">
+        <br />
+        {{ form.errors }}
+        <form method="POST" enctype="multipart/form-data" class="form-horizontal form-label-left">
+            {% csrf_token %}
+            <div class="form-group row">
+                <div class="col-md-4 col-sm-12  form-group">
+                    <label for="time_of_discovery">Time of Discovery:</label>
+                    <input type="datetime-local" name="time_of_discovery" placeholder="" class="form-control">
+                </div>
+
+                <div class="col-md-4 col-sm-12  form-group">
+                    <label for="reported_time">Reported Time:</label>
+                    <input type="datetime-local" name="reported_time" placeholder="" class="form-control">
+                </div>
+
+                <div class="col-md-4 col-sm-12  form-group">
+                    <label for="findings_title">Findings:</label>
+                    <input type="text" name="findings_title" placeholder="" class="form-control">
+                </div>
+    
+                <div class="col-md-6 col-sm-12  form-group">
+                    <label for="findings_description">Findings Description:</label>
+                    <textarea id="findings_description" class="form-control" name="findings_description"></textarea>
+                </div>
+
+                <div class="col-md-6 col-sm-12  form-group">
+                    <label for="action_plan">Action Plan:</label>
+                    <textarea id="action_plan" class="form-control" name="findings_descripaction_plantion"></textarea>
+                </div>
+
+                <div class="col-md-4 col-sm-12  form-group">
+                    <label for="action_plan_schedule">Action Plan Schedule:</label>
+                    <input type="datetime-local" name="action_plan_schedule" placeholder="" class="form-control">
+                </div>
+
+
+                <div class="col-md-4 col-sm-12  form-group">
+                    <label for="parts_availability">Parts Availability:</label>
+                    <select class="form-control" name="parts_availability">
+                        <option value="">Choose option</option>
+                        {% for choice in form.parts_availability.field.choices %}
+                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                        {% endfor %}
+                    </select>	
+                </div>
+
+                <div class="col-md-4 col-sm-12  form-group">
+                    <label for="status">Status:</label>
+                    <select class="form-control" name="status">
+                        <option value="">Choose option</option>
+                        {% for choice in form.status.field.choices %}
+                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                        {% endfor %}
+                    </select>	
+                </div>
+
+                <div class="col-md-4 col-sm-12  form-group">
+                    <label for="comments">Comments:</label>
+                    <input type="text" name="comments" placeholder="" class="form-control">
+                </div>
+    
+    
+                
+    
+                <div class="col-md-12 col-sm-12">
+                    <div class="row">
+                      <div class="col-md-12 col-sm-12">
+                        <button class="btn btn-info float-right" type="submit">Add Critical Findings</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+            </div>
+    </form>   
+    </div>
+
 <div class="x_title">
     <h2>Update Findings</h2>
     <ul class="nav navbar-right panel_toolbox">
-        <li><a href=""><i class="fa fa-long-arrow-left"> Back to Findings Detail</i></a>
+        <li><a href="{% url 'cfms:findings_detail' findings.id %}"><i class="fa fa-long-arrow-left"> Back to Findings Detail</i></a>
         </li>
-        <li><a href=""><i class="fa fa-long-arrow-left"> Go to Findings Summary</i></a>
+        <li><a href="{% url 'cfms:findings_summary' %}"><i class="fa fa-long-arrow-left"> Go to Findings Summary</i></a>
         </li>
-        <li><a href=""><i class="fa fa-pencil-square-o"> Delete Findings</i></a>
+        <li><a href="{% url 'cfms:delete_findings' findings.id %}"><i class="fa fa-pencil-square-o"> Delete Findings</i></a>
         </li>
       </ul>
       <div class="clearfix"></div>

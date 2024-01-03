@@ -70,7 +70,7 @@ class Reward(models.Model):
     title = models.CharField(max_length=100, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     awardee = models.ManyToManyField(User, verbose_name='awardee')
-    certificate = models.FileField(upload_to='certificates/', max_length=100, blank=True, null=True, verbose_name='certificate')
+    certificate = models.FileField(upload_to='certificates/', max_length=100, verbose_name='certificate', default='smcrmi_logo_1.jpg')
 
 
     def __str__(self):
