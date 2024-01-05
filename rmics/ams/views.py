@@ -9,7 +9,7 @@ from django.views.generic.detail import DetailView
 from django.core.files.storage import FileSystemStorage
 from django.db.models import Q
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -21,6 +21,7 @@ def Ams(request):
     }
     return render(request, 'ams/ams.html', context)
 
+# @login_required(login_url='login')
 def AssetList(request):
     asset_list = Asset.objects.all()
     search_asset = request.GET.get('search_asset')

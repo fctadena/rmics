@@ -9,7 +9,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib import messages
 from django.db.models import Q
-
+from .decorators import unauthenticated_logic
 
 
 
@@ -22,7 +22,7 @@ from django.db.models import Q
 def home(request):
     return redirect('login')
 
-
+@unauthenticated_logic
 def create_user(request):
     if request.method == "POST":
         form = CreateUser(request.POST)
@@ -44,7 +44,7 @@ def create_user(request):
 
 
 
-
+@unauthenticated_logic
 def profile(request, id):
     user = User.objects.select_related('customuserprofile').get(id=id)
     user_rewards = Reward.objects.filter(awardee=user)
@@ -59,7 +59,7 @@ def profile(request, id):
     
 
 
-
+@unauthenticated_logic
 def user_list(request):
     users = User.objects.select_related('customuserprofile').all()
     
@@ -83,7 +83,7 @@ def user_list(request):
 
 
     
-
+@unauthenticated_logic
 def manage_users(request):
     user = User.objects.select_related('customuserprofile').all()
     
@@ -119,7 +119,8 @@ def manage_users(request):
 #         'user_profile':user_profile
 #     }
 #     return render(request, 'user/update-user.html', context)
-        
+
+@unauthenticated_logic     
 def update_user(request, id):
     user = User.objects.select_related('customuserprofile').get(id=id)
     user_profile = user.customuserprofile
@@ -205,7 +206,7 @@ def update_user(request, id):
 #     }
 #     return render(request, 'user/update-user.html', context)
 
-
+@unauthenticated_logic
 def delete_user(request, id):
     user = User.objects.get(id=id)
     if request.method == "POST":
@@ -215,7 +216,7 @@ def delete_user(request, id):
     
     return render(request, 'user/delete-user.html', {'user':user})
         
-        
+@unauthenticated_logic        
 def my_profile(request):
     current_user = User.objects.get(id=request.user.id)
     
@@ -225,6 +226,6 @@ def my_profile(request):
     return render(request, 'user/my-profile.html', context)
 
 
-
+@unauthenticated_logic
 def settings(request):
     return render(request, 'user/settings.html')
