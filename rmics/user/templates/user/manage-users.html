@@ -61,6 +61,7 @@
           <tr class="headings text-center">
             <th class="column-title align-middle">Profile Picture</th>
             <th class="column-title align-middle">Name</th>
+            <th class="column-title align-middle">Privilege</th>
             <th class="column-title align-middle">Position</th>
             <th class="column-title align-middle">Profession</th>
             <th class="column-title align-middle">Plant Assignment</th>
@@ -77,6 +78,7 @@
           <tr class="even pointer" >
             <td class=" "><img src="{{ employee.customuserprofile.profile_picture.url }}" alt="..." class="img-thumbnail" style="width: 70px; height: auto;"/></td>
             <td class="text-center" style="vertical-align: middle;">{{ employee.first_name }}, {{ employee.last_name }} </td>
+            <td class="text-center" style="vertical-align: middle;">{% for group in employee.groups.all %} {{ group }} <br> {% endfor %} </td>           
             <td class="text-center" style="vertical-align: middle;">{{ employee.customuserprofile.position|default:"" }}</td>
             <td class="text-center" style="vertical-align: middle;">{{ employee.customuserprofile.profession|default:"" }}</td>
             <td class="text-center" style="vertical-align: middle;">{{ employee.customuserprofile.plant_assignment|default:"" }}</td>

@@ -10,18 +10,12 @@ from django.core.files.storage import FileSystemStorage
 from django.db.models import Q
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.contrib.auth.decorators import login_required
+from user.decorators import unauthenticated_logic, allowed_groups
+from django.utils.decorators import method_decorator
 
 
 
-
-def Ams(request):
-    asset_list = Asset.objects.all()
-    context = {
-        'asset_list':asset_list,
-    }
-    return render(request, 'ams/ams.html', context)
-
-# @login_required(login_url='login')
+@unauthenticated_logic
 def AssetList(request):
     asset_list = Asset.objects.all()
     search_asset = request.GET.get('search_asset')
@@ -43,11 +37,8 @@ def AssetList(request):
     return render(request, 'ams/asset-list.html', context)
 
 
-# class AssetDetail(DetailView):
-#     model = Asset
-#     template_name = 'ams/asset-detail.html'
 
-
+@method_decorator(unauthenticated_logic, name='dispatch')
 class AssetDetail(DetailView):
     model = Asset
     template_name = 'ams/asset-detail.html'
@@ -58,11 +49,9 @@ class AssetDetail(DetailView):
         # Access related maintenance logs and pass them to the template
         context['related_maintenance_log'] = self.object.maintenance_logs_equipment.all()
         return context
-    
-    
-    
 
-#CRUD STARTS HERE
+@method_decorator(unauthenticated_logic, name='dispatch')
+@method_decorator(allowed_groups(allowed_roles=['Operations Analyst Super', 'Site Management']), name='dispatch')
 class AddAsset(CreateView):
     model = Asset
     form_class = AssetForm
@@ -73,7 +62,8 @@ class AddAsset(CreateView):
         return reverse_lazy('ams:asset_list')
 
 
-
+@unauthenticated_logic
+@allowed_groups(allowed_roles=['Operations Analyst Super', 'Site Management'])
 def DeleteAsset(request,id):
     asset = Asset.objects.get(id=id)
     
@@ -85,7 +75,8 @@ def DeleteAsset(request,id):
     return render(request, 'ams/delete-asset.html', {'asset':asset})
 
 
-
+@unauthenticated_logic
+@allowed_groups(allowed_roles=['Operations Analyst Super', 'Site Management'])
 def UpdateAsset(request,id):
     asset = Asset.objects.get(id=id)
     if request.method == 'POST':
@@ -102,28 +93,20 @@ def UpdateAsset(request,id):
         form = AssetForm(instance=asset)
     return render(request, 'ams/update-asset.html', {'form': form, 'asset': asset})
 
-
+@unauthenticated_logic
+@allowed_groups(allowed_roles=['Operations Analyst Super', 'Operations Analyst'])
 def add_plant(request):
-    # if request.method == "POST":
-    #     form = PlantForm(request.POST)
-    #     if form.is_valid():
-    #         form.save()
-    #         messages.success(request, 'ADDED PLANT SUCCESSFULLY', extra_tags='success')
-    #         return redirect('ams:plant_list')
-        
-            
-    # else:
-    #     form = PlantForm()
-    
+
     return render(request, 'ams/add-plant.html')
 
-
+@unauthenticated_logic
 def plant_list(request):
     plant = PlantAssignment.objects.all()
     return render(request, 'ams/plant-list.html', {'plant':plant})
 
 
-
+@unauthenticated_logic
+@allowed_groups(allowed_roles=['Operations Analyst Super', 'Operations Analyst'])
 def delete_plant(request, id):
     plant = PlantAssignment.objects.get(id=id)
     
@@ -134,7 +117,8 @@ def delete_plant(request, id):
     
     return render(request, 'ams/delete-plant.html', {'plant':plant})
 
-
+@unauthenticated_logic
+@allowed_groups(allowed_roles=['Operations Analyst Super', 'Operations Analyst'])
 def update_plant(request, id):
     plant = PlantAssignment.objects.get(id=id)
     if request.method == "POST":
@@ -147,18 +131,14 @@ def update_plant(request, id):
     
     else:
         form = PlantForm(instance=plant)
-    return render(request, 'ams/update-plant.html', {'form':form, 'plant':plant})
-        
+    return render(request, 'ams/update-plant.html', {'form':form, 'plant':plant})            
 
 
 
-
-# def edit_plant(request, id=id):
-#     plant = PlantAssignment.objects.get(id=id)
-#     if request.method == "POST":
-#         form = PlantForm(request.POST, instance=plant)
-#         if form.is_valid():
-#             plant = form.save(commit=False)
-#             plant.save()
-            
-            
+@unauthenticated_logic
+def Ams(request):
+    asset_list = Asset.objects.all()
+    context = {
+        'asset_list':asset_list,
+    }
+    return render(request, 'ams/ams.html', context)

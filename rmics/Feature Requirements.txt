@@ -1,0 +1,61 @@
+APPS LIST:
+RMI ColSys
+Asset MS
+Deliverable MS
+Daily Report MS
+user
+
+
+INDEX PAGES
+RMI ColSys (Messaging)
+NOM Dashboard
+OA/OE Dashboard
+EH Dashboard
+MP Dashboard
+Asset MS (Dashboard)
+
+
+APPS & FEATURES:
+RMI ColSys (RMI Collaboration System)
+> A dashboard with live groupchat, display of RCFA Bulletin
+> RCFA Bulletin
+> Deliverable Summary (Update of deliverables, deliverables are created by Eng'g Head, ROM, and Operations Analyst)
+
+NOM Dashboard
+> Dashboard where the operations manager has overall glance of the all details of the operations under his supervision
+> Must include the following (Basic KPIs, Daily Status Update, Critical Findings)
+
+EH Dashboard
+>
+>
+
+
+MP Dashboard
+>
+>
+
+Asset MS
+> Used a database for all assets under RMI
+> In the Asset details are the following (Asset basic details, revision history, maintenance logs (all plants, with associated maintenance cost))
+> xxx
+
+
+
+
+
+USERS
+> This app handles the user login/logout, registration, and user creation of the system.
+> USERS:
+    NOM
+    Engineering Head
+    Maintenance Planner
+    Operations Analyst
+    Operations Engineer
+    Guest
+
+
+
+
+
+
+

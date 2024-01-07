@@ -6,8 +6,8 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
-
-# Create your views here.
+from user.decorators import unauthenticated_logic, allowed_groups
+from django.utils.decorators import method_decorator
 
 
 
@@ -15,7 +15,8 @@ def cfms(request):
     return render(request, 'rmics/base.html')
 
 
-
+@method_decorator(unauthenticated_logic, name="dispatch")
+@method_decorator(allowed_groups(allowed_roles=['Operations Analyst Super', 'Site Management']), name="dispatch")
 class add_findings(CreateView):
     model = FindingsLog
     form_class = FindingsLogForm
@@ -25,7 +26,8 @@ class add_findings(CreateView):
         messages.success(self.request, 'ADDED FINDINGS SUCCESSFULLY', extra_tags='success')
         return reverse_lazy('cfms:findings_summary')
 
-
+@unauthenticated_logic
+@allowed_groups(allowed_roles=['Operations Analyst Super', 'Site Management'])
 def delete_findings(request, id):
     findingslog = FindingsLog.objects.get(id=id)
     
@@ -36,19 +38,20 @@ def delete_findings(request, id):
     
     return render(request, 'cfms/delete-findings.html', {'findingslog':findingslog})
 
-
+@method_decorator(unauthenticated_logic, name="dispatch")
 class findings_detail(DetailView):
     model = FindingsLog
     template_name = 'cfms/findings-detail.html'
 
-
+@unauthenticated_logic
 def findings_summary(request):
     logs = FindingsLog.objects.all().order_by('-time_of_discovery')
     return render(request, 'cfms/findings-summary.html', {'logs':logs})
 
 
 
-
+@unauthenticated_logic
+@allowed_groups(allowed_roles=['Operations Analyst Super', 'Site Management'])
 def update_findings(request, id):
     findings = FindingsLog.objects.get(id=id)
     
@@ -71,23 +74,3 @@ def update_findings(request, id):
         
     
     return render(request, 'cfms/update-findings.html', context)
-
-
-
-
-
-
-# def add_findings(request):    
-#     if request.method == 'POST':
-#         form = FindingsLogForm(request.POST)
-#         if form.is_valid():
-#             findings = form.save()
-#         return redirect('cfms:findings_summary')
-            
-    
-#     else:
-#         form = FindingsLogForm()
-#     return render(request, 'cfms/add-findings.html', {'form':form})
-
-
-

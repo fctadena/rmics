@@ -9,20 +9,16 @@ from django.urls import reverse_lazy
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib import messages
 from django.db.models import Q
-from .decorators import unauthenticated_logic
+from .decorators import unauthenticated_logic, allowed_groups
 
 
-
-
-
-
-# Create your views here.
 
 
 def home(request):
     return redirect('login')
 
 @unauthenticated_logic
+@allowed_groups(allowed_roles=['Operations Analyst Super'])
 def create_user(request):
     if request.method == "POST":
         form = CreateUser(request.POST)
@@ -84,6 +80,7 @@ def user_list(request):
 
     
 @unauthenticated_logic
+@allowed_groups(allowed_roles=['Operations Analyst Super', 'Operations Analyst', 'National Management'])
 def manage_users(request):
     user = User.objects.select_related('customuserprofile').all()
     
@@ -102,25 +99,10 @@ def manage_users(request):
     return render(request, 'user/manage-users.html', context)
 
 
-# def update_user(request, id):
-#     user = User.objects.select_related('customuserprofile').get(id=id)
-#     user_profile = user.customuserprofile
-#     if request.method == "POST":
-#         form1 = UpdateUserForm(request.POST, instance=user_profile)
-#         if form1.is_valid():
-#             user = form1.save()
-#             return redirect('profile', id=user.id)
-    
-#     else:
-#         form1 = UpdateUserForm(instance=user)
-#         print(user_profile.position)
-#     context = {
-#         'form1':form1,
-#         'user_profile':user_profile
-#     }
-#     return render(request, 'user/update-user.html', context)
 
-@unauthenticated_logic     
+
+@unauthenticated_logic
+@allowed_groups(allowed_roles=['Operations Analyst Super', 'National Management'])     
 def update_user(request, id):
     user = User.objects.select_related('customuserprofile').get(id=id)
     user_profile = user.customuserprofile
@@ -151,6 +133,33 @@ def update_user(request, id):
     
     return render(request, 'user/update-user.html', context)
     
+
+@unauthenticated_logic
+@allowed_groups(allowed_roles=['Operations Analyst Super', 'National Management'])
+def delete_user(request, id):
+    user = User.objects.get(id=id)
+    if request.method == "POST":
+        user.delete()
+        messages.success(request, 'DELETED USER SUCCESSFULLY', extra_tags='warning')
+        return redirect('manage_users')
+    
+    return render(request, 'user/delete-user.html', {'user':user})
+        
+@unauthenticated_logic        
+def my_profile(request):
+    current_user = User.objects.get(id=request.user.id)
+    
+    context = {
+        'current_user':current_user
+    }
+    return render(request, 'user/my-profile.html', context)
+
+
+@unauthenticated_logic
+def settings(request):
+    return render(request, 'user/settings.html')
+
+
 # def update_user(request, id):
 #     user = User.objects.select_related('customuserprofile').get(id=id)
 #     current_user = request.user
@@ -206,26 +215,20 @@ def update_user(request, id):
 #     }
 #     return render(request, 'user/update-user.html', context)
 
-@unauthenticated_logic
-def delete_user(request, id):
-    user = User.objects.get(id=id)
-    if request.method == "POST":
-        user.delete()
-        messages.success(request, 'DELETED USER SUCCESSFULLY', extra_tags='warning')
-        return redirect('manage_users')
+# def update_user(request, id):
+#     user = User.objects.select_related('customuserprofile').get(id=id)
+#     user_profile = user.customuserprofile
+#     if request.method == "POST":
+#         form1 = UpdateUserForm(request.POST, instance=user_profile)
+#         if form1.is_valid():
+#             user = form1.save()
+#             return redirect('profile', id=user.id)
     
-    return render(request, 'user/delete-user.html', {'user':user})
-        
-@unauthenticated_logic        
-def my_profile(request):
-    current_user = User.objects.get(id=request.user.id)
-    
-    context = {
-        'current_user':current_user
-    }
-    return render(request, 'user/my-profile.html', context)
-
-
-@unauthenticated_logic
-def settings(request):
-    return render(request, 'user/settings.html')
+#     else:
+#         form1 = UpdateUserForm(instance=user)
+#         print(user_profile.position)
+#     context = {
+#         'form1':form1,
+#         'user_profile':user_profile
+#     }
+#     return render(request, 'user/update-user.html', context)

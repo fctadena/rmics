@@ -106,13 +106,17 @@
                       <li><a href={% url 'ams:add_asset' %}> Add Asset</a></li>
                     </ul>
                   </li>
+                  <!-- FOR SUPERUSER & OPERATIONS ANALYSY SUPER ONLY-->
                   <li><a><i class="fa fa-users"></i> User Management <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
+                      {% if request.user.groups.all.0.name == "Operations Analyst Super" or request.user.groups.all.0.name == "National Management" %}
                       <li><a href={% url 'create_user' %}> Add User</a></li>
                       <li><a href={% url 'manage_users' %}> Manage Users</a></li>
+                      {% endif %}
                       <li><a href={% url 'user_list' %}> The Team</a></li>
                     </ul>
                   </li>
+                  
                   <li><a><i class="fa fa-clone"></i> Create<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="fixed_sidebar.html">RFCA</a></li>

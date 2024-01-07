@@ -39,16 +39,37 @@
 
     <div class="x_title">
       <h2>Maintenance Record Summary</h2>
+
+         
+      
       <div class="form-group pull-right top_search">
         <form action="" method="GET" class="input-group">
           <input type="search" name = "search_asset" class="form-control" placeholder="Search Asset...">
           <span class="input-group-btn">
             <button class="btn btn-default" type="submit">Go!</button>
           </span>
-        </form>
+        </form>  
       </div>
       <div class="clearfix"></div>
       </div>
+
+      <!-- ADD REPORTING NAV HERE-->
+      <div class="col-md-4">
+        Reporting Range
+        <form class="">
+          <fieldset>
+            <div class="control-group ">
+              <div class="controls">
+                <div class="input-prepend input-group">
+                  <span class="add-on input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
+                  <input type="text" style="width: 200px" name="reservation" id="reservation" class="form-control" value="01/01/2016 - 01/25/2016" />
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>    
+
     
     <div>
       <a href="{% url 'drms:add_log' %}" class="btn btn-sm btn-primary float-right">Add Log</a>
