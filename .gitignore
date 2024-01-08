@@ -17,3 +17,6 @@ tests/.coverage*
 build/
 tests/report/
 rmicsenv/
+.mysqldata
+.env
+venv
