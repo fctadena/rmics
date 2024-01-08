@@ -24,3 +24,4 @@ def allowed_groups(allowed_roles=[]):
                 return HttpResponseForbidden("Error 403: Unauthorized Access")
         return wrapper_func
     return decorator
+#TEST COMMIT
