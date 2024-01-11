@@ -5,3 +5,4 @@ Pillow==9.5.0
 sqlparse==0.4.3
 tzdata==2022.7
 python-decouple==3.8
+django-notifications-hq==1.6.0

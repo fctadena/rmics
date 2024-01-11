@@ -19,11 +19,12 @@ from . import views
 from .views import Index
 from django.conf.urls.static import static 
 from django.conf import settings
-
+import notifications.urls
 
 
 urlpatterns = [
     path('', include('user.urls')),
+    path('inbox/notifications/', include(notifications.urls, namespace='notifications')),
     path('admin/', admin.site.urls),
     path('ams/', include('ams.urls')),
     path('drms/', include('drms.urls')),
