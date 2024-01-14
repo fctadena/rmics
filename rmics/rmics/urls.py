@@ -29,5 +29,6 @@ urlpatterns = [
     path('ams/', include('ams.urls')),
     path('drms/', include('drms.urls')),
     path('cfms/', include('cfms.urls')),
+    path('notis/', include('notis.urls')),
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

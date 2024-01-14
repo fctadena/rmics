@@ -5,17 +5,14 @@ from django.dispatch import receiver
 
 
 
-@receiver(post_save, sender=FindingsLog)
-def critical_findings_created(sender, instance, created, **kwargs):
-    notify.send(instance, verb='was created')
-    print("A new Crifical Findings was created")
 
-post_save.connect(critical_findings_created, sender=FindingsLog)
+# @receiver(post_save, sender=FindingsLog)
+# #POSSIBLE PROBLEM, CFMS FindingsLog model must have a field called reporter, or the one who created the log as well as plant.
+    
+# def critical_findings_created(sender, instance, created, **kwargs):
+#     print("Signal received!")
+#     if created:
+#         notify.send(sender=instance, recipient=, verb="A critical finding has been added")
+#         print("A new Critical Finding was created")
 
-
-# CONTINUE IMPLEMENT THIS ##
-# https://www.advantch.com/blog/how-to-set-up-user-notifications-for-your-django-app-part-1/
-# https://pypi.org/project/django-notifications-hq/
-
-
-
+# post_save.connect(critical_findings_created, sender=FindingsLog)

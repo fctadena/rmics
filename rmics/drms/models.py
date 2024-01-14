@@ -33,6 +33,5 @@ class MaintenanceLog(models.Model):
     spare_details = models.TextField(blank=True, null=True)
     notification_num = models.CharField(max_length=255, blank=True, null=True)
     include_log = models.BooleanField(default=True, blank=True)
-    # plant_of_record = models.ForeignKey(PlantAssignment, on_delete=models.PROTECT, blank=True, null=True)
     plant_of_record = models.ForeignKey(PlantAssignment, on_delete=models.CASCADE, related_name='maintenance_logs', blank=True, null=True)
     log_reporter = models.ForeignKey(User, on_delete=models.PROTECT, blank=True, null=True)

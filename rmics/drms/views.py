@@ -6,10 +6,15 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views.generic.detail import DetailView
 
+#NOTIFS
+from notifications.signals import notify
+
+
 #IMPORTS FOR THE HANDLER
 from django.views import View
 from ams.models import Asset
 from user.models import CustomUserProfile
+
 
 
 
@@ -39,11 +44,14 @@ def delete_log(request,id):
 def update_log(request,id):
     log = MaintenanceLog.objects.get(id=id)
     
+    
     if request.method == 'POST':
         form = MaintenanceLogForm(request.POST, instance=log)
+        user = request.user #FOR NOTIFS TESTING
         if form.is_valid():
             log = form.save(commit=False)
             log.save()
+            notify.send(user, recipient=request.user, verb='A LOG HAS BEEN UPDATED')#FOR NOTIFS TESTING
             messages.success(request, 'UPDATED LOG SUCCESSFULLY', extra_tags='info')
             return redirect('drms:maintenance_records')
     else:
