@@ -14,3 +14,41 @@ username: francis
 password: Gat#105strike
 email: franciscarlotadena@gmail.com
 
+
+
+
+
+NOTES FOR OPERATIONS
+CRITICAL ASSETS
+In the context of maintenance and reliability in manufacturing, critical equipment or assets are those that have a significant impact on the overall production process, and their failure can lead to substantial downtime, production losses, safety risks, and increased maintenance costs. Identifying and prioritizing critical equipment is essential for developing effective maintenance strategies and ensuring the reliability of the manufacturing facility. The specific critical assets can vary depending on the industry and the nature of the manufacturing process, but generally, they include:
+
+Production Machinery:
+
+Machines directly involved in the manufacturing process, such as presses, molds, CNC machines, and assembly lines.
+Power Generation and Distribution Systems:
+
+Equipment responsible for providing and distributing electrical power to various machines and processes.
+Utilities and Infrastructure:
+
+Systems supporting the manufacturing process, including heating, ventilation, air conditioning (HVAC), water supply, and waste disposal.
+Quality Control Equipment:
+
+Instruments and devices used for quality assurance and inspection, ensuring that products meet the required standards.
+Material Handling Systems:
+
+Conveyors, forklifts, and other equipment involved in transporting raw materials, work-in-progress, and finished goods.
+Pumps, Compressors, and Fans:
+
+Equipment responsible for fluid and gas movement within the manufacturing process.
+Environmental and Safety Systems:
+
+Systems monitoring and controlling environmental conditions, as well as safety systems such as fire suppression and emergency shutdown mechanisms.
+Critical Instruments and Sensors:
+
+Instruments and sensors providing crucial data for process control and monitoring.
+Computerized Control Systems:
+
+Programmable Logic Controllers (PLCs), Distributed Control Systems (DCS), and other control systems managing the manufacturing process.
+Support Systems:
+
+Systems that support the functionality of critical equipment, such as lubrication systems, cooling systems, and filtration systems.

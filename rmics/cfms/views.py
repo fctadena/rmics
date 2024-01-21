@@ -22,6 +22,12 @@ class add_findings(CreateView):
     form_class = FindingsLogForm
     template_name = 'cfms/add-findings.html'
     
+    def form_valid(self, form):
+        # Set the log_reporter field to the currently logged-in user
+        form.instance.log_reporter = self.request.user
+        return super().form_valid(form)
+        
+        
     def get_success_url(self):
         messages.success(self.request, 'ADDED FINDINGS SUCCESSFULLY', extra_tags='success')
         return reverse_lazy('cfms:findings_summary')

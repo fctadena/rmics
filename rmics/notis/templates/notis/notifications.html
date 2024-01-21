@@ -1,3 +1,13 @@
+{% extends 'rmics/base.html' %}
+
+{% block updatefindingsform %}
+
+
 {% for notifs in notifications %}
-{{ notifs }} <br>
+{{ notifs.verb}} {{ notifs.actor }} <br>
 {% endfor %}
+
+{% endblock %}
+
+
+

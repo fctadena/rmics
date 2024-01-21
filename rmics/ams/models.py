@@ -33,6 +33,7 @@ class Asset(models.Model):
     asset_year = models.CharField(max_length = 50, blank=True)
     asset_month = models.CharField(max_length = 50, blank=True)
     asset_image_primary = models.ImageField(upload_to='pics', default='D:\Legacy Projects\rmics\rmics\media\dphd_1.jpg')
+    critical_asset_designation = models.BooleanField(default=False, blank=True)
     
     def get_absolute_url(self):
         return render(request, template_name='ams/asset-list.html')
@@ -48,3 +49,6 @@ class PlantAssignment(models.Model):
     def __str__(self):
         return f"{self.plant} {self.plant_code}"
     
+
+
+
