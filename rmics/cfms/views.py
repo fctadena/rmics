@@ -33,7 +33,7 @@ class add_findings(CreateView):
         return reverse_lazy('cfms:findings_summary')
 
 @unauthenticated_logic
-@allowed_groups(allowed_roles=['Operations Analyst Super', 'Site Management'])
+@allowed_groups(allowed_roles=['Operations Analyst Super'])
 def delete_findings(request, id):
     findingslog = FindingsLog.objects.get(id=id)
     
