@@ -1,5 +1,5 @@
 from django import forms
-from .models import CustomUserProfile
+from .models import CustomUserProfile, Reward
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User, Group
 
@@ -86,5 +86,21 @@ class ManageUser(forms.ModelForm):
 class LogginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
-        
 
+
+
+class AddReward(forms.ModelForm):
+    
+    class Meta:
+        model = Reward
+        fields = (
+            'title',
+            'description',
+            'awardee',
+            'certificate'
+        )
+        
+        widgets = {
+            'awardee': forms.Select(attrs={'class': 'form-control'}),
+        }
+        

@@ -35,3 +35,7 @@ class MaintenanceLog(models.Model):
     include_log = models.BooleanField(default=True, blank=True)
     plant_of_record = models.ForeignKey(PlantAssignment, on_delete=models.CASCADE, related_name='maintenance_logs', blank=True, null=True)
     log_reporter = models.ForeignKey(User, on_delete=models.PROTECT, blank=True, null=True)
+ 
+    
+    def __str__(self):
+        return f"{self.machine_failure_breakdown} - {self.equipment_name}"

@@ -1,13 +1,26 @@
 {% extends 'rmics/base.html' %}
+{% load tz %}
 
 {% block updatefindingsform %}
-
-
 {% for notifs in notifications %}
-{{ notifs.verb}} {{ notifs.actor }} <br>
+    <div class="project_detail">
+        <p class="title">{{ notifs.verb}} <span class="badge badge-danger"> NEW!</span></p>
+        <p>{{ notifs.actor }} | {{ notifs.timestamp }}</p>
+    </div>
 {% endfor %}
+
 
 {% endblock %}
 
 
+
+
+
+
+{% comment %} 
+
+
+{% now "Y-m-d H:i:s" as current_datetime %}
+
+<p>Current Datetime: {{ current_datetime }}</p> {% endcomment %}
 

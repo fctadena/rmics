@@ -1,0 +1,18 @@
+EDIT REWARD
+<div>
+    {% if reward_form.errors %}
+    <ul class="errorlist">
+      {% for field_errors in reward_form.errors.values %}
+        {% for error in field_errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>
+<br>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ reward_form.as_p }}
+    <button type="SUBMIT">EDIT REWARD</button>
+</form>

@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User, Group
-from .forms import LogginForm, CreateUser, ManageUser, UpdateUserForm
+from .forms import LogginForm, CreateUser, ManageUser, UpdateUserForm, AddReward
 from django.http import HttpResponse
 from .models import CustomUserProfile, Reward
 from django.views.generic.edit import UpdateView
@@ -10,6 +10,9 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib import messages
 from django.db.models import Q
 from .decorators import unauthenticated_logic, allowed_groups
+
+
+
 
 
 
@@ -160,75 +163,86 @@ def settings(request):
     return render(request, 'user/settings.html')
 
 
-# def update_user(request, id):
-#     user = User.objects.select_related('customuserprofile').get(id=id)
-#     current_user = request.user
-#     if user == current_user:
-#         return redirect('manage_users')
-    
-#     else:
-#         user_profile = user.customuserprofile
-#         if request.method == "POST":
-#             form1 = UserChangeForm(request.POST, instance=user)
-#             form2 = ManageUser(request.POST, request.FILES, instance=user_profile)
-#             if form1.is_valid() and form2.is_valid():
-#                 user = form1.save()
-#                 user_profile = form2.save(commit=False)
-#                 user_profile.user = user  # Set the user field of CustomUserProfile
-#                 user_profile.save()
-#                 return redirect('profile', id=user.id )
-        
-#         else:
-#             form1 = UserChangeForm(instance=user)
-#             form2 = ManageUser(instance=user_profile)
-            
-#         context = {
-#             'form1':form1,
-#             'form2':form2
-#         }
-#         return render(request, 'user/update-user.html', context)
-    
-    
-# def update_user(request, id):
-#     user = User.objects.select_related('customuserprofile').get(id=id)
-#     user_profile = user.customuserprofile
-#     if request.method == "POST":
-#         form1 = UserChangeForm(request.POST, instance=user)
-#         form2 = ManageUser(request.POST, request.FILES, instance=user_profile)
-#         if form1.is_valid() and form2.is_valid():
-#             user = form1.save()
-#             user_profile = form2.save(commit=False)
-#             user_profile.user = user  # Set the user field of CustomUserProfile
-#             user_profile.save()
-#             return redirect('profile', id=user.id )
-#         # else:
-#         #     print(form1.errors)
-#         #     print(form2.errors)
-    
-#     else:
-#         form1 = UserChangeForm(instance=user)
-#         form2 = ManageUser(instance=user_profile)
-        
-#     context = {
-#         'form1':form1,
-#         'form2':form2
-#     }
-#     return render(request, 'user/update-user.html', context)
 
-# def update_user(request, id):
-#     user = User.objects.select_related('customuserprofile').get(id=id)
-#     user_profile = user.customuserprofile
-#     if request.method == "POST":
-#         form1 = UpdateUserForm(request.POST, instance=user_profile)
-#         if form1.is_valid():
-#             user = form1.save()
-#             return redirect('profile', id=user.id)
+
+def add_reward(request, id):
+    awardee = get_object_or_404(User, id=id)
+    award_form = AddReward(initial={'awardee': awardee})
     
-#     else:
-#         form1 = UpdateUserForm(instance=user)
-#         print(user_profile.position)
-#     context = {
-#         'form1':form1,
-#         'user_profile':user_profile
-#     }
-#     return render(request, 'user/update-user.html', context)
+    if request.method == "POST":
+        data = AddReward(request.POST)
+        if data.is_valid():
+            data.save()
+            messages.success(request, 'ADDED AWARD SUCCESSFULLY', extra_tags='success')
+            return redirect('profile', id=awardee.id)
+        else:
+            print("FORM NOT VALID:", data.errors)
+
+    context = {
+        "award_form": award_form,
+        "awardee": awardee,
+    }
+
+    return render(request, template_name='user/add-reward.html', context=context)
+
+
+
+
+def rewards_summary(request):
+    rewards = Reward.objects.all()
+    
+    context = {
+        'rewards': rewards
+    }
+    
+    return render(request, template_name='user/rewards-summary.html', context=context)
+
+
+def delete_reward(request, id):
+    reward = Reward.objects.get(id=id)
+    
+    if request.method == "POST":
+        reward.delete()
+        messages.success(request, 'REWARD DELETED SUCCESSFULLY', extra_tags='warning')
+        return redirect('rewards_summary')
+        
+    context = {
+        'reward':reward,
+    }
+    
+    return render(request, template_name='user/delete-reward.html', context=context)
+
+
+def edit_reward(request, id):
+    reward = Reward.objects.get(id=id)
+    reward_form = AddReward(instance=reward)
+    
+    if request.method == "POST":
+        reward_form = AddReward(request.POST, request.FILES, instance=reward)
+        if reward_form.is_valid():
+            reward_form.save()
+            messages.success(request, 'REWARD UPDATED SUCCESSFULLY', extra_tags='info')
+            return redirect('reward_detail', id=id)
+        else:
+            messages.error(request, 'Please correct the errors below.', extra_tags='danger')
+    
+    else:
+        reward_form = AddReward(instance=reward)
+        
+    context = {
+        'reward_form':reward_form,
+    }    
+    
+    
+    return render(request, template_name='user/edit-reward.html', context=context)
+
+
+
+def reward_detail(request, id):
+    reward = Reward.objects.get(id=id)
+    
+    context = {
+        'reward':reward,
+    }
+
+    return render(request, template_name='user/reward-detail.html', context=context)

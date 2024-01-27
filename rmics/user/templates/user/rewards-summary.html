@@ -1,0 +1,5 @@
+{% for reward in rewards %}
+{{ reward }} | <a href="{% url 'edit_reward' reward.id %}">Edit</a> | <a href="{% url 'delete_reward' reward.id %}">Delete</a> | <a href="{% url 'reward_detail' reward.id %}">Details</a><br>
+{% comment %} {{ reward }} | <a href="#">Edit</a> | <a href="#">Delete</a> | <a href="#">Details</a><br> {% endcomment %}
+
+{% endfor %}

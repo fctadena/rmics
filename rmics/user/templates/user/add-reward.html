@@ -1,0 +1,13 @@
+Create Reward
+<br>
+Awardee: {{ awardee }}<br>
+
+<form method="POST">
+    {% csrf_token %}
+    Title: {{ award_form.title }}<br>
+    Description: {{ award_form.description }}<br>
+    Certificate: {{ award_form.certificate }}<br>
+    Awardee: {{ award_form.awardee }}<br>
+    <button type="submit"> ADD REWARD</button>
+</form>
+

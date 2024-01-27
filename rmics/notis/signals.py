@@ -24,7 +24,7 @@ def critical_findings_created(instance, created, **kwargs):
             users_in_group = group.user_set.all()
             recipient_users.extend(users_in_group)
 
-        notify.send(sender=instance, recipient=recipient_users, verb="Critical finding has been CREATED.")
+        notify.send(sender=instance, recipient=recipient_users, verb="NEW CRITICAL FINDING RECORDED")
         print("A critical finding has been CREATED")
     
     else:
@@ -36,7 +36,7 @@ def critical_findings_created(instance, created, **kwargs):
             users_in_group = group.user_set.all()
             recipient_users.extend(users_in_group)
 
-        notify.send(sender=instance, recipient=recipient_users, verb="Critical finding has been UPDATED.")
+        notify.send(sender=instance, recipient=recipient_users, verb="CRITICAL FINDING UPDATE")
         print("A critical finding has been UPDATED")
         
         
@@ -48,8 +48,10 @@ def new_employee_added(instance, created, **kwargs):
     if created:
         print("Signal for New Employee (User) Triggered")
         recipient_users = User.objects.all()
+        
+        verb = f"NEW TEAM MEMBER IS ADDED: {instance.first_name} {instance.last_name}"
 
-        notify.send(sender=instance, recipient=recipient_users, verb="A new team member is ADDED!")
+        notify.send(sender=instance, recipient=recipient_users, verb=verb)
         print("A new team member is ADDED!")
         
         
@@ -62,7 +64,7 @@ def new_employee_award_added(instance, created, **kwargs):
         print("Signal for New Award Triggered")
         recipient_users = User.objects.all()
 
-        notify.send(sender=instance, recipient=recipient_users, verb="A NEW AWARD is given to an one of our team members!")
+        notify.send(sender=instance, recipient=recipient_users, verb="TEAM MEMBER NEW REWARD")
         print("A NEW AWARD is given to an one of our team members!")
         
         
@@ -75,7 +77,7 @@ def new_asset_added(instance, created, **kwargs):
         recipient_users = User.objects.all()
 
         # Send notification to the specified group
-        notify.send(sender=instance, recipient=recipient_users, verb="A NEW ASSET has been ADDED.")
+        notify.send(sender=instance, recipient=recipient_users, verb="NEW ASSET ADDED")
         print("A NEW ASSET has been ADDED.")
         
 
@@ -95,7 +97,7 @@ def critical_findings_created(instance, created, **kwargs):
             users_in_group = group.user_set.all()
             recipient_users.extend(users_in_group)
 
-        notify.send(sender=instance, recipient=recipient_users, verb="New Corrective Maintenance Log for a CRITICAL ASSET ADDED")
+        notify.send(sender=instance, recipient=recipient_users, verb="REPAIR LOG ADDED TO A CRITICAL ASSET")
         print("New Corrective Maintenance Log for a CRITICAL ASSET ADDED")
         
                 
@@ -110,7 +112,7 @@ def maintenance_log_affecting_bagging(instance, created, **kwargs):
             users_in_group = group.user_set.all()
             recipient_users.extend(users_in_group)
 
-        notify.send(sender=instance, recipient=recipient_users, verb="A MAINTENANCE LOG WITH AFFECTING BAGGING IS RECORDED")
+        notify.send(sender=instance, recipient=recipient_users, verb="PRODUCTION AFFECTING MAINTENANCE LOG")
         print("A MAINTENANCE LOG WITH AFFECTING BAGGING IS RECORDED")
             
     

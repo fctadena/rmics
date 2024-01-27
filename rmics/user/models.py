@@ -69,10 +69,11 @@ class CustomUserProfile(models.Model):
 class Reward(models.Model):
     title = models.CharField(max_length=100, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
-    awardee = models.ManyToManyField(User, verbose_name='awardee')
+    awardee = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='awardee')
     certificate = models.FileField(upload_to='certificates/', max_length=100, verbose_name='certificate', default='smcrmi_logo_1.jpg')
 
 
+
+    
     def __str__(self):
-        awardee_names = ', '.join(str(user) for user in self.awardee.all())
-        return f"{awardee_names} - {self.title}"
+        return f"{self.awardee} - {self.title}"

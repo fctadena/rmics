@@ -19,7 +19,11 @@ urlpatterns = [
     path('update-user/<int:id>/', views.update_user, name='update_user'),
     path('delete-user/<int:id>/', views.delete_user, name='delete_user'),
     path('my-profile', views.my_profile, name='my_profile'),
-
+    path('add-reward/<int:id>/', views.add_reward, name='add_reward'),
+    path('rewards-summary/', views.rewards_summary, name='rewards_summary'),
+    path('delete-reward/<int:id>/', views.delete_reward, name='delete_reward'),
+    path('edit-reward/<int:id>/', views.edit_reward, name='edit_reward'),
+    path('reward-detail/<int:id>/', views.reward_detail, name='reward_detail'),
 
 ]
 
