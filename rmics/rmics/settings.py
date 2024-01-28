@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'drom',
     'user',
     'notis',
+    'datams',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
