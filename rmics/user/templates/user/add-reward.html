@@ -1,6 +1,70 @@
-Create Reward
-<br>
-Awardee: {{ awardee }}<br>
+{% extends 'rmics/base.html' %}
+{% block addreward %}
+
+<div class="x_panel">
+    <div class="x_title">
+
+            <div>
+                <img src="{{ awardee.customuserprofile.profile_picture.url }}" class="avatar" alt="Avatar">
+                <h2> 🏆{{ awardee }}</h2>
+            </div>
+        
+        <ul class="nav navbar-right panel_toolbox">
+            <li><a href="{% url 'profile' awardee.id %}"><i class="fa fa-arrow-left"> Cancel</i></a>
+            </li>
+            <li><a href="{% url 'rewards_summary' %}"><i class="fa fa-users"> Rewards Summary</i></a>
+            </li>
+        </ul>
+        
+        <div class="clearfix"></div>
+    </div>
+    
+    <div class="x_content">
+        <br />
+        {{ form.errors }}
+        <form method="POST" enctype="multipart/form-data" class="form-horizontal form-label-left">
+            {% csrf_token %}
+            <div class="form-group row">
+
+                <span style="display: none;">{{ award_form.awardee }}</span><br>
+
+                
+                <div class="col-md-4 col-sm-12 form-group">
+                    <label for="title">Award Title:</label>
+                    <input type="text" name="title" class="form-control" placeholder="" id="id_title"> 
+                </div>
+    
+    
+                <div class="col-md-12 col-sm-12  form-group">
+                    <label for="description">Description:</label>
+                    <textarea id="id_description" class="form-control" name="description"></textarea>
+                </div>
+
+                <div class="col-md-12 col-sm-12  form-group">
+                    <label for="id_description_of_work">Upload Certificate:</label>
+                    {{ award_form.certificate }}
+                </div>
+    
+    
+                <div class="col-md-12 col-sm-12">
+                    <div class="row">
+                      <div class="col-md-12 col-sm-12">
+                        <button class="btn btn-info float-right" type="submit">Add Award</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+            </div>
+    </form>   
+    </div>
+
+
+{% endblock %}
+
+
+<!-- OLD HERE -->
+{% comment %} Awardee: {{ awardee }}<br>
 
 <form method="POST">
     {% csrf_token %}
@@ -9,5 +73,4 @@ Awardee: {{ awardee }}<br>
     Certificate: {{ award_form.certificate }}<br>
     Awardee: {{ award_form.awardee }}<br>
     <button type="submit"> ADD REWARD</button>
-</form>
-
+</form>  {% endcomment %}

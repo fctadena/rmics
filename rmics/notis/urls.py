@@ -7,5 +7,5 @@ app_name = 'drms'
 
 
 urlpatterns = [
-    path('notifications', views.notifications_view, name='notifications'),
+    path('notifications/', views.notifications_view, name='notifications'),
 ]

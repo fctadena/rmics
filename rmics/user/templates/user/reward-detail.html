@@ -1,3 +1,39 @@
-REWARD DETAIL
+{% extends 'rmics/base.html' %}
+{% block rewarddetail %}
 
-{{ reward }}
+
+<div class="x_panel">
+    <div class="x_title">
+
+            <div>
+                <img src="{{ reward.awardee.customuserprofile.profile_picture.url }}" class="avatar" alt="Avatar">
+                <h2> 🏆 {{ reward }}</h2>
+            </div>
+        
+            <ul class="nav navbar-right panel_toolbox">
+                <li><a href="{% url 'manage_users' %}"><i class="fa fa-users"> Manage Users</i></a>
+                </li>
+                <li><a href="{% url 'user_list' %}"><i class="fa fa-users"> The Team</i></a>
+                </li>
+                <li><a href="{% url 'edit_reward' reward.id %}"><i class="fa fa-users"> Edit Reward</i></a>
+                </li>
+              </ul>
+              
+        
+        <div class="clearfix"></div>
+
+        
+    </div>
+
+    <div>
+
+        AWARD TITLE: {{ reward.title }}<br>
+        DESCRIPTION: {{ reward.description }}<br>
+        CERTIFICATE: <br><img style="max-width: 100%; max-height: auto; display: inline-block;" src="{{ reward.certificate.url }}" alt="Certificate"><br>
+        
+        
+    </div>
+    
+
+</div>
+{% endblock %}

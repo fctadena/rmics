@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import MaintenanceLog
+from .models import MaintenanceLog, MaintenanceLogComment
 
 # Register your models here.
 
@@ -37,4 +37,4 @@ class MaintenanceLogAdmin(admin.ModelAdmin):
 
 admin.site.register(MaintenanceLog, MaintenanceLogAdmin)
 
-    
+admin.site.register(MaintenanceLogComment)

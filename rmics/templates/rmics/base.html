@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 {% load static %}
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -114,6 +113,7 @@
                       <li><a href={% url 'manage_users' %}> Manage Users</a></li>
                       {% endif %}
                       <li><a href={% url 'user_list' %}> The Team</a></li>
+                      <li><a href={% url 'rewards_summary' %}> Awards Summary</a></li>
                     </ul>
                   </li>
                   
@@ -170,6 +170,7 @@
                   <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
                     <i class="fa fa-desktop"></i>
                     <span class="badge bg-green">*</span>
+                    {% comment %} <span class="badge bg-green"><a href="{% url 'notifications' %}">*</a></span> <!--NOTIFICATION LINK--> {% endcomment %}
                   </a>
                   <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
                     <li class="nav-item">
@@ -240,7 +241,8 @@
         <!-- page content -->
         <div class="right_col" role="main">
           <!-- top tiles -->
-        <div class="row" style="display: inline-block;" >
+          {% include 'datams/kpi-section.html' %}
+        {% comment %} <div class="row" style="display: inline-block;" >
           <div class="tile_count">
             <div class="col-md-2 col-sm-4  tile_stats_count">
               <span class="count_top"><i class="fa fa-cogs"></i> M.A.</span>
@@ -273,7 +275,7 @@
               <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
             </div>
           </div>
-        </div>
+        </div> {% endcomment %}
           <!-- /top tiles -->
 
           <!-- Start of Primary Element Holder -->
@@ -308,7 +310,20 @@
                     {% block PasswordChangeSuccess %}
                     {% endblock %}
 
+                    {% block addreward %}
+                    {% endblock %}
+
+                    {% block deletereward %}
+                    {% endblock %}
+
+                    {% block editreward %}
+                    {% endblock %}
+
+                    {% block rewardssumary %}
+                    {% endblock %}
                     
+                    {% block rewarddetail %}
+                    {% endblock %}
                     
                     <!-- AMS BLOCK -->
                     {% block assetlist %}
@@ -368,7 +383,7 @@
                     {% endblock %}
 
 
-                    <!-- DROM BLOCK -->
+                    <!-- ADDING BLOCK -->
 
 
                   </div>

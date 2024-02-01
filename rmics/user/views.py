@@ -164,7 +164,8 @@ def settings(request):
 
 
 
-
+@unauthenticated_logic
+@allowed_groups(allowed_roles=['Operations Analyst Super', 'Operations Analyst'])
 def add_reward(request, id):
     awardee = get_object_or_404(User, id=id)
     award_form = AddReward(initial={'awardee': awardee})
@@ -187,7 +188,7 @@ def add_reward(request, id):
 
 
 
-
+@unauthenticated_logic
 def rewards_summary(request):
     rewards = Reward.objects.all()
     
@@ -197,7 +198,8 @@ def rewards_summary(request):
     
     return render(request, template_name='user/rewards-summary.html', context=context)
 
-
+@unauthenticated_logic
+@allowed_groups(allowed_roles=['Operations Analyst Super', 'Operations Analyst'])
 def delete_reward(request, id):
     reward = Reward.objects.get(id=id)
     
@@ -212,7 +214,8 @@ def delete_reward(request, id):
     
     return render(request, template_name='user/delete-reward.html', context=context)
 
-
+@unauthenticated_logic
+@allowed_groups(allowed_roles=['Operations Analyst Super', 'Operations Analyst'])
 def edit_reward(request, id):
     reward = Reward.objects.get(id=id)
     reward_form = AddReward(instance=reward)
@@ -228,16 +231,18 @@ def edit_reward(request, id):
     
     else:
         reward_form = AddReward(instance=reward)
+        awardee = reward.awardee
         
     context = {
         'reward_form':reward_form,
+        'awardee':awardee
     }    
     
     
     return render(request, template_name='user/edit-reward.html', context=context)
 
 
-
+@unauthenticated_logic
 def reward_detail(request, id):
     reward = Reward.objects.get(id=id)
     

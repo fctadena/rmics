@@ -113,7 +113,7 @@
                       <li>
                         <img src="{% static 'images/rmi-award-icon.png' %}" class="avatar" alt="Avatar">
                         <div class="message_wrapper">
-                          <h4 class="heading">{{ rewards.title }}</h4>
+                          <a href="{% url 'reward_detail' rewards.id %}"><h4 class="heading">{{ rewards.title }}</h4></a>
                           <p class="url">
                             <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
                             <a href="{{ rewards.certificate.url }}" target="_blank"><i class="fa fa-file"></i> View Certificate </a>

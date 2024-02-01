@@ -101,6 +101,8 @@ class AddReward(forms.ModelForm):
         )
         
         widgets = {
-            'awardee': forms.Select(attrs={'class': 'form-control'}),
+            'awardee': forms.TextInput(attrs={'class': 'form-control'}),
+            'description': forms.Textarea(attrs={'class': 'form-control'}),
+            'title': forms.TextInput(attrs={'class': 'form-control'}),
         }
         

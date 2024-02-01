@@ -1,18 +1,66 @@
-EDIT REWARD
-<div>
-    {% if reward_form.errors %}
-    <ul class="errorlist">
-      {% for field_errors in reward_form.errors.values %}
-        {% for error in field_errors %}
-          <li>{{ error }}</li>
-        {% endfor %}
-      {% endfor %}
-    </ul>
-  {% endif %}
-</div>
-<br>
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ reward_form.as_p }}
-    <button type="SUBMIT">EDIT REWARD</button>
-</form>
+{% extends 'rmics/base.html' %}
+{% block editreward %}
+
+
+<div class="x_panel">
+    <div class="x_title">
+
+            <div>
+                <img src="{{ awardee.customuserprofile.profile_picture.url }}" class="avatar" alt="Avatar">
+                <h2> 🏆{{ awardee }}</h2>
+            </div>
+        
+        <ul class="nav navbar-right panel_toolbox">
+            <li><a href="{% url 'profile' awardee.id %}"><i class="fa fa-arrow-left"> Cancel</i></a>
+            </li>
+            <li><a href="{% url 'rewards_summary' %}"><i class="fa fa-users"> Rewards Summary</i></a>
+            </li>
+        </ul>
+        
+        <div class="clearfix"></div>
+    </div>
+    
+    <div class="x_content">
+        <br />
+        {{ form.errors }}
+        <form method="POST" enctype="multipart/form-data" class="form-horizontal form-label-left">
+            {% csrf_token %}
+            <div class="form-group row">
+
+                <span style="display: none;">{{ reward_form.awardee }}</span><br>
+
+                
+                <div class="col-md-4 col-sm-12 form-group">
+                    <label for="title">Award Title:</label>
+                    <div>
+                        {{ reward_form.title }}
+                    </div>
+                </div>
+    
+    
+                <div class="col-md-12 col-sm-12  form-group">
+                    <label for="description">Description:</label>
+                    <div>
+                        {{ reward_form.description }}
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-sm-12  form-group">
+                    <label for="id_description_of_work">Upload Certificate:</label>
+                    {{ reward_form.certificate }}
+                </div>
+    
+    
+                <div class="col-md-12 col-sm-12">
+                    <div class="row">
+                      <div class="col-md-12 col-sm-12">
+                        <button class="btn btn-info float-right" type="submit">Edit Award</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+            </div>
+    </form>   
+    </div>
+{% endblock %}

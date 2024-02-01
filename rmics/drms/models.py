@@ -39,3 +39,13 @@ class MaintenanceLog(models.Model):
     
     def __str__(self):
         return f"{self.machine_failure_breakdown} - {self.equipment_name}"
+
+
+
+class MaintenanceLogComment(models.Model):
+    maintenance_log = models.ForeignKey(MaintenanceLog, on_delete=models.CASCADE, related_name='comments')
+    commenter = models.ForeignKey(User, on_delete=models.CASCADE)
+    comment_text = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+    
+#CONTINUE IMPLEMENTING THIS COMMENT MODEL - ONLY MODEL IS CREATED Jan 28
