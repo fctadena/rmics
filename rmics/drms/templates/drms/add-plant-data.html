@@ -1,0 +1,12 @@
+Add Plant Data
+
+
+<form method="POST">
+    {% csrf_token %}
+    {{ plant_data_form.planned_production_time }} <br>
+    {{ plant_data_form.output }} <br>
+    {{ plant_data_form.output_unit }} <br>
+    {{ plant_data_form.plant_of_record }} <br>
+    {{ plant_data_form.log_reporter }} <br>
+    <button type="submit">Add Plant Data</button>
+</form>

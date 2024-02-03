@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import MaintenanceLog, MaintenanceLogComment
+from .models import MaintenanceLog, MaintenanceLogComment, PlantData
 
 # Register your models here.
 
@@ -38,3 +38,6 @@ class MaintenanceLogAdmin(admin.ModelAdmin):
 admin.site.register(MaintenanceLog, MaintenanceLogAdmin)
 
 admin.site.register(MaintenanceLogComment)
+
+
+admin.site.register(PlantData)

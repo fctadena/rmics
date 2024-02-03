@@ -1,0 +1,6 @@
+Plant Data Summary
+<br>
+
+{% for data in plant_data_summary %}
+{{ data }} | <a href="{% url 'drms:edit_plant_data' data.id %}">Edit</a> | <a href="{% url 'drms:plant_data' data.id %}">Details</a><br>
+{% endfor %}

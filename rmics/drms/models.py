@@ -3,6 +3,9 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from ams.models import Asset, PlantAssignment
 from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator
+from django.utils import timezone
+
 
 
 
@@ -45,7 +48,18 @@ class MaintenanceLog(models.Model):
 class MaintenanceLogComment(models.Model):
     maintenance_log = models.ForeignKey(MaintenanceLog, on_delete=models.CASCADE, related_name='comments')
     commenter = models.ForeignKey(User, on_delete=models.CASCADE)
-    comment_text = models.TextField()
+    comment_text = models.TextField(max_length=1000)
     timestamp = models.DateTimeField(auto_now_add=True)
     
-#CONTINUE IMPLEMENTING THIS COMMENT MODEL - ONLY MODEL IS CREATED Jan 28
+
+
+class PlantData(models.Model):
+    timestamp = models.DateTimeField(auto_now_add=True)
+    planned_production_time = models.DurationField(validators=[MaxValueValidator(limit_value=timezone.timedelta(hours=24))])
+    output = models.IntegerField(blank=True, null=True)
+    output_unit = models.CharField(max_length=20, choices=[('Bags', 'Bags'), ('Liters', 'Liters'), ('Barrels', 'Barrels')], default=None, blank=True, null=True)
+    plant_of_record = models.ForeignKey(PlantAssignment, on_delete=models.CASCADE, related_name='plant_data', blank=True, null=True)
+    log_reporter = models.ForeignKey(User, on_delete=models.PROTECT, blank=True, null=True)
+    
+    def __str__(self):
+        return f"{self.planned_production_time} - {self.output} {self.output_unit} | from {self.plant_of_record} by {self.log_reporter}"

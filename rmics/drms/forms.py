@@ -1,5 +1,5 @@
 from django import forms
-from .models import MaintenanceLog
+from .models import MaintenanceLog, PlantData
 
 
 
@@ -34,3 +34,10 @@ class MaintenanceLogForm(forms.ModelForm):
                 'notification_num',
                 'include_log'
                 ]
+            
+            
+class PlantDataForm(forms.ModelForm):
+    
+    class Meta:
+        model = PlantData
+        fields = '__all__'

@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect
-from .models import MaintenanceLog
+from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
+from .models import MaintenanceLog, MaintenanceLogComment, PlantData
 from django.views.generic.edit import CreateView
-from .forms import MaintenanceLogForm
+from .forms import MaintenanceLogForm, PlantDataForm
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views.generic.detail import DetailView
@@ -92,52 +92,156 @@ class add_log(CreateView):
         return reverse_lazy('drms:maintenance_records')
 
     
+
+
+
+#THIS LACK LOGIC TO PREVENT USER FROM ADDING NEW PLANTRECORD WITHIN THE DAY
+def add_plant_data(request):
     
-# COPY OF OLD add_log view
-# class add_log(CreateView):
-#     model = MaintenanceLog
-#     form_class = MaintenanceLogForm
-#     template_name = 'drms/add-log.html'
+    current_user = request.user
+    user_details = CustomUserProfile.objects.get(user=current_user)
+    plant_data_form = PlantDataForm
     
-#     def get_success_url(self):
-#         messages.success(self.request, 'ADDED LOG SUCCESSFULLY', extra_tags='success')
-#         return reverse_lazy('drms:maintenance_records')
     
+    if request.method == "POST": 
+        plant_data_form = PlantDataForm(request.POST)        
+        
+        if plant_data_form.is_valid():
+            plant_data_form.save()
+            messages.success(self.request, 'ADDED PLANT DATA SUCCESSFULLY', extra_tags='success')
+            return redirect('drms:plant_data_summary')
+        
+        else:
+            print("FORM NOT VALID")
+             
+        
+    else:
+        print("THIS IS A GET REQUEST")
 
-
-# EXAMPLE TO FILTER LOGS THAT CURRENT USER WAS CREATOR
-# def my_purchases(request):
-#     orders = OrderDetail.objects.filter(customer_email=request.user.email)
+        plant_data_form = PlantDataForm()
+        plant_data_form.fields['log_reporter'].initial = current_user
+        plant_data_form.fields['plant_of_record'].initial = user_details.plant_assignment
+        
+                
+        context = {
+            'plant_data_form':plant_data_form
+        }
     
-#     context = {
-#         'orders':orders
-#     }
-#     return render(request, 'main/purchases.html', context)
+        return render(request, template_name="drms/add-plant-data.html", context=context)
 
 
 
-#ERROR HANDLER
-# def update_records_view(request):
-#     template_name = 'drms/update-log.html'
 
-#     if request.method == 'GET':
-#         return render(request, template_name)
-#     elif request.method == 'POST':
-#         try:
-#             # Update logic
-#             maintenance_logs = MaintenanceLog.objects.filter(equipment_name__isnull=False)
+
+def edit_plant_data(request, id):
+    
+    plant_data = PlantData.objects.get(id=id)
+    
+    if request.method == "POST":
+        form = PlantDataForm(request.POST, instance=plant_data)
+        
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'UPDATED PLANT DATA SUCCESSFULLY', extra_tags='info')
+            return redirect('drms:plant_data_summary')
+        
+        else:
+            return HttpResponse("THIS IS AN ERRROR")
+    
+    else:
+        
+        form = PlantDataForm(instance=plant_data)
+        
+        context = {
             
-#             for log in maintenance_logs:
-#                 log.equipment_name = None
-#                 log.save()
+            'form':form
+        }
+        
+        return render(request, template_name="drms/edit-plant-data.html", context=context)
 
-#             # Display success message
-#             messages.success(request, 'Records updated successfully.')
-#         except Exception as e:
-#             # Display error message if update fails
-#             messages.error(request, f'An error occurred: {str(e)}')
 
-#         return redirect('drms:update_log')
+
+def plant_data_summary(request):
+    
+    plant_data_summary = PlantData.objects.all()
+
+    context = {
+        'plant_data_summary':plant_data_summary
+    }
+    
+    return render(request, template_name="drms/plant-data-summary.html", context=context)
+
+
+
+
+
+
+
+def plant_data(request, id):
+    plant_data = PlantData.objects.get(id=id)
+    
+    
+    context = {
+        'plant_data':plant_data
+    }
+    return render(request, template_name="drms/plant-data.html", context=context)
+
+    
+
+
+
+
+
+
+
+# def add_plant_data(request):
+#     current_user = request.user
+#     user_details = CustomUserProfile.objects.get(user=current_user)
+#     plant_data_form = PlantDataForm
+    
+#     if request.method == "POST": 
+#         plant_data_form = PlantDataForm(request.POST)        
+        
+#         if plant_data_form.is_valid():
+#             # Check if a PlantData instance with the same timestamp already exists
+#             timestamp = plant_data_form.cleaned_data.get('timestamp')
+#             if timestamp:
+#                 existing_instance = PlantData.objects.filter(timestamp__date=timestamp.date(), log_reporter=current_user).first()
+
+#                 if existing_instance:
+#                     # Raise an error or handle it as per your requirements
+#                     plant_data_form.add_error('timestamp', 'You already added data for this day.')
+#                     print("ERROR: Data already exists for this day.")
+#                     return render(request, template_name="drms/add-plant-data.html", context={'plant_data_form': plant_data_form})
+#                 else:
+#                     # Save the new PlantData instance
+#                     plant_data_form.save()
+#                     return redirect('drms:plant_data_summary')
+        
+#         else:
+#             print("FORM NOT VALID")
+         
+#     else:
+#         print("THIS IS A GET REQUEST")
+
+#         plant_data_form = PlantDataForm()
+#         plant_data_form.fields['log_reporter'].initial = current_user
+#         plant_data_form.fields['plant_of_record'].initial = user_details.plant_assignment
+                
+#     context = {
+#         'plant_data_form': plant_data_form
+#     }
+
+#     return render(request, template_name="drms/add-plant-data.html", context=context)
+
+
+
+
+
+
+
+
+
 
 
 def test_view(request):
