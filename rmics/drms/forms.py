@@ -1,5 +1,5 @@
 from django import forms
-from .models import MaintenanceLog, PlantData
+from .models import MaintenanceLog, PlantData, MaintenanceLogComment
 
 
 
@@ -41,3 +41,12 @@ class PlantDataForm(forms.ModelForm):
     class Meta:
         model = PlantData
         fields = '__all__'
+        
+        
+        
+class MaintenanceLogCommentForm(forms.ModelForm):
+    class Meta:
+        model = MaintenanceLogComment
+        fields = [
+            'comment_text'
+        ]

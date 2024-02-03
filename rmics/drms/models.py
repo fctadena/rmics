@@ -51,6 +51,12 @@ class MaintenanceLogComment(models.Model):
     comment_text = models.TextField(max_length=1000)
     timestamp = models.DateTimeField(auto_now_add=True)
     
+    class Meta:
+        ordering = ('timestamp',)
+        
+    
+    def __str__(self):
+        return self.comment_text
 
 
 class PlantData(models.Model):

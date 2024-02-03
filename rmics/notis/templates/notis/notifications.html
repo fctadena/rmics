@@ -4,7 +4,7 @@
 {% block updatefindingsform %}
 {% for notifs in notifications %}
     <div class="project_detail">
-        <p class="title">{{ notifs.verb}} <span class="badge badge-danger"> NEW!</span></p>
+        <p class="title"><a href="#">{{ notifs.verb}}</a> <span class="badge badge-danger"> NEW!</span></p>
         <p>{{ notifs.actor }} | {{ notifs.timestamp }}</p>
     </div>
 {% endfor %}

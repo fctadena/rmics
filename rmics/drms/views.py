@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from .models import MaintenanceLog, MaintenanceLogComment, PlantData
 from django.views.generic.edit import CreateView
-from .forms import MaintenanceLogForm, PlantDataForm
+from .forms import MaintenanceLogForm, PlantDataForm, MaintenanceLogCommentForm
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views.generic.detail import DetailView
@@ -28,6 +28,27 @@ def drms(request):
 class log_detail(DetailView):
     model = MaintenanceLog
     template_name = 'drms/log-detail.html'
+    
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comment_form'] = MaintenanceLogCommentForm()
+        return context
+    
+    def post(self, request, *args, **kwargs):
+        form = MaintenanceLogCommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.maintenance_log = self.get_object()
+            comment.commenter = request.user  # Assuming you have user authentication
+            comment.save()
+            return redirect('drms:log_detail', pk=self.get_object().pk)
+        else:
+            # Handle invalid form submission if needed
+            pass
+        
+        
+
 
 
 def delete_log(request,id):
@@ -90,6 +111,9 @@ class add_log(CreateView):
 
     def get_success_url(self):
         return reverse_lazy('drms:maintenance_records')
+    
+    
+
 
     
 
@@ -182,7 +206,8 @@ def plant_data(request, id):
     
     
     context = {
-        'plant_data':plant_data
+        'plant_data':plant_data,
+ 
     }
     return render(request, template_name="drms/plant-data.html", context=context)
 
