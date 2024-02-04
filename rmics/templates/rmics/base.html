@@ -398,27 +398,40 @@
                         
                         
                         
-
+                        <!-- SIDE BAR 1 -->
                         <div class="card border-info mb-3" style="max-width: 18rem;">
                           <div class="card-header"><h6 class="green"> CRITICAL FINDINGS SUMMARY </h6></div>
                             <div class="card-body text-info">
                               <div class="project_detail">
-                                <p class="title">Line 3 Hammer Mill Vibration <span class="badge badge-danger"> NEW!</span></p>
-                                <p>BMP Mis Or 1</p>
-                                <p class="title">PPR4 Central Lubrication Leaking</p>
-                                <p>B-MEG Davao</p>
-                                <p class="title">Unusual vibration on PPR2</p>
-                                <p>B-MEG Bataan</p>
+                                {% for log in findings_log %}
+                                {% comment %} <p class="title">{{ log }}<span class="badge badge-danger"> NEW!</span></p> {% endcomment %}
+                                <p class="title">{{ log }}</p>
+                                <p>{{ log.log_reporter.customuserprofile.plant_assignment }}</p>
+                                {% endfor %}
+
                               </div>
                             </div>
                           </div>
                         </div>
                         <br />
 
-                        <div class="card border-info mb-3" style="max-width: 18rem;">
-                          <div class="card-header"><h6 class="green">LATEST ACTIVITIES</h6></div>
-                          <div class="card-body text-info">
+      
                             <!-- NOTIF STARTS HERE-->
+                            <div class="card border-info mb-3" style="max-width: 18rem;">
+                              <div class="card-header"><h6 class="black"> LATEST ACTIVITIES</h6></div>
+                                <div class="card-body text-info">
+                                  <div class="project_detail">
+                                    {% for notis in notifications %}
+                                    {% comment %} <p class="title">{{ log }}<span class="badge badge-danger"> NEW!</span></p> {% endcomment %}
+                                    <p class="title">{{ notis.verb }}</p>
+                                    <p>{{ notis.actor }}</p>
+                                    {% endfor %}
+    
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <br />
                             <!-- NOTIF ENDS HERE-->
                           </div>
                         </div>

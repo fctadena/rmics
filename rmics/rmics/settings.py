@@ -77,6 +77,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'cfms.context_processors.findings_log_list_context',
+                'notis.context_processors.notification_list_context'
             ],
         },
     },

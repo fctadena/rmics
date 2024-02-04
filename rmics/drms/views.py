@@ -45,6 +45,7 @@ class log_detail(DetailView):
             return redirect('drms:log_detail', pk=self.get_object().pk)
         else:
             # Handle invalid form submission if needed
+            return HttpResponse("THIS IS A CUSTOM RESPONSE FOR AN INVALID FORM")
             pass
         
         
