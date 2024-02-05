@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import FindingsLog
-from .forms import FindingsLogForm
+from .forms import FindingsLogForm, FindingsLogCommentForm
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.contrib import messages
@@ -44,10 +44,45 @@ def delete_findings(request, id):
     
     return render(request, 'cfms/delete-findings.html', {'findingslog':findingslog})
 
+
+
 @method_decorator(unauthenticated_logic, name="dispatch")
 class findings_detail(DetailView):
     model = FindingsLog
     template_name = 'cfms/findings-detail.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comment_form'] = FindingsLogCommentForm()
+        return context
+    
+    
+    def post(self, request, *args, **kwargs):
+        form = FindingsLogCommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.findings_log = self.get_object()
+            comment.commenter = request.user
+            comment.save()
+            return redirect('cfms:findings_detail', pk=self.get_object().pk)
+        else:
+            return HttpResponse("THIS IS A CUSTOM RESPONSE FOR AN INVALID FORM")
+        
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 @unauthenticated_logic
 def findings_summary(request):

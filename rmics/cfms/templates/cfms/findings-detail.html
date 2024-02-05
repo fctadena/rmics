@@ -42,6 +42,61 @@
     </div>
   </div>
 
+  
+  <!--COMMENT SECTION-->
+
+  <!--Submission Form-->
+
+  <form class="form-horizontal" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="message" class="col-md-12 col-sm-12 control-label">Comment:</label>
+        <div class="col-md-12 col-sm-12">
+            <textarea id="id_comment_text" required="required" class="form-control" name="comment_text" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 characters long comment.." data-parsley-validation-threshold="10"></textarea>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-12 col-sm-12">
+            <button type="submit" class="btn btn-success mt-2 float-right">Comment</button>
+        </div>
+    </div>
+</form>
+  
+  <!--End of Submission Fo  rm-->
+
+  <br>
+
+  {% for comment in object.findings_log_comments.all %}
+  <br>
+  <ul class="messages">
+    <li>
+      <img src="{{ comment.commenter.customuserprofile.profile_picture.url }}" class="avatar" alt="Avatar">
+      <div class="message_date">
+        <h3 class="date text-info"></h3>
+      </div>
+      <div class="message_wrapper">
+        <h4 class="heading">
+          <a href="{% url 'profile' comment.commenter.id %}">{{ comment.commenter }}</a>
+        </h4>
+        <blockquote class="message">{{ comment }}</blockquote>
+
+        <br />
+        <p class="url">
+          {% if comment.commenter == user %}
+            <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
+            <a href="#"><i class="fa fa-pencil-square-o"> Delete </i></a>
+          {% endif %}
+          <p class="month">{{ comment.timestamp|date:"F d, Y h:i A" }}</p>
+
+        </p>
+      </div>
+    </li>
+  </ul>
+{% endfor %}
+
+  <!--END OF COMMENT SECTION-->
+
 
   
   

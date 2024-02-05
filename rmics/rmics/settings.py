@@ -78,7 +78,8 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'cfms.context_processors.findings_log_list_context',
-                'notis.context_processors.notification_list_context'
+                'notis.context_processors.notification_list_context',
+                'datams.context_processors.logs_context_kpi_section'
             ],
         },
     },

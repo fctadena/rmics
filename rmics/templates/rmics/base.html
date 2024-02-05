@@ -424,6 +424,7 @@
                                     {% for notis in notifications %}
                                     {% comment %} <p class="title">{{ log }}<span class="badge badge-danger"> NEW!</span></p> {% endcomment %}
                                     <p class="title">{{ notis.verb }}</p>
+                                    <p>{{ notis.actor }}</p> 
                                     <p>{{ notis.actor }}</p>
                                     {% endfor %}
     

@@ -8,3 +8,5 @@ def findings_log_list_context(request):
         'findings_log':findings_log
     }
     return context
+
+

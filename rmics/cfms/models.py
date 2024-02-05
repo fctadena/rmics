@@ -21,3 +21,16 @@ class FindingsLog(models.Model):
         return self.findings_title
     
     
+
+class FindingsLogComment(models.Model):
+    findings_log = models.ForeignKey(FindingsLog, on_delete=models.CASCADE, related_name='findings_log_comments')
+    commenter = models.ForeignKey(User, on_delete=models.CASCADE)
+    comment_text = models.TextField(max_length=1000)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        ordering = ('timestamp',)
+        
+    
+    def __str__(self):
+        return self.comment_text
