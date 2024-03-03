@@ -15,8 +15,6 @@ from .decorators import unauthenticated_logic, allowed_groups
 
 
 
-
-
 def home(request):
     return redirect('login')
 
@@ -251,3 +249,4 @@ def reward_detail(request, id):
     }
 
     return render(request, template_name='user/reward-detail.html', context=context)
+

@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from .models import CustomUserProfile
 from . import views
 from django.contrib.auth import views as authentication_views
@@ -24,6 +24,18 @@ urlpatterns = [
     path('delete-reward/<int:id>/', views.delete_reward, name='delete_reward'),
     path('edit-reward/<int:id>/', views.edit_reward, name='edit_reward'),
     path('reward-detail/<int:id>/', views.reward_detail, name='reward_detail'),
+    
+    #RESET PASSWORD
+    path('password_reset', 
+         authentication_views.PasswordResetView.as_view(template_name="user/password-reset.html"), 
+         name="password_reset"),
+    #STAR HERE MARCH 3, STYLE THE REMAINING URLS AND VIEWS
+    path('password_reset_done',
+         authentication_views.PasswordResetDoneView.as_view(), name="password_reset_done"),
+    path('password_reset_confirm/<uidb64>/<token>/', authentication_views.PasswordResetConfirmView.as_view(), name="password_reset_confirm"),
+    path('password_reset_complete', authentication_views.PasswordResetCompleteView.as_view(), name="password_reset_complete")
+
+    
 
 ]
 
